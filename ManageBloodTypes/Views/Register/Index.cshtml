@@ -1,0 +1,1159 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+
+<div class="zidbody">
+
+
+
+    <div class="zid_regform">
+
+        <ul class="zidregmethodtab">
+            <li>
+                <a id="tab_reg_by_acc" href="javascript:void(0)" onclick="showRegAcc();" class="selected">
+                    <span class="useracc_icon zidsprt"></span>Bằng Tài khoản
+                </a>
+            </li>
+            <!--        <li>
+                        <a id="tab_reg_by_email" href="javascript:void(0)" onclick="showRegMail();" class="">
+                            <span class="email_icon zidsprt"></span>Bằng Email
+                        </a>
+                    </li>-->
+        </ul>
+        <h2 class="formheader"><strong>Đăng ký</strong> </h2>
+        <!--register-->
+        <div id="reg_by_acc" class="zid_regbox" style="position: relative;">
+            <div id="regacc_loading" class="loadingfrm" style="margin: -18px">
+                <img src="/Content/img/loader.gif" style="height: 100px;padding-top: 150px;">
+            </div>
+            <p class="zid_regform_notice">Những thông tin có đánh dấu <span class="requiredfield_icn"></span>  là bắt buộc nhập.</p>
+
+
+            <!--form reg-->
+            <form id="frmReg" name="frmReg" action="https://id.zing.vn/v2/registerfull?apikey=92140c0e46c54994812403f564787c14&pid=38&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38" method="post" enctype="application/x-www-form-urlencoded">
+                <!--Hidden input-->
+                <div id="hidden_input">
+                    <input type="hidden" name="apikey" id="zapikey" value="92140c0e46c54994812403f564787c14" autocomplete="off">
+                    <input type="hidden" name="next" value="https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38" autocomplete="off">
+                    <input type="hidden" name="pid" id="pid" value="38" autocomplete="off">
+                    <input type="hidden" name="oauthdata" value="" autocomplete="off">
+                    <input type="hidden" name="_src" value="">
+                    <input type="hidden" name="utm_source" value="">
+                    <input type="hidden" name="utm_medium" value="">
+                    <input type="hidden" name="utm_term" value="">
+                    <input type="hidden" name="utm_content" value="">
+                    <input type="hidden" name="utm_campaign" value="">
+                    <input type="hidden" name="referer" value="">
+                    <input type="hidden" name="age" id="age" value="">
+
+                </div>
+                <!--Step 1-->
+                <div id="regfrm_step1" style="display:  ">
+                    <!--Fullname-->
+                    <div rel="Notice" class="msgtooltip posleft error show" id="regacc_fullname_error">
+                        <span class="tooltiparrow zidsprt"></span>
+                        <div class="tooltipbody">
+                            <span class="tipmsg_icon"></span>
+                            <div class="tipcontent"></div>
+                        </div>
+                    </div>
+                    <div class="finput">
+                        <em class="requiredfield_icn"></em>
+
+                        <input class="input_login" tabindex="1" placeholder="Tên Căn Hộ - Doanh Nghiệp" type="text" maxlength="40" name="fullname" id="regacc_fullname" autocomplete="off" value="">
+                        <span><strong>Nếu là không phải đăng ký cho cá nhân thì nhập vào ô này</strong></span>
+                        <input class="input_login" type="text" value="Họ tên" style="display:none" id="fake_regacc_fullname">
+                        <div id="regacc_fullname_tooltip" class="formtipbubble" style="display:none;">
+                            <span class="formtip_arrow zidsprt"></span>
+                            <div class="formtip_inner">
+                                Vui lòng nhập họ tên thật và chính xác từ 2 đến 40 kí tự.
+                            </div>
+                        </div>
+                    </div>
+                    <!--Account-->
+                    <div rel="Notice" class="msgtooltip posleft error show" id="regacc_account_error">
+                        <span class="tooltiparrow zidsprt"></span>
+                        <div class="tooltipbody">
+                            <span class="tipmsg_icon"></span>
+                            <div class="tipcontent"></div>
+                        </div>
+                    </div>
+
+                    <div id="reg_username" class="finput reg_username">
+                        <a href="javascript:void(0)" onclick="checkAccountExist()" id="check_account_valid" class="checkusernamebtn" title="Kiểm tra tên đăng nhập">Kiểm tra</a>
+                        <span id="account_invalid" class="account_invalid" style="display:none"></span>
+                        <span id="account_valid" class="account_valid" style="display:none"></span>
+                        <em class="requiredfield_icn"></em>
+                        <input class="input_login" tabindex="2" type="text" placeholder="Tên đăng nhập" maxlength="32" name="account" value="" id="regacc_account" autocomplete="off">
+                        <input class="input_login" type="text" value="Tên đăng nhập" style="display:none" id="fake_regacc_account">
+                        <div id="regacc_account_tooltip" class="formtipbubble" style="display:none;">
+                            <span class="formtip_arrow zidsprt"></span>
+                            <div class="formtip_inner">
+                                Tài khoản có dấu chấm, dấu gạch dưới sẽ không đăng nhập được tất cả các Game
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--Password-->
+                    <div rel="Notice" class="msgtooltip posleft error show" id="regacc_pwd_error">
+                        <span class="tooltiparrow zidsprt"></span>
+                        <div class="tooltipbody">
+                            <span class="tipmsg_icon"></span>
+                            <div class="tipcontent">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="finput">
+                        <em class="requiredfield_icn"></em>
+                        <input class="input_login" tabindex="3" type="password" placeholder="Mật khẩu" name="pwd" id="regacc_pwd" autocomplete="off" value="">
+                        <input class="input_login" type="text" value="Mật khẩu" placeholder="Mật khẩu" style="display:none" id="fake_regacc_pwd">
+                        <div id="regacc_pwd_tooltip" class="formtipbubble" style="display:none;">
+                            <span class="formtip_arrow zidsprt"></span>
+                            <div class="formtip_inner">
+                                Mật khẩu phải có từ 6-32 ký tự.
+                            </div>
+                        </div>
+
+                    </div>   <!--ReEnter Password-->
+                    <div rel="Notice" class="msgtooltip posleft error show" id="regacc_re_pwd_error">
+                        <span class="tooltiparrow zidsprt"></span>
+                        <div class="tooltipbody">
+                            <span class="tipmsg_icon"></span>
+                            <div class="tipcontent">
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="finput">
+                        <em class="requiredfield_icn"></em>
+                        <input class="input_login" tabindex="4" type="password" placeholder="Xác nhận Mật khẩu" name="re_pwd" id="regacc_re_pwd" autocomplete="off" value="">
+                        <input class="input_login" type="text" value="Xác nhận Mật khẩu" placeholder="Xác nhận Mật khẩu" style="display:none" id="fake_regacc_re_pwd">
+
+                    </div>*@
+
+                    <!--Birthday-->
+                    <div rel="Notice" class="msgtooltip posleft error show" id="regacc_dob_error">
+                        <span class="tooltiparrow zidsprt"></span>
+                        <div class="tooltipbody">
+                            <span class="tipmsg_icon"></span>
+                            <div class="tipcontent">
+
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="reg_birthday">
+                        <div>
+                            <p class="finput reg_date">
+                                <select id="dob" name="dob" tabindex="5"> 
+                                <option value="-1">[Ngày]</option> 
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option> <option value="3">3</option> 
+                                <option value="4">4</option> <option value="5">5</option> 
+                                <option value="6">6</option> <option value="7">7</option> 
+                                <option value="8">8</option> <option value="9">9</option> 
+                                <option value="10">10</option> <option value="11">11</option> 
+                                <option value="12">12</option> <option value="13">13</option> 
+                                <option value="14">14</option> <option value="15">15</option> 
+                                <option value="16">16</option> <option value="17">17</option> 
+                                <option value="18">18</option> <option value="19">19</option> 
+                                <option value="20">20</option> <option value="21">21</option> 
+                                <option value="22">22</option> <option value="23">23</option> 
+                                <option value="24">24</option> <option value="25">25</option> 
+                                <option value="26">26</option> <option value="27">27</option> 
+                                <option value="28">28</option> <option value="29">29</option> 
+                                <option value="30">30</option> <option value="31">31</option></select>
+                            </p>
+                            <p class="finput reg_month">
+                                <select id="mob" name="mob" tabindex="6"> 
+                                <option value="-1">[Tháng]</option> 
+                                <option value="1" selected>Tháng 1</option> 
+                                <option value="2">Tháng 2</option> <option value="3">Tháng 3</option> 
+                                <option value="4">Tháng 4</option> <option value="5">Tháng 5</option> 
+                                <option value="6">Tháng 6</option> <option value="7">Tháng 7</option>
+                                <option value="8">Tháng 8</option> <option value="9">Tháng 9</option> 
+                                <option value="10">Tháng 10</option> <option value="11">Tháng 11</option>
+                                <option value="12">Tháng 12</option></select>
+                            </p>
+                            <p class="finput reg_year" style="margin-right: 0px;">
+                                <select id="yob" name="yob" tabindex="7"> 
+                                <option value="-1">[Năm sinh]</option> 
+                                <option value="2024">2024</option> <option value="2023">2023</option> 
+                                <option value="2022">2022</option> <option value="2021">2021</option> 
+                                <option value="2020">2020</option> <option value="2019">2019</option> 
+                                <option value="2018">2018</option> <option value="2017">2017</option> 
+                                <option value="2016">2016</option> <option value="2015">2015</option> 
+                                <option value="2014">2014</option> <option value="2013">2013</option> 
+                                <option value="2012">2012</option> <option value="2011">2011</option> 
+                                <option value="2010">2010</option> <option value="2009">2009</option> 
+                                <option value="2008">2008</option> <option value="2007">2007</option> 
+                                <option value="2006">2006</option> <option value="2005">2005</option> 
+                                <option value="2004">2004</option> <option value="2003">2003</option> 
+                                <option value="2002">2002</option> <option value="2001">2001</option> 
+                                <option value="2000">2000</option> <option value="1999">1999</option> 
+                                <option value="1998">1998</option> <option value="1997">1997</option> 
+                                <option value="1996">1996</option> <option value="1995" selected>1995</option> 
+                                <option value="1994">1994</option> <option value="1993">1993</option> 
+                                <option value="1992">1992</option> <option value="1991">1991</option> 
+                                <option value="1990">1990</option> <option value="1989">1989</option> 
+                                <option value="1988">1988</option> <option value="1987">1987</option> 
+                                <option value="1986">1986</option> <option value="1985">1985</option> 
+                                <option value="1984">1984</option> <option value="1983">1983</option> 
+                                <option value="1982">1982</option> <option value="1981">1981</option> 
+                                <option value="1980">1980</option> <option value="1979">1979</option> 
+                                <option value="1978">1978</option> <option value="1977">1977</option> 
+                                <option value="1976">1976</option> <option value="1975">1975</option> 
+                                <option value="1974">1974</option> <option value="1973">1973</option> 
+                                <option value="1972">1972</option> <option value="1971">1971</option> 
+                                <option value="1970">1970</option> <option value="1969">1969</option> 
+                                <option value="1968">1968</option> <option value="1967">1967</option> 
+                                <option value="1966">1966</option> <option value="1965">1965</option> 
+                                <option value="1964">1964</option> <option value="1963">1963</option> 
+                                <option value="1962">1962</option> <option value="1961">1961</option> 
+                                <option value="1960">1960</option> <option value="1959">1959</option> 
+                                <option value="1958">1958</option> <option value="1957">1957</option> 
+                                <option value="1956">1956</option> <option value="1955">1955</option> 
+                                <option value="1954">1954</option> <option value="1953">1953</option> 
+                                <option value="1952">1952</option> <option value="1951">1951</option> 
+                                <option value="1950">1950</option> <option value="1949">1949</option> 
+                                <option value="1948">1948</option> <option value="1947">1947</option> 
+                                <option value="1946">1946</option> <option value="1945">1945</option> 
+                                <option value="1944">1944</option> <option value="1943">1943</option> 
+                                <option value="1942">1942</option> <option value="1941">1941</option> 
+                                <option value="1940">1940</option> <option value="1939">1939</option> 
+                                <option value="1938">1938</option> <option value="1937">1937</option> 
+                                <option value="1936">1936</option> <option value="1935">1935</option> 
+                                <option value="1934">1934</option> <option value="1933">1933</option> 
+                                <option value="1932">1932</option> <option value="1931">1931</option> 
+                                <option value="1930">1930</option> <option value="1929">1929</option> 
+                                <option value="1928">1928</option> <option value="1927">1927</option> 
+                                <option value="1926">1926</option> <option value="1925">1925</option> 
+                                <option value="1924">1924</option> <option value="1923">1923</option> 
+                                <option value="1922">1922</option> <option value="1921">1921</option> 
+                                <option value="1920">1920</option></select>
+                            </p>
+                        </div>
+                        <div class="clr"></div>
+                    </div>*@
+
+                    <!--Gender-->
+                    <div rel="Notice" class="msgtooltip posleft error show" id="gender_error">
+                        <span class="tooltiparrow zidsprt"></span>
+                        <div class="tooltipbody">
+                            <span class="tipmsg_icon"></span>
+                            <div class="tipcontent">
+
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="reg_sex">
+                        <p class="flabel">Giới tính:</p>
+                        <label><input name="gender" type="radio" value="1" tabindex="8" checked>Nam</label>
+                        <label><input name="gender" type="radio" value="0" tabindex="9">Nữ</label>
+                        <div class="clr"></div>
+                    </div>*@
+                    <div class="reg_sex" style="display: flex; align-items: center; justify-content: space-between;">
+                        <p class="flabel">Đăng ký:</p>
+                        <div style="flex: 1;">
+                            <select style="width: 100%; padding: 10px; font-size: 16px; border: 1px solid #999; background-color: #fff; border-radius: 3px;">
+                                <option value="-1" selected>Chọn</option>
+                                <option value="1">Cá Nhân</option>
+                                <option value="2">Gia Đình</option>
+                                <option value="3">Doanh Nghiệp</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    @*<script>
+                        const currentValue = "@(Model.Hide?.ToString().ToLower() ?? "default")";
+                        const hideSelect = document.getElementById('hideSelect');
+                        if (currentValue === "true") {
+                            hideSelect.value = "true";
+                        } else if (currentValue === "false") {
+                            hideSelect.value = "false";
+                        } else {
+                            hideSelect.value = "default";
+                        }
+                    </script>*@
+                    <div class="zidfbot">
+                        @*<a tabindex="12" title="Đăng ký" class="zid_regbtn" onclick="submitRegisterAcc();" href="javascript:void(0)">Đăng ký</a>*@
+                        <div class="rtext">
+                            Bằng việc đăng ký tài khoản thành công bạn cần đồng ý <a href="https://id.zing.vn/v2/policy" target="_blank"><strong>Điều khoản sử dụng</strong></a>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+
+                    <!--btn go to step 2-->
+                    <div class="zidfbot">
+                         @*<a href="#" class="zid_regbtn" title="Đăng ký">Đăng ký</a>*@ 
+                        @*<a href="javascript:void(0)" onclick="checkRegInputStep1();" class="zidnextbtn" title="Tiếp tục">Tiếp tục</a>*@
+                        <a href="javascript:void(0)" onclick="executeCaptcha(event)" class="zid_regbtn" title="Đăng ký">Đăng ký</a>
+
+                        <div class="clr"></div>
+                    </div>
+                </div>
+                <!--Step2-->
+                <!--<div id="regfrm_step2" style="display: none ">-->
+                    <!--guardian-->
+                    <!--<div id="regfrm_step2_guardian" style="display: ">
+                        <p class="zid_regform_notice"><span style="font-size: 20px; font-weight: bold"> Thông tin người giám hộ </span></p>
+                        <p class="zid_regform_notice"><span class="requiredfield_icn"></span>Thông tin người giám hộ được dùng làm thông tin bảo vệ tài khoản.</p>-->
+                        <!--Fullname guardian-->
+                        <!--<div rel="Notice" class="msgtooltip posleft error show" id="regacc_fullname_guardian_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent"></div>
+                            </div>
+                        </div>
+                        <div class="finput">
+                            <em class="requiredfield_icn"></em>
+                            <input class="input_login" tabindex="10" placeholder="Họ tên" type="text" maxlength="40" name="regacc_fullname_guardian" id="regacc_fullname_guardian" autocomplete="off" value="">
+                            <input class="input_login" type="text" value="Họ tên" style="display:none" id="fake_regacc_fullname_guardian">
+                            <div id="regacc_fullname_guardian_tooltip" class="formtipbubble" style="display:none;">
+                                <span class="formtip_arrow zidsprt"></span>
+                                <div class="formtip_inner">
+                                    Vui lòng nhập họ tên thật và chính xác từ 2 đến 40 kí tự.
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--Birthday guardian-->
+                        <!--<div rel="Notice" class="msgtooltip posleft error show" id="regacc_dob_guardian_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reg_birthday">
+                            <div>
+                                <p class="finput reg_date">
+                                    <select id="dob_guardian" name="dob_guardian" tabindex="11"> <option value="-1">[Ngày]</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> <option value="10">10</option> <option value="11">11</option> <option value="12">12</option> <option value="13">13</option> <option value="14">14</option> <option value="15">15</option> <option value="16">16</option> <option value="17">17</option> <option value="18">18</option> <option value="19">19</option> <option value="20">20</option> <option value="21">21</option> <option value="22">22</option> <option value="23">23</option> <option value="24">24</option> <option value="25">25</option> <option value="26">26</option> <option value="27">27</option> <option value="28">28</option> <option value="29">29</option> <option value="30">30</option> <option value="31">31</option></select>
+                                </p>
+                                <p class="finput reg_month">
+                                    <select id="mob_guardian" name="mob_guardian" tabindex="12"> <option value="-1">[Tháng]</option> <option value="1">Tháng 1</option> <option value="2">Tháng 2</option> <option value="3">Tháng 3</option> <option value="4">Tháng 4</option> <option value="5">Tháng 5</option> <option value="6">Tháng 6</option> <option value="7">Tháng 7</option> <option value="8">Tháng 8</option> <option value="9">Tháng 9</option> <option value="10">Tháng 10</option> <option value="11">Tháng 11</option> <option value="12">Tháng 12</option></select>
+                                </p>
+                                <p class="finput reg_year" style="margin-right: 0px;">
+                                    <select id="yob_guardian" name="yob_guardian" tabindex="13"> <option value="-1">[Năm sinh]</option> <option value="2024">2024</option> <option value="2023">2023</option> <option value="2022">2022</option> <option value="2021">2021</option> <option value="2020">2020</option> <option value="2019">2019</option> <option value="2018">2018</option> <option value="2017">2017</option> <option value="2016">2016</option> <option value="2015">2015</option> <option value="2014">2014</option> <option value="2013">2013</option> <option value="2012">2012</option> <option value="2011">2011</option> <option value="2010">2010</option> <option value="2009">2009</option> <option value="2008">2008</option> <option value="2007">2007</option> <option value="2006">2006</option> <option value="2005">2005</option> <option value="2004">2004</option> <option value="2003">2003</option> <option value="2002">2002</option> <option value="2001">2001</option> <option value="2000">2000</option> <option value="1999">1999</option> <option value="1998">1998</option> <option value="1997">1997</option> <option value="1996">1996</option> <option value="1995">1995</option> <option value="1994">1994</option> <option value="1993">1993</option> <option value="1992">1992</option> <option value="1991">1991</option> <option value="1990">1990</option> <option value="1989">1989</option> <option value="1988">1988</option> <option value="1987">1987</option> <option value="1986">1986</option> <option value="1985">1985</option> <option value="1984">1984</option> <option value="1983">1983</option> <option value="1982">1982</option> <option value="1981">1981</option> <option value="1980">1980</option> <option value="1979">1979</option> <option value="1978">1978</option> <option value="1977">1977</option> <option value="1976">1976</option> <option value="1975">1975</option> <option value="1974">1974</option> <option value="1973">1973</option> <option value="1972">1972</option> <option value="1971">1971</option> <option value="1970">1970</option> <option value="1969">1969</option> <option value="1968">1968</option> <option value="1967">1967</option> <option value="1966">1966</option> <option value="1965">1965</option> <option value="1964">1964</option> <option value="1963">1963</option> <option value="1962">1962</option> <option value="1961">1961</option> <option value="1960">1960</option> <option value="1959">1959</option> <option value="1958">1958</option> <option value="1957">1957</option> <option value="1956">1956</option> <option value="1955">1955</option> <option value="1954">1954</option> <option value="1953">1953</option> <option value="1952">1952</option> <option value="1951">1951</option> <option value="1950">1950</option> <option value="1949">1949</option> <option value="1948">1948</option> <option value="1947">1947</option> <option value="1946">1946</option> <option value="1945">1945</option> <option value="1944">1944</option> <option value="1943">1943</option> <option value="1942">1942</option> <option value="1941">1941</option> <option value="1940">1940</option> <option value="1939">1939</option> <option value="1938">1938</option> <option value="1937">1937</option> <option value="1936">1936</option> <option value="1935">1935</option> <option value="1934">1934</option> <option value="1933">1933</option> <option value="1932">1932</option> <option value="1931">1931</option> <option value="1930">1930</option> <option value="1929">1929</option> <option value="1928">1928</option> <option value="1927">1927</option> <option value="1926">1926</option> <option value="1925">1925</option> <option value="1924">1924</option> <option value="1923">1923</option> <option value="1922">1922</option> <option value="1921">1921</option> <option value="1920">1920</option></select>
+                                </p>
+                            </div>
+                            <div class="clr"></div>
+                        </div>-->
+
+                        <!--Phone guardian-->
+                        <!--<div rel="Notice" class="msgtooltip posleft error show" id="regacc_phone_guardian_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent"></div>
+                            </div>
+                        </div>
+                        <div class="finput">
+                            <em class="requiredfield_icn"></em>
+                            <input class="input_login" tabindex="14" placeholder="Số điện thoại" type="text" maxlength="40" name="regacc_phone_guardian" id="regacc_phone_guardian" autocomplete="off" value="">
+                            <input class="input_login" type="text" value="Số điện thoại" style="display:none" id="fake_regacc_phone_guardian">
+                            <div id="regacc_phone_guardian_tooltip" class="formtipbubble" style="display:none;">
+                                <span class="formtip_arrow zidsprt"></span>
+                                <div class="formtip_inner">
+                                    Vui lòng nhập số điện thoại di động.
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--Email guardian-->
+                        <!--<div rel="Notice" class="msgtooltip posleft error show" id="regacc_email_guardian_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent"></div>
+                            </div>
+                        </div>
+                        <div class="finput">
+                            <em class="requiredfield_icn"></em>
+                            <input class="input_login" tabindex="15" placeholder="Email" type="text" maxlength="40" name="regacc_email_guardian" id="regacc_email_guardian" autocomplete="off" value="">
+                            <input class="input_login" type="text" value="Email" style="display:none" id="fake_regacc_email_guardian">
+                            <div id="regacc_email_guardian_tooltip" class="formtipbubble" style="display:none;">
+                                <span class="formtip_arrow zidsprt"></span>
+                                <div class="formtip_inner">
+                                    Vui lòng nhập email.
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--CMND guardian-->
+                        <!--<div rel="Notice" class="msgtooltip posleft error show" id="regacc_cmnd_guardian_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent"></div>
+                            </div>
+                        </div>
+                        <div class="finput">
+                            <em class="requiredfield_icn"></em>
+                            <input class="input_login" tabindex="16" placeholder="số CMND ( CCCD hoặc hộ chiếu)" type="text" maxlength="40" name="regacc_cmnd_guardian" id="regacc_cmnd_guardian" autocomplete="off" value="">
+                            <input class="input_login" type="text" value="số CMND ( CCCD hoặc hộ chiếu)" style="display:none" id="fake_regacc_cmnd_guardian">
+                            <div id="regacc_cmnd_guardian_tooltip" class="formtipbubble" style="display:none;">
+                                <span class="formtip_arrow zidsprt"></span>
+                                <div class="formtip_inner">
+                                    Vui lòng nhập chứng minh nhân dân hoặc số hộ chiếu.
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--Ngày cấp CMND-->
+                        <!--<div rel="Notice" class="msgtooltip posleft error show" id="regacc_cmnd_date_guardian_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reg_birthday">
+                            <div>
+                                <p class="finput reg_date">
+                                    <select id="regacc_cmnd_date_guardian" name="regacc_cmnd_date_guardian" tabindex="17"> <option value="-1">[Ngày]</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> <option value="10">10</option> <option value="11">11</option> <option value="12">12</option> <option value="13">13</option> <option value="14">14</option> <option value="15">15</option> <option value="16">16</option> <option value="17">17</option> <option value="18">18</option> <option value="19">19</option> <option value="20">20</option> <option value="21">21</option> <option value="22">22</option> <option value="23">23</option> <option value="24">24</option> <option value="25">25</option> <option value="26">26</option> <option value="27">27</option> <option value="28">28</option> <option value="29">29</option> <option value="30">30</option> <option value="31">31</option></select>
+                                </p>
+                                <p class="finput reg_month">
+                                    <select id="regacc_cmnd_month_guardian" name="regacc_cmnd_month_guardian" tabindex="18"> <option value="-1">[Tháng]</option> <option value="1">Tháng 1</option> <option value="2">Tháng 2</option> <option value="3">Tháng 3</option> <option value="4">Tháng 4</option> <option value="5">Tháng 5</option> <option value="6">Tháng 6</option> <option value="7">Tháng 7</option> <option value="8">Tháng 8</option> <option value="9">Tháng 9</option> <option value="10">Tháng 10</option> <option value="11">Tháng 11</option> <option value="12">Tháng 12</option></select>
+                                </p>
+                                <p class="finput reg_year" style="margin-right: 0px;">
+                                    <select id="regacc_cmnd_year_guardian" name="regacc_cmnd_year_guardian" tabindex="19"> <option value="-1">[Năm cấp]</option> <option value="2024">2024</option> <option value="2023">2023</option> <option value="2022">2022</option> <option value="2021">2021</option> <option value="2020">2020</option> <option value="2019">2019</option> <option value="2018">2018</option> <option value="2017">2017</option> <option value="2016">2016</option> <option value="2015">2015</option> <option value="2014">2014</option> <option value="2013">2013</option> <option value="2012">2012</option> <option value="2011">2011</option> <option value="2010">2010</option> <option value="2009">2009</option> <option value="2008">2008</option> <option value="2007">2007</option> <option value="2006">2006</option> <option value="2005">2005</option> <option value="2004">2004</option> <option value="2003">2003</option> <option value="2002">2002</option> <option value="2001">2001</option> <option value="2000">2000</option> <option value="1999">1999</option> <option value="1998">1998</option> <option value="1997">1997</option> <option value="1996">1996</option> <option value="1995">1995</option> <option value="1994">1994</option> <option value="1993">1993</option> <option value="1992">1992</option> <option value="1991">1991</option> <option value="1990">1990</option> <option value="1989">1989</option> <option value="1988">1988</option> <option value="1987">1987</option> <option value="1986">1986</option> <option value="1985">1985</option> <option value="1984">1984</option> <option value="1983">1983</option> <option value="1982">1982</option> <option value="1981">1981</option> <option value="1980">1980</option> <option value="1979">1979</option> <option value="1978">1978</option> <option value="1977">1977</option> <option value="1976">1976</option> <option value="1975">1975</option> <option value="1974">1974</option> <option value="1973">1973</option> <option value="1972">1972</option> <option value="1971">1971</option> <option value="1970">1970</option> <option value="1969">1969</option> <option value="1968">1968</option> <option value="1967">1967</option> <option value="1966">1966</option> <option value="1965">1965</option> <option value="1964">1964</option> <option value="1963">1963</option> <option value="1962">1962</option> <option value="1961">1961</option> <option value="1960">1960</option> <option value="1959">1959</option> <option value="1958">1958</option> <option value="1957">1957</option> <option value="1956">1956</option> <option value="1955">1955</option> <option value="1954">1954</option> <option value="1953">1953</option> <option value="1952">1952</option> <option value="1951">1951</option> <option value="1950">1950</option> <option value="1949">1949</option> <option value="1948">1948</option> <option value="1947">1947</option> <option value="1946">1946</option> <option value="1945">1945</option> <option value="1944">1944</option> <option value="1943">1943</option> <option value="1942">1942</option> <option value="1941">1941</option> <option value="1940">1940</option> <option value="1939">1939</option> <option value="1938">1938</option> <option value="1937">1937</option> <option value="1936">1936</option> <option value="1935">1935</option> <option value="1934">1934</option> <option value="1933">1933</option> <option value="1932">1932</option> <option value="1931">1931</option> <option value="1930">1930</option> <option value="1929">1929</option> <option value="1928">1928</option> <option value="1927">1927</option> <option value="1926">1926</option> <option value="1925">1925</option> <option value="1924">1924</option> <option value="1923">1923</option> <option value="1922">1922</option> <option value="1921">1921</option> <option value="1920">1920</option></select>
+                                </p>
+                            </div>
+                            <div class="clr"></div>
+                        </div>-->
+                        <!--Nơi cấp CMND-->
+                        <!--<div rel="Notice" class="msgtooltip posleft error show" id="regacc_cmnd_place_guardian_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent"></div>
+                            </div>
+                        </div>
+                        <div class="reg_cmnd_place">
+
+                            <p class="finput reg_cmnd_place" style="margin-right: 0px;">
+                                <select id="regacc_cmnd_place_guardian" name="regacc_cmnd_place_guardian" tabindex="20" style="width: 100%"> <option value="-1">--Nơi cấp CMND, CCCD hoặc hộ chiếu--</option> <option value="31">An Giang</option> <option value="37">Bà Rịa Vũng Tàu</option> <option value="33">Bình Dương</option> <option value="35">Bình Phước</option> <option value="28">Bình Thuận</option> <option value="32">Bình Định</option> <option value="34">Bạc Liêu</option> <option value="6">Bắc Cạn</option> <option value="12">Bắc Giang</option> <option value="13">Bắc Ninh</option> <option value="36">Bến Tre</option> <option value="2">Cao Bằng</option> <option value="38">Cà Mau</option> <option value="30">Cần Thơ</option> <option value="40">Đà Nẵng</option> <option value="39">Đăk Lăk</option> <option value="64">Điện Biên</option> <option value="29">Đồng Nai</option> <option value="41">Đồng Tháp</option> <option value="67">Cục Cảnh sát quản lý hành chính về trật tự xã hội</option> <option value="66">Cục Cảnh sát ĐKQL cư trú và DLQG về dân cư</option> <option value="42">Gia Lai</option> <option value="1">Hà Giang</option> <option value="18">Hà Nam</option> <option value="43">Hà Nội</option> <option value="14">Hà Tây</option> <option value="46">Hà Tĩnh</option> <option value="62">Hà Đông</option> <option value="17">Hòa Bình</option> <option value="16">Hưng Yên</option> <option value="63">Hạ Long</option> <option value="15">Hải Dương</option> <option value="45">Hải Phòng</option> <option value="44">Hồ Chí Minh</option> <option value="48">Khánh Hòa</option> <option value="47">Kiên Giang</option> <option value="49">KonTum</option> <option value="3">Lai Châu</option> <option value="50">Long An</option> <option value="4">Lào Cai</option> <option value="51">Lâm Đồng</option> <option value="52">Lạng Sơn</option> <option value="19">Nam Định</option> <option value="53">Nghệ An</option> <option value="21">Ninh Bình</option> <option value="54">Ninh Thuận</option> <option value="10">Phú Thọ</option> <option value="26">Phú Yên</option> <option value="22">Quảng Bình</option> <option value="55">Quảng Nam</option> <option value="25">Quảng Ngãi</option> <option value="56">Quảng Ninh</option> <option value="23">Quảng Trị</option> <option value="57">Sóc Trăng</option> <option value="9">Sơn La</option> <option value="59">Thanh Hóa</option> <option value="20">Thái Bình</option> <option value="7">Thái Nguyên</option> <option value="24">Thừa Thiên Huế</option> <option value="58">Tiền Giang</option> <option value="60">Trà Vinh</option> <option value="5">Tuyên Quang</option> <option value="27">Tây Ninh</option> <option value="61">Vĩnh Long</option> <option value="11">Vĩnh Phúc</option> <option value="8">Yên Bái</option> <option value="65">Nơi khác</option></select>
+                            </p>
+                        </div>-->
+                        <!--Address-->
+                        <!--<div rel="Notice" class="msgtooltip posleft error show" id="regacc_address_guardian_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent"></div>
+                            </div>
+                        </div>
+                        <div class="finput">
+                            <em class="requiredfield_icn"></em>
+                            <input class="input_login" tabindex="1" placeholder="Địa chỉ" type="text" maxlength="100" name="address_guardian" id="regacc_address_guardian" autocomplete="off" value="">
+                            <input class="input_login" type="text" value="Địa chỉ" style="display:none" id="fake_regacc_address_guardian">
+                            <div id="regacc_address_tooltip_guardian" class="formtipbubble" style="display:none;">
+                                <span class="formtip_arrow zidsprt"></span>
+                                <div class="formtip_inner">
+                                    Vui lòng nhập địa chỉ thật và chính xác từ 2 đến 100 kí tự.
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!--non guardian-->
+                    <!--<div id="regfrm_step2_non_guardian" style="display: ">-->
+
+                        <!--Phone-->
+                        <!--<div rel="Notice" class="msgtooltip posleft error show" id="regacc_phone_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent"></div>
+                            </div>
+                        </div>
+                        <div class="finput">
+                            <em class="requiredfield_icn"></em>
+                            <input class="input_login" tabindex="10" placeholder="Số điện thoại" type="text" maxlength="40" name="regacc_phone" id="regacc_phone" autocomplete="off" value="">
+                            <input class="input_login" type="text" value="Số điện thoại" style="display:none" id="fake_regacc_phone">
+                            <div id="regacc_phone_tooltip" class="formtipbubble" style="display:none;">
+                                <span class="formtip_arrow zidsprt"></span>
+                                <div class="formtip_inner">
+                                    Vui lòng nhập số điện thoại di động.
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--Email-->
+                        <!--<div rel="Notice" class="msgtooltip posleft error show" id="regacc_email_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent"></div>
+                            </div>
+                        </div>
+                        <div class="finput">
+                            <em class="requiredfield_icn"></em>
+                            <input class="input_login" tabindex="11" placeholder="Email" type="text" maxlength="40" name="regacc_email" id="regacc_email" autocomplete="off" value="">
+                            <input class="input_login" type="text" value="Email" style="display:none" id="fake_regacc_email">
+                            <div id="regacc_email_tooltip" class="formtipbubble" style="display:none;">
+                                <span class="formtip_arrow zidsprt"></span>
+                                <div class="formtip_inner">
+                                    Vui lòng nhập email.
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--CMND-->
+                        <!--<div rel="Notice" class="msgtooltip posleft error show" id="regacc_cmnd_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent"></div>
+                            </div>
+                        </div>
+                        <div class="finput">
+                            <em class="requiredfield_icn"></em>
+                            <input class="input_login" tabindex="12" placeholder="Số CMND ( CCCD hoặc hộ chiếu)" type="text" maxlength="40" name="regacc_cmnd" id="regacc_cmnd" autocomplete="off" value="">
+                            <input class="input_login" type="text" value="Số CMND ( CCCD hoặc hộ chiếu)" style="display:none" id="fake_regacc_cmnd">
+                            <div id="regacc_cmnd_tooltip" class="formtipbubble" style="display:none;">
+                                <span class="formtip_arrow zidsprt"></span>
+                                <div class="formtip_inner">
+                                    Vui lòng nhập chứng minh nhân dân hoặc số hộ chiếu.
+                                </div>
+                            </div>
+                        </div>-->
+                        <!--Ngày cấp CMND-->
+                        <!--<div rel="Notice" class="msgtooltip posleft error show" id="regacc_cmnd_date_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reg_birthday">
+                            <div>
+                                <p class="finput reg_date">
+                                    <select id="regacc_cmnd_date" name="regacc_cmnd_date" tabindex="13"> <option value="-1">[Ngày]</option> <option value="1">1</option> <option value="2">2</option> <option value="3">3</option> <option value="4">4</option> <option value="5">5</option> <option value="6">6</option> <option value="7">7</option> <option value="8">8</option> <option value="9">9</option> <option value="10">10</option> <option value="11">11</option> <option value="12">12</option> <option value="13">13</option> <option value="14">14</option> <option value="15">15</option> <option value="16">16</option> <option value="17">17</option> <option value="18">18</option> <option value="19">19</option> <option value="20">20</option> <option value="21">21</option> <option value="22">22</option> <option value="23">23</option> <option value="24">24</option> <option value="25">25</option> <option value="26">26</option> <option value="27">27</option> <option value="28">28</option> <option value="29">29</option> <option value="30">30</option> <option value="31">31</option></select>
+                                </p>
+                                <p class="finput reg_month">
+                                    <select id="regacc_cmnd_month" name="regacc_cmnd_month" tabindex="14"> <option value="-1">[Tháng]</option> <option value="1">Tháng 1</option> <option value="2">Tháng 2</option> <option value="3">Tháng 3</option> <option value="4">Tháng 4</option> <option value="5">Tháng 5</option> <option value="6">Tháng 6</option> <option value="7">Tháng 7</option> <option value="8">Tháng 8</option> <option value="9">Tháng 9</option> <option value="10">Tháng 10</option> <option value="11">Tháng 11</option> <option value="12">Tháng 12</option></select>
+                                </p>
+                                <p class="finput reg_year" style="margin-right: 0px;">
+                                    <select id="regacc_cmnd_year" name="regacc_cmnd_year" tabindex="15"> <option value="-1">[Năm cấp]</option> <option value="2024">2024</option> <option value="2023">2023</option> <option value="2022">2022</option> <option value="2021">2021</option> <option value="2020">2020</option> <option value="2019">2019</option> <option value="2018">2018</option> <option value="2017">2017</option> <option value="2016">2016</option> <option value="2015">2015</option> <option value="2014">2014</option> <option value="2013">2013</option> <option value="2012">2012</option> <option value="2011">2011</option> <option value="2010">2010</option> <option value="2009">2009</option> <option value="2008">2008</option> <option value="2007">2007</option> <option value="2006">2006</option> <option value="2005">2005</option> <option value="2004">2004</option> <option value="2003">2003</option> <option value="2002">2002</option> <option value="2001">2001</option> <option value="2000">2000</option> <option value="1999">1999</option> <option value="1998">1998</option> <option value="1997">1997</option> <option value="1996">1996</option> <option value="1995">1995</option> <option value="1994">1994</option> <option value="1993">1993</option> <option value="1992">1992</option> <option value="1991">1991</option> <option value="1990">1990</option> <option value="1989">1989</option> <option value="1988">1988</option> <option value="1987">1987</option> <option value="1986">1986</option> <option value="1985">1985</option> <option value="1984">1984</option> <option value="1983">1983</option> <option value="1982">1982</option> <option value="1981">1981</option> <option value="1980">1980</option> <option value="1979">1979</option> <option value="1978">1978</option> <option value="1977">1977</option> <option value="1976">1976</option> <option value="1975">1975</option> <option value="1974">1974</option> <option value="1973">1973</option> <option value="1972">1972</option> <option value="1971">1971</option> <option value="1970">1970</option> <option value="1969">1969</option> <option value="1968">1968</option> <option value="1967">1967</option> <option value="1966">1966</option> <option value="1965">1965</option> <option value="1964">1964</option> <option value="1963">1963</option> <option value="1962">1962</option> <option value="1961">1961</option> <option value="1960">1960</option> <option value="1959">1959</option> <option value="1958">1958</option> <option value="1957">1957</option> <option value="1956">1956</option> <option value="1955">1955</option> <option value="1954">1954</option> <option value="1953">1953</option> <option value="1952">1952</option> <option value="1951">1951</option> <option value="1950">1950</option> <option value="1949">1949</option> <option value="1948">1948</option> <option value="1947">1947</option> <option value="1946">1946</option> <option value="1945">1945</option> <option value="1944">1944</option> <option value="1943">1943</option> <option value="1942">1942</option> <option value="1941">1941</option> <option value="1940">1940</option> <option value="1939">1939</option> <option value="1938">1938</option> <option value="1937">1937</option> <option value="1936">1936</option> <option value="1935">1935</option> <option value="1934">1934</option> <option value="1933">1933</option> <option value="1932">1932</option> <option value="1931">1931</option> <option value="1930">1930</option> <option value="1929">1929</option> <option value="1928">1928</option> <option value="1927">1927</option> <option value="1926">1926</option> <option value="1925">1925</option> <option value="1924">1924</option> <option value="1923">1923</option> <option value="1922">1922</option> <option value="1921">1921</option> <option value="1920">1920</option></select>
+                                </p>
+                            </div>
+                            <div class="clr"></div>
+                        </div>-->
+                        <!--Nơi cấp CMND-->
+                        <!--<div rel="Notice" class="msgtooltip posleft error show" id="regacc_cmnd_place_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent"></div>
+                            </div>
+                        </div>
+                        <div class="reg_cmnd_place">
+
+                            <p class="finput reg_cmnd_place" style="margin-right: 0px;">
+                                <select id="regacc_cmnd_place" name="regacc_cmnd_place" tabindex="16" style="width: 100%"> <option value="-1">--Nơi cấp CMND, CCCD hoặc hộ chiếu--</option> <option value="31">An Giang</option> <option value="37">Bà Rịa Vũng Tàu</option> <option value="33">Bình Dương</option> <option value="35">Bình Phước</option> <option value="28">Bình Thuận</option> <option value="32">Bình Định</option> <option value="34">Bạc Liêu</option> <option value="6">Bắc Cạn</option> <option value="12">Bắc Giang</option> <option value="13">Bắc Ninh</option> <option value="36">Bến Tre</option> <option value="2">Cao Bằng</option> <option value="38">Cà Mau</option> <option value="30">Cần Thơ</option> <option value="40">Đà Nẵng</option> <option value="39">Đăk Lăk</option> <option value="64">Điện Biên</option> <option value="29">Đồng Nai</option> <option value="41">Đồng Tháp</option> <option value="67">Cục Cảnh sát quản lý hành chính về trật tự xã hội</option> <option value="66">Cục Cảnh sát ĐKQL cư trú và DLQG về dân cư</option> <option value="42">Gia Lai</option> <option value="1">Hà Giang</option> <option value="18">Hà Nam</option> <option value="43">Hà Nội</option> <option value="14">Hà Tây</option> <option value="46">Hà Tĩnh</option> <option value="62">Hà Đông</option> <option value="17">Hòa Bình</option> <option value="16">Hưng Yên</option> <option value="63">Hạ Long</option> <option value="15">Hải Dương</option> <option value="45">Hải Phòng</option> <option value="44">Hồ Chí Minh</option> <option value="48">Khánh Hòa</option> <option value="47">Kiên Giang</option> <option value="49">KonTum</option> <option value="3">Lai Châu</option> <option value="50">Long An</option> <option value="4">Lào Cai</option> <option value="51">Lâm Đồng</option> <option value="52">Lạng Sơn</option> <option value="19">Nam Định</option> <option value="53">Nghệ An</option> <option value="21">Ninh Bình</option> <option value="54">Ninh Thuận</option> <option value="10">Phú Thọ</option> <option value="26">Phú Yên</option> <option value="22">Quảng Bình</option> <option value="55">Quảng Nam</option> <option value="25">Quảng Ngãi</option> <option value="56">Quảng Ninh</option> <option value="23">Quảng Trị</option> <option value="57">Sóc Trăng</option> <option value="9">Sơn La</option> <option value="59">Thanh Hóa</option> <option value="20">Thái Bình</option> <option value="7">Thái Nguyên</option> <option value="24">Thừa Thiên Huế</option> <option value="58">Tiền Giang</option> <option value="60">Trà Vinh</option> <option value="5">Tuyên Quang</option> <option value="27">Tây Ninh</option> <option value="61">Vĩnh Long</option> <option value="11">Vĩnh Phúc</option> <option value="8">Yên Bái</option> <option value="65">Nơi khác</option></select>
+                            </p>
+                        </div>-->
+                        <!--Address-->
+                        <!--<div rel="Notice" class="msgtooltip posleft error show" id="regacc_address_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent"></div>
+                            </div>
+                        </div>
+                        <div class="finput">
+                            <em class="requiredfield_icn"></em>
+                            <input class="input_login" tabindex="1" placeholder="Địa chỉ" type="text" maxlength="100" name="address" id="regacc_address" autocomplete="off" value="">
+                            <input class="input_login" type="text" value="Địa chỉ" style="display:none" id="fake_regacc_address">
+                            <div id="regacc_address_tooltip" class="formtipbubble" style="display:none;">
+                                <span class="formtip_arrow zidsprt"></span>
+                                <div class="formtip_inner">
+                                    Vui lòng nhập địa chỉ thật và chính xác từ 2 đến 100 kí tự.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clr"></div>-->
+
+
+                    <!--                <div><h2 style="
+                                                             text-align: center;
+                                                             /* border: black; */
+                                                             outline: black;
+                                                             ">ĐIỀU KHOẢN SỬ DỤNG</h2>
+                                                        <textarea style="margin: 0px 0px 20px; width: 405px; height: 80px;
+                                                                  resize: none;"><body>
+                        <h2>Điêù khoản sử dụng Zing ID</h2>
+                        <h3>Điều 1. Giới Thiệu</h3>
+                        <ol>
+                            <li>Điều Khoản Sử Dụng Zing ID này là thỏa thuận giữa Bạn và VNG liên quan đến việc sử dụng Tài khoản Zing ID và/hoặc các sản phẩm và dịch vụ của VNG (&quot;Dịch Vụ&quot;).</li>
+                            <li>Bằng việc sử dụng Dịch Vụ của VNG, Bạn được xem là đã đồng ý với các Điều khoản này và <a target="_blank" href="/v2/policy/privacy">Chính sách bảo mật thông tin của VNG</a>; vì vậy, Bạn vui lòng đọc kỹ các Điều khoản này, đặc biệt là những điều khoản miễn trừ hoặc hạn chế trách nhiệm của VNG. Trường hợp Bạn không đồng ý với bất kỳ điều khoản nào thì Bạn vui lòng ngừng truy cập, tải xuống hay cố gắng sử dụng bất kỳ Dịch Vụ nào của VNG.</li>
+                            <li>Các Dịch Vụ của VNG rất đa dạng và đối với dịch vụ cụ thể (mà Bạn lựa chọn sử dụng) có thể áp dụng các điều khoản dịch vụ bổ sung và/hoặc yêu cầu áp dụng điều khoản sử dụng riêng biệt (bao gồm cả yêu cầu về độ tuổi để sử dụng Dịch Vụ); trong trường hợp này, các điều khoản bổ sung và hoặc điều khoản sử dụng riêng biệt của các Dịch Vụ đó sẽ trở thành một phần thuộc thỏa thuận của Bạn với VNG nếu Bạn sử dụng các Dịch Vụ đó.</li>
+                            <li>Các Dịch Vụ được cung cấp cho Bạn có thể được cung cấp bởi chính VNG và/hoặc Công ty con, Công ty liên kết với VNG (&quot;Công Ty Liên Kết&quot;), tùy từng trường hợp cụ thể; trong trường hợp Dịch Vụ được cung cấp bởi Công Ty Liên Kết với VNG thì Điều Khoản Sử Dụng này cũng sẽ được áp dụng giữa Bạn và Công Ty Liên Kết cung ứng Dịch Vụ đó.</li>
+                        </ol>
+                        <h3>Điều 2. Các Khái Niệm Và Định Nghĩa</h3>
+                        <ol>
+                            <li>&quot;Điều Khoản Sử Dụng&quot;: là Điều Khoản Sử Dụng Zing ID này và các bản sửa đổi, bổ sung tùy từng thời điểm.</li>
+                            <li>&quot;ZingID&quot;: là tài khoản Zing ID được Bạn đăng ký, quản lý để dụng (các) Dịch Vụ của VNG và/hoặc Công Ty Liên Kết với VNG.</li>
+                            <li>&quot;Thông Tin Cá Nhân&quot;: là các thông tin nhằm định danh một cá nhân cụ thể như được quy định tại khoản 4.4, Điều 4 của Điều Khoản Sử Dụng này.</li>
+                            <li>&quot;Dữ Liệu&quot;: là các nội dung/thông tin được tạo/sinh ra trong quá trình Bạn tham gia, sử dụng Dịch Vụ của VNG và/hoặc Công Ty Liên Kết với VNG thông qua việc đăng nhập bằng ZingID và được hệ thống máy chủ (server) của VNG ghi nhận lại.</li>
+                        </ol>
+                        <h3>Điều 3. Yêu Cầu Về Độ Tuổi</h3>
+                        <ol>
+                            <li>Để tự mình khởi tạo tài khoản ZingID và sử dụng các Dịch Vụ của VNG, Bạn phải đảm bảo rằng, Bạn đã đủ mười lăm (15) tuổi. Trường hợp Bạn chưa đủ tuổi theo quy định, Bạn cần phải được người đại diện theo pháp luật của Bạn (có thể là cha mẹ hoặc người giám hộ hợp pháp) cho phép đăng ký và sử dụng tài khoản ZingID; Bạn cần yêu cầu người đại diện theo pháp luật của Bạn cùng đọc và đồng ý với các điều khoản này.</li>
+                            <li>Trường hợp Bạn là người đại diện theo pháp luật và Bạn cho phép con / người được giám hộ của mình khởi tạo, sử dụng tài khoản ZingID và/hoặc các Dịch Vụ của VNG thì Bạn phải tuân theo các điều khoản này và chịu trách nhiệm đối với các hành động, hoạt động của con / người được giám hộ của Bạn trong các Dịch Vụ đó.</li>
+                            <li>Các Dịch Vụ của VNG có thể có các yêu cầu khác nhau về độ tuổi để sử dụng để tuân thủ quy định pháp luật Việt Nam, ví dụ như: dịch vụ dành cho mọi lứa tuổi, dịch vụ dành cho người từ đủ mười hai (12) tuổi trở lên và dịch vụ dành cho người từ đủ mười tám (18) tuổi trở lên và/hoặc yêu cầu về thời gian sử dụng dịch vụ cho lứa tuổi (ví dụ: người chơi dưới mười tám (18) tuổi không được chơi các trò chơi điện tử G1 quá 180 phút trong 24 giờ mỗi ngày); vì vậy, để sử dụng các dịch vụ này, Bạn cần xem xét các khuyến cáo về độ tuổi sử dụng của dịch vụ, thời gian được phép sử dụng dịch vụ và đảm bảo Bạn hoặc con/người được giám hộ của Bạn đủ tuổi theo khuyến cáo từ dịch vụ được cung cấp. VNG có quyền từ chối cung ứng dịch vụ cho Bạn tại bất kỳ thời điểm nào nếu Bạn hoặc con/người được giám hộ của Bạn chưa đáp ứng yêu cầu về độ tuổi hoặc sử dụng dịch vụ quá thời gian theo quy định.</li>
+                        </ol>
+                        <h3>Điều 4. Đăng Ký ZingID</h3>
+                        <ol>
+                            <li>Để đăng ký, khởi tạo ZingID, Bạn cần tạo &quot;Tên Đăng Nhập&quot; và &quot;Mật Khẩu&quot; trên hệ thống của VNG.</li>
+                            <li>Việc lựa chọn Tên Đăng Nhập là quyền của Bạn; tuy nhiên, Tên Đăng Nhập của mà Bạn lựa chọn phải đảm bảo:
+                                <ul>
+                                    <li>Không trùng lặp với các Tên Đăng Nhập đã được đăng ký trước đó; VNG sẽ có thông báo khi Tên Đăng Nhập mà Bạn lựa chọn bị trùng;</li>
+                                    <li>Không trùng hoặc gây liên tưởng đến (i) tên quốc gia; (ii) tên của các vĩ nhân, anh hùng dân tộc; (iii) tên của lãnh đạo Đảng, Nhà nước các thời kỳ;</li>
+                                    <li>Không chứa các ký tự, nội dung liên quan đến tôn giáo, chính trị, khiêu dâm, các nội dung vi phạm pháp luật và/hoặc thuần phong mỹ tục của người Việt Nam;</li>
+                                    <li>Không chứa các ký tự, nội dung xúc phạm, khích bác, gây rối đối với bất kỳ tổ chức, cá nhân nào;</li>
+                                    <li>Không chứa các ký tự, nội dung gây hiểu nhầm rằng, tài khoản ZingID đó là tài khoản quản trị, hoặc do VNG và/hoặc Công Ty Liên Kết khởi tạo để quản trị và/hoặc hỗ trợ người sử dụng.</li>
+                                </ul>
+                            </li>
+                            <li>Mật khẩu là &quot;chìa khóa&quot; để đăng nhập vào tài khoản của Bạn; vì vậy, Bạn có trách nhiệm lưu trữ, bảo mật thông tin mật khẩu của Bạn và không chia sẻ thông tin mật khẩu cho bất kỳ ai. Trong bất kỳ trường hợp nào, nếu Bạn nhận thấy hay nghi ngờ tài khoản của mình bị đăng nhập trái với ý muốn của Bạn, Bạn có thể (i) ngay lập tức thay đổi mật khẩu và/hoặc (ii) thông báo cho VNG và thực hiện các thủ tục cần thiết tạm khóa tài khoản nhằm giảm thiểu các thiệt hại cho Bạn theo đúng quy trình hỗ trợ giải quyết khiếu nại khách hàng của VNG. VNG theo đây được bảo lưu và miễn trừ khỏi bất kỳ trách nhiệm nào đối với bất kỳ thiệt hại nào (nếu có) của Bạn nếu mật khẩu của Bạn bị lộ dưới bất kỳ hình thức nào.</li>
+                            <li>Theo quy định của pháp luật Việt Nam, Bạn cần cung cấp các thông tin sau để có thể sử dụng các Dịch Vụ của VNG và/hoặc Công Ty Liên Kết với VNG:
+                                <ul>
+                                    <li>Họ và tên;</li>
+                                    <li>Ngày tháng năm sinh;</li>
+                                    <li>Số CMND/Thẻ Căn cước công dân/Hộ chiếu, ngày cấp, nơi cấp;</li>
+                                    <li>Địa chỉ liên hệ;</li>
+                                    <li>Thư điện tử (email);</li>
+                                    <li>Số điện thoại liên hệ (nếu có).</li>
+                                </ul>
+                            </li>
+                            <li>Trường hợp Bạn chưa đủ mười bốn (14) tuổi và chưa có CMND/Thẻ Căn cước công dân/Hộ chiếu thì người đại diện theo pháp luật của Bạn phải quyết định việc thực hiện đăng ký thông tin cá nhân của chính người đại diện theo pháp luật của Bạn để thể hiện sự đồng ý và chịu trách nhiệm trước pháp luật về việc đăng ký này.</li>
+                            <li>Trường hợp Bạn không cung cấp, cung cấp không đầy đủ hoặc không chính xác các thông tin nêu trên có thể hạn chế việc tiếp cận, sử dụng Dịch Vụ hay đảm bảo các quyền và lợi ích hợp pháp của Bạn. Trong một số trường hợp cụ thể, VNG có thể tạm ngưng cung ứng Dịch Vụ cho Bạn mà không cần báo trước cho đến khi nhận được đầy đủ, chính xác các thông tin nêu trên theo đúng quy định.</li>
+                            <li>Nhằm đảm bảo Thông Tin Cá Nhân được Bạn cung cấp luôn được cập nhật chính xác, đầy đủ, hệ thống của VNG cho phép Bạn cập nhật Thông Tin Cá Nhân tại bất kỳ thời điểm nào, tùy theo quyết định của Bạn. Tùy từng thời điểm, loại thông tin được cập nhật và phụ thuộc vào mức độ sẵn sàng của dịch vụ, hệ thống kỹ thuật và chính sách của VNG; việc cập nhật Thông Tin Cá Nhân này có thể có hiệu lực ngay lập tức hoặc được áp dụng thời gian chờ (nếu thời gian chờ được áp dụng), VNG sẽ có thông báo cụ thể đến Bạn khi Bạn thực hiện cập nhật thông tin. Bạn cần lưu ý rằng, khi tiếp nhận, giải quyết bất kỳ khiếu nại, khiếu kiện hay yêu cầu hỗ trợ nào từ Bạn, VNG sẽ căn cứ vào Thông Tin Cá Nhân của Bạn được cập nhật tại lần gần nhất và đã được ghi nhận trên hệ thống của VNG (trường hợp áp dụng thời gian chờ thì thông tin được Bạn cập nhật có thể sẽ chưa được ghi nhận khi chưa kết thúc thời gian chờ) để xác định chủ tài khoản ZingID, các Thông Tin Cá Nhân được Bạn cung cấp trước đó sẽ không còn giá trị sử dụng.</li>
+                            <li>Việc đăng ký, khởi tạo tài khoản ZingID, tùy từng thời điểm, có thể thực hiện bằng cách sử dụng các tài khoản mạng xã hội, OTT khác như tài khoản Facebook, Google, Yahoo, Zalo … Tuy nhiên, Bạn cần lưu ý rằng, trường hợp Bạn bị mất, bị thu hồi hay gặp bất kỳ vấn đề đăng nhập nào đối với tài khoản mạng xã hội, OTT sử dụng để tạo tài khoản ZingID thì Bạn cũng sẽ không thể đăng nhập vào tài khoản ZingID được; trong trường hợp này, Bạn cần liên hệ với chính các đơn vị, doanh nghiệp quản lý mạng xã hội, OTT để được hỗ trợ xử lý.</li>
+                            <li>Việc Bạn sử dụng các tài khoản mạng xã hội, OTT để đăng ký, khởi tạo ZingID như quy định tại khoản 4.8 nêu trên không miễn trừ nghĩa vụ cung cấp thông tin của Bạn theo quy định tại Điều này.</li>
+                        </ol>
+                        <h3>Điều 5. Sử Dụng ZingID</h3>
+                        <ol>
+                            <li>Việc sử dụng ZingID phải tuân thủ đầy đủ các quy định tại Điều Khoản Sử Dụng này, các quy định cụ thể của các Dịch Vụ cụ thể mà Bạn lựa chọn sử dụng.</li>
+                            <li>Bạn chịu trách nhiệm về mọi hoạt động, hành động được thực hiện từ/bởi tài khoản ZingID của Bạn, bao gồm cả việc thực hiện các biện pháp hợp lý để bảo mật tài khoản ZingID của Bạn.</li>
+                            <li>Việc sử dụng tài khoản ZingID của Bạn phải đảm bảo (i) tuân thủ các quy định của pháp luật Việt Nam; (ii) không vi phạm Các Hành Vi Bị Cấm (như được quy định tại Điều 7 dưới đây); (iii) tôn trọng các quyền của người khác, bao gồm cả quyền riêng tư, quyền sở hữu trí tuệ; (iv) không lạm dụng hoặc làm hại người khác (hoặc đe dọa hay khuyến khích thực hiện hành vi lạm dụng hoặc gây hại đó) – ví dụ như: đưa ra các thông tin sai lệch, lừa đảo, phỉ báng, bắt nạt, quấy rối; (v) không gây hại, can thiệp hay làm gián đoạn các Dịch Vụ.</li>
+                            <li>Nhằm đảm bảo tuân thủ các quy định tại khoản 5.3 nêu trên, VNG có thể áp dụng các biện pháp kỹ thuật cần thiết để hạn chế, cảnh báo các nội dung vi phạm (ví dụ như bộ lọc từ) và có thể ngay lập tức xóa bỏ các nội dung vi phạm của Bạn mà không cần báo trước.</li>
+                            <li>Trường hợp Bạn vi phạm bất kỳ quy định nào của Điều Khoản Sử Dụng này, đặc biệt là vi phạm Các Hành Vi Bị Cấm và/hoặc các quy định tại khoản 5.3 nêu trên thì VNG có quyền ngay lập tức khóa tài khoản ZingID của Bạn và ngừng cung cấp bất kỳ và toàn bộ Dịch Vụ cho Bạn mà không phải bồi thường hay chịu bất kỳ trách nhiệm nào với Bạn.</li>
+                            <li>Trường hợp Bạn không đăng nhập, sử dụng tài khoản ZingID trong vòng sáu (6) tháng liên tục (kể từ lần đăng nhập cuối cùng) thì VNG có quyền (nhưng không có nghĩa vụ) khóa tài khoản ZingID, Dữ Liệu của Bạn; điều này đồng nghĩa với việc (i) Bạn sẽ không thể sử dụng bất kỳ Dịch Vụ nào mà Bạn đăng nhập bằng tài khoản ZingID; và (ii) toàn bộ các đơn vị ảo, vật phẩm ảo, điểm thưởng … trong các Dịch Vụ đó sẽ bị xóa bỏ. Trong trường hợp này Bạn đồng ý rằng, VNG sẽ không phải bồi thường hay chịu bất kỳ trách nhiệm nào với Bạn.</li>
+                        </ol>
+                        <h3>Điều 6. Thu Thập, Sử Dụng Và Bảo Vệ Thông Tin Khách Hàng</h3>
+                        <ol>
+                            <li>Theo quy định của pháp luật Việt Nam và nhằm tối ưu hóa Dịch Vụ được cung cấp cho Bạn, VNG sẽ thực hiện thu thập và lưu trữ (i) toàn bộ Thông Tin Cá Nhân của Bạn; (ii) các thông tin, hành động của Bạn trong quá trình sử dụng ZingID và/hoặc các Dich Vụ (ví dụ như: thời gian đăng nhập, đăng xuất, địa chỉ IP, vị trí đăng nhập); (iii) các thông tin liên quan đến thanh toán; (iv) các thông tin, nội dung mà Bạn gửi, nhận, chia sẻ trong quá trình sử dụng ZingID và/hoặc Dịch Vụ (ví dụ: log chat, thông tin nhật ký được Bạn đăng tải); (v) thông tin về thiết bị mà Bạn dùng để sử dụng dịch vụ của VNG; và (vi) các thông tin khác, tùy từng thời điểm và tuân thủ theo quy định của pháp luật Việt Nam và/hoặc Cơ quan Nhà nước có thẩm quyền.</li>
+                            <li>Theo quy định của pháp luật Việt Nam, toàn bộ Thông Tin Cá Nhân và Dữ Liệu của Bạn sẽ được lưu trữ tối thiểu hai (2) năm kể từ thời điểm Bạn cung cấp thông tin và/hoặc tạo ra dữ liệu. Thời gian lưu trữ thực tế Thông Tin Cá Nhân và Dữ Liệu của Bạn có thể sẽ lâu hơn, tùy thuộc vào khả năng và mức độ đáp ứng về cơ sở hạ tầng của VNG. Bạn có quyền yêu cầu xóa toàn bộ Thông Tin Cá Nhân và Dữ Liệu của Bạn theo đúng quy định tại <a href="/v2/policy/privacy">Chính sách bảo mật thông tin của VNG</a>.</li>
+                            <li>Bạn theo đây đồng ý và chấp thuận không hủy ngang rằng, VNG có quyền sử dụng các thông tin nêu trên để gửi đến Bạn các tin nhắn, thư điện tử (email), gọi điện thoại và/hoặc liên hệ với Bạn theo bất kỳ cách thức nào mà VNG lựa chọn sử dụng nhằm (i) hỗ trợ, cung ứng các Dịch Vụ tốt nhất cho Bạn (ví dụ: tin nhắn xác thực tài khoản, hỗ trợ lấy lại mật khẩu …); (ii) duy trì và cải thiện Dịch Vụ; (iii) phát triển các dịch vụ mới, (iv) gửi đến Bạn các thông tin, nội dung nhằm mục đích quảng cáo, quảng bá các dịch vụ của VNG và/hoặc Công Ty Liên Kết với VNG; (v) phân tích, đo lường hiệu quả các Dịch Vụ mà Bạn sử dụng; (vi) liên hệ trực tiếp với Bạn để nhằm mục đích chăm sóc khách hàng, xác thực thông tin và các mục đích khác.</li>
+                            <li>Các thông tin, Dữ Liệu của Bạn được VNG thu thập và lưu trữ sẽ chỉ được sử dụng trong phạm vi của VNG Group (bao gồm VNG và các Công Ty Liên Kết với VNG). VNG sẽ không chia sẻ bất kỳ Thông Tin Cá Nhân nào của Bạn cho bất kỳ bên thứ ba nào, ngoại trừ các trường hợp như được quy định tại khoản 6.5 dưới đây.</li>
+                            <li>VNG sẽ cung cấp, chia sẻ các Thông Tin Cá Nhân, Dữ Liệu và/hoặc các thông tin khác của Bạn mà VNG lưu trữ trong các trường hợp sau đây:<ul>
+                                    <li>Được sự đồng ý của Bạn (ví dụ: Bạn sử dụng ZingID để đăng nhập, sử dụng các dịch vụ ngoài VNG Group và Bạn đồng ý cung cấp Thông Tin Cá Nhân của Bạn cho các đơn vị, tổ chức cung ứng dịch vụ đó);</li>
+                                    <li>Theo yêu cầu của Tòa án và/hoặc Cơ quan Nhà nước có thẩm quyền; hoặc VNG chủ động cung cấp cho Cơ quan Nhà nước có thẩm quyền trong trường hợp việc sử dụng tài khoản ZingID và/hoặc Dịch Vụ của Bạn có dấu hiệu vi phạm pháp luật.</li>
+                                </ul>
+                            </li>
+                            <li>VNG sẽ thực hiện các biện pháp kỹ thuật cần thiết để bảo mật thông tin của Bạn, bao gồm nhưng không giới hạn ở việc (i) mã hóa thông tin theo tiêu chuẩn phù hợp; (ii) thiết lập các hệ thống tường lửa để ngăn chặn việc xâm nhập trái phép; (iii) sử dụng dịch vụ máy chủ, chỗ đặt máy chủ tại các đơn vị, doanh nghiệp có tiêu chuẩn bảo mật cao.</li>
+                        </ol>
+                        <h3>Điều 7. Các Hành Vi Bị Cấm</h3>
+                        <ol>
+                            <li>Lợi dụng việc sử dụng tài khoản ZingID và/hoặc Dịch Vụ nhằm mục đích:<ul>
+                                    <li>Chống lại Nhà nước Cộng Hòa Xã Hội Chủ Nghĩa Việt Nam; gây phương hại đến an ninh quốc gia, trật tự an toàn xã hội; phá hoại khối đại đoàn kết dân tộc; tuyên truyền chiến tranh, khủng bố; gây hận thù, mâu thuẫn giữa các dân tộc, sắc tộc, tôn giáo;</li>
+                                    <li>Tuyên truyền, kích động bạo lực, dâm ô, đồi trụy, tội ác, tệ nạn xã hội, mê tín dị đoan, phá hoại thuần phong, mỹ tục của dân tộc;</li>
+                                    <li>Tiết lộ bí mật nhà nước, bí mật quân sự, an ninh, kinh tế, đối ngoại và những bí mật khác do pháp luật quy định;</li>
+                                    <li>Đưa thông tin xuyên tạc, vu khống, xúc phạm uy tín của tổ chức, danh dự và nhân phẩm của cá nhân;</li>
+                                    <li>Quảng cáo, tuyên truyền, mua bán hàng hóa, dịch vụ bị cấm; truyền bá tác phẩm báo chí, văn học, nghệ thuật, xuất bản phẩm bị cấm và/hoặc quảng cáo các sản phẩm, dịch vụ khác mà chưa được VNG chấp thuận;</li>
+                                    <li>Giả mạo tổ chức, cá nhân và phát tán thông tin giả mạo, thông tin sai sự thật xâm hại đến quyền và lợi ích hợp pháp của tổ chức, cá nhân;</li>
+                                    <li>Đăng tải, chia sẻ các nội dung vi phạm quyền sở hữu trí tuệ của bất kỳ tổ chức, cá nhân nào;</li>
+                                    <li>Thực hiện hoặc nhằm thực hiện các hành vi vi phạm pháp luật khác.</li>
+                                </ul>
+                            </li>
+                            <li>Cản trở việc cung cấp và truy cập thông tin hợp pháp, việc cung cấp và sử dụng các Dịch Vụ của người khác.</li>
+                            <li>Cản trở hoạt động, xâm nhập hoặc cố gắng xâm nhập trái phép vào hệ thống máy chủ của VNG.</li>
+                            <li>Sử dụng trái phép mật khẩu, khóa mật mã của người khác; chia sẻ trái phép thông tin riêng, thông tin cá nhân của người khác.</li>
+                            <li>Tạo đường dẫn đến các website, ứng dụng trái phép, vi phạm pháp luật; tạo, cài đặt, phát tán phần mềm độc hại, vi-rút máy tính; xâm nhập trái phép, chiếm quyền điều khiển hệ thống thông tin, tạo lập công cụ tấn công trên Internet.</li>
+                            <li>Mua, bán đơn vị ảo, vật phẩm ảo, điểm thưởng giữa những người sử dụng Dịch Vụ với nhau;</li>
+                            <li>Mua, bán, trao đổi (kể cả tặng, cho) tài khoản ZingID;</li>
+                            <li>Thực hiện các hành vi (nhằm) lừa đảo chiếm đoạt tài sản của người khác;</li>
+                            <li>Mạo danh hoặc làm cho người khác hiểu nhầm rằng Bạn là nhân viên, cộng tác viên của VNG.</li>
+                        </ol>
+                        <h3>Điều 8. Quyền Sở Hữu Trí Tuệ</h3>
+                        <ol>
+                            <li>Một số Dịch Vụ của VNG cho phép bạn chia sẻ các nội dung thông qua hệ thống của VNG; đối với các nội dung này, Bạn cam đoan và đảm bảo rằng, Bạn là chủ sở hữu hợp pháp, duy nhất của nội dung này, trường hợp (các) nội dung mà Bạn chia sẻ có đồng sở hữu thì Bạn đảm bảo rằng, Bạn đã được (các) đồng sở hữu này đồng ý và cấp quyền đầy đủ cho Bạn.</li>
+                            <li>Đối với các nội dung được Bạn chia sẻ thông qua hệ thống của VNG, Bạn theo đây đồng ý không hủy ngang, cấp cho VNG và Công Ty Liên Kết với VNG quyền không độc quyền, vĩnh viễn, hoàn toàn miễn phí, và trên phạm vi toàn cầu để (i) lưu trữ, tái sản xuất, phân phối, truyền đạt và sử dụng nội dung của Bạn; (ii) xuất bản, trình diễn công khai hoặc hiển thị công khai nội dung của Bạn nếu Bạn đã cho phép nội dung đó hiển thị cho người khác; (iii) chỉnh sửa và tạo tác phẩm phái sinh dựa trên nội dung của Bạn (ví dụ: định dạng lại hoặc dịch nội dung sang ngôn ngữ khác).</li>
+                            <li>Đối với các Dịch Vụ được VNG và/hoặc Công Ty Liên Kết với VNG cung cấp cho Bạn, VNG theo đây cấp cho Bạn quyền không độc quyền, không thể chuyển giao, không thể chuyển nhượng và không được thương mại hóa để sử dụng các Dịch Vụ của VNG và/hoặc Công Ty Liên Kết với VNG.</li>
+                            <li>Ngoài quyền sử dụng Dịch Vụ như đã được cấp cho Bạn theo quy định tại khoản 8.3 nêu trên, VNG bảo lưu toàn bộ quyền sở hữu trí tuệ đối với nhãn hiệu, mã nguồn sản phẩm, hình ảnh, âm thanh, âm nhạc … trong các Dịch Vụ cùng với các quyền khác liên quan đến Dịch Vụ được cung cấp cho Bạn.</li>
+                        </ol>
+                        <h3>Điều 9. Giới Hạn Trách Nhiệm Và Từ Chối Đảm Bảo</h3>
+                        <ol>
+                            <li>VNG cam kết sẽ cung cấp các Dịch Vụ đến Bạn trong giới hạn trình độ chuyên môn và mức độ cẩn trọng hợp lý theo đúng quy định của pháp luật.</li>
+                            <li>Để tăng cường mức độ bảo mật, an toàn của Dịch Vụ, VNG sẽ áp dụng một hoặc một vài biện pháp kỹ thuật và/hoặc phần mềm, ứng dụng vào trong hoặc bên cạnh Dịch Vụ; mặc dù vậy, việc áp dụng các biện pháp nêu trên không được là sự đảm bảo rằng tài khoản của Bạn không bị mất, bị hack và VNG được miễn trừ hoàn toàn trách nhiệm bởi các trường hợp này.</li>
+                            <li>VNG sẽ áp dụng các biện pháp kỹ thuật cần thiết nhằm hỗ trợ Bạn có được trải nghiệm tốt nhất khi sử dụng Dịch Vụ; mặc dù vậy, trong một số trường hợp ngoài ý muốn, Dịch Vụ có thể (i) bị gián đoạn cung cấp, (ii) bị lỗi (bug), (iii) bị mất hoặc trùng lặp một số thông tin, tính năng của Dịch Vụ và/hoặc tài khoản ZingID của Bạn; trong trường hợp này, VNG sẽ áp dụng mọi biện pháp cần thiết (trong khả năng cho phép) và trong thời gian hợp lý để khắc phục và Bạn đồng ý miễn trừ cho VNG mọi trách nhiệm liên quan.</li>
+                            <li>VNG sẽ áp dụng các biện pháp cần thiết, theo đúng quy định pháp luật để bảo vệ, bảo mật Thông Tin Cá Nhân và Dữ Liệu của Bạn như đã nêu tại khoản 6.6, Điều 6; tuy nhiên, Bạn hiểu rõ và đồng ý rằng, không có bất kỳ hệ thống nào là an toàn tuyệt đối và chống lại được mọi cuộc tấn công, hack, cheat; vì vậy, trường hợp hệ thống của VNG bị tấn công, hack, cheat và Thông Tin Cá Nhân, Dữ Liệu của Bạn (có nguy cơ) bị lộ thì VNG sẽ ngay lập tức thực hiện các biện pháp cần thiết theo quy định của pháp luật để hạn chế tối đa ảnh hưởng đến Bạn và Bạn đồng ý miễn cho VNG khỏi bất kỳ trách nhiệm nào liên quan.</li>
+                        </ol>
+                        <h3>Điều 10. Các Hỗ Trợ Liên Quan Đến Tài Khoản</h3>
+                        <ol>
+                            <li>Mọi vấn đề hỗ trợ liên quan đến tài khoản ZingID sẽ được hỗ trợ thông qua (i) website <a target="_blank" href="https://account.support.vnggames.com/products/passport-zingid-230-aa5a5cbf15d4936b6dc7a5482cc7bba9/problems">https://account.support.vnggames.com/</a> hoặc (ii) số điện thoại hotline 1900561558 và tuân thủ theo đúng Quy trình Chăm sóc và phản hồi khách hàng của VNG tại thời điểm tiếp nhận khiếu nại.</li>
+                            <li>Mọi khiếu nại liên quan đến tài khoản ZingID và/hoặc Dịch Vụ phải được gửi đến VNG bằng một trong các phương thức nêu trên và trong thời hạn ba (3) tháng kể từ thời điểm phát sinh vấn đề cần khiếu nại; quá thời hạn nêu trên, VNG có quyền từ chối tiếp nhận, giải quyết các khiếu nại nay.</li>
+                            <li>Để thực hiện khiếu nại, tố cáo hay phản ánh liên quan đến tài khoản ZingID của Bạn và/hoặc Dịch Vụ thì tài khoản của Bạn phải được định danh đầy đủ để VNG có cơ sở tiếp nhận và liên hệ với Bạn. Trường hợp tài khoản của Bạn chưa được định danh đầy đủ hoặc VNG có cơ sở hợp lý để cho rằng thông tin Bạn cung cấp là không chính xác thì VNG có quyền từ chối giải quyết khiếu nại, tố cáo của Bạn đến khi tài khoản ZingID của Bạn đáp ứng được đầy đủ các yêu cầu nêu trên.</li>
+                        </ol>
+                        <h3>Điều 11. Tuân Thủ Pháp Luật Và Quy Định</h3>
+                        <ol>
+                            <li>Bạn hiểu rõ và đồng ý rằng, bên cạnh việc tuân thủ các điều khoản và điều kiện về việc sử dụng tài khoản ZingID, Bạn sẽ (i) tuân thủ đầy đủ các quy định khác của pháp luật Việt Nam; (ii) tuân thủ đầy đủ các quy định pháp luật nơi Bạn khởi tạo tài khoản ZingID và/hoặc truy cập, sử dụng Dịch Vụ và/hoặc quốc gia mà Bạn mang quốc tịch; và (iii) Bạn sẽ tự chịu trách nhiệm về bất kỳ hậu quả nào của việc không tuân thủ bất kỳ quy định nào tại nơi mà Bạn khởi tạo, truy cập, sử dụng tài khoản ZingID và/hoặc Dịch Vụ và đảm bảo VNG sẽ không phải chịu bất kỳ trách nhiệm nào liên quan.</li>
+                            <li>Trường hợp VNG nhận được bất kỳ khiếu nại, thông báo hay yêu cầu nào liên quan đến việc Bạn không đáp ứng được các yêu cầu nêu trên và/hoặc VNG có cơ sở để suy đoán hợp lý dựa trên các thông tin mà VNG có được thì VNG có quyền (i) ngưng cung cấp Dịch Vụ cho Bạn (kể cả việc truy cập vào tài khoản ZingID của Bạn) mà không phải báo trước hay chịu bất kỳ trách nhiệm nào với Bạn và/hoặc (ii) chặn toàn bộ truy cập đến từ quốc gia nghiêm cấm việc sử dụng ZingID và/hoặc Dịch Vụ.</li>
+                        </ol>
+                        <h3>Điều 12. Luật Áp Dụng Và Giải Quyết Tranh Chấp</h3>
+                        <ol>
+                            <li>Điều Khoản Sử Dụng này được áp dụng và giải thích theo các quy định của pháp luật nước Cộng Hòa Xã Hội Chủ Nghĩa Việt Nam về mọi vấn đề, khía cạnh liên quan.</li>
+                            <li>Trường hợp có bất kỳ tranh chấp, mẫu thuẫn nào giữa Bạn và VNG mà không thể giải quyết được trên tinh thần thương lượng và hòa giải thì Bạn đồng ý rằng, các tranh chấp đó sẽ được đưa ra giải quyết tại Tòa án nhân dân có thẩm quyền tại Thành phố Hồ Chí Minh – nơi VNG đặt trụ sở chính.</li>
+                        </ol>
+                        <h3>Điều 13. Điều Khoản Còn Lại</h3>
+                        <ol>
+                            <li>Việc một hoặc một vài điều khoản trong Điều Khoản Sử Dụng này bị Tòa án tuyên bố là vô hiệu sẽ không ảnh hưởng đến hiệu lực của các điều khoản còn lại và các điều khoản còn lại đó vẫn có giá trị ràng buộc Bạn với VNG.</li>
+                            <li>Việc VNG không thực hiện hoặc chậm thực hiện bất kỳ quyền, hay biện pháp xử lý nào theo quy định tại Điều Khoản Sử Dụng này không được xem là sự từ bỏ bất kỳ quyền, biện pháp xử lý nào trong Điều Khoản Sử Dụng này và việc thực hiện một phần hoặc toàn bộ quyền đơn lẻ cũng không loại trừ việc thực hiện bất kỳ quyền, quyền hạn hoặc biện pháp xử lý khác quy định trong Điều Khoản Sử Dụng này.</li>
+                        </ol>
+                        <h3>Điều 14. Hiệu Lực Áp Dụng Và Sửa Đổi</h3>
+                        <ol>
+                            <li>Bạn đồng ý rằng, VNG có quyền sửa đổi, bổ sung một phần hoặc toàn bộ các quy định tại Điều Khoản Sử Dụng này mà không cần có sự đồng ý trước của Bạn. Trường hợp Bạn không đồng ý với bất kỳ điểm sửa đổi, bổ sung nào, Bạn có quyền chấm dứt sử dụng tài khoản ZingID và/hoặc Dịch Vụ trước khi các điểm sửa đổi, bổ sung đó có hiệu lực; trường hợp Bạn tiếp tục sử dụng tài khoản ZingID và/hoặc Dịch Vụ thì sẽ được hiểu là Bạn đã đồng ý với toàn bộ các điểm sửa đổi, bổ sung đó.</li>
+                            <li>Điều Khoản Sử Dụng này có hiệu lực kể từ ngày 07 tháng 05 năm 2020 và thay thế cho tất cả các điều khoản sử dụng, Quy chế sử dụng ZingID trước đây.</li>
+                        </ol>
+                    </body>
+                                                        </textarea></div>-->
+
+                    <!--<div class="zidfbot">
+                        <div class="zidterm">
+                            <div class="zidterm_content">
+                                <body>
+                                    <h2>Điêù khoản sử dụng Zing ID</h2>
+                                    <h3>Điều 1. Giới Thiệu</h3>
+                                    <ol>
+                                        <li>Điều Khoản Sử Dụng Zing ID này là thỏa thuận giữa Bạn và VNG liên quan đến việc sử dụng Tài khoản Zing ID và/hoặc các sản phẩm và dịch vụ của VNG (&quot;Dịch Vụ&quot;).</li>
+                                        <li>Bằng việc sử dụng Dịch Vụ của VNG, Bạn được xem là đã đồng ý với các Điều khoản này và <a target="_blank" href="/v2/policy/privacy">Chính sách bảo mật thông tin của VNG</a>; vì vậy, Bạn vui lòng đọc kỹ các Điều khoản này, đặc biệt là những điều khoản miễn trừ hoặc hạn chế trách nhiệm của VNG. Trường hợp Bạn không đồng ý với bất kỳ điều khoản nào thì Bạn vui lòng ngừng truy cập, tải xuống hay cố gắng sử dụng bất kỳ Dịch Vụ nào của VNG.</li>
+                                        <li>Các Dịch Vụ của VNG rất đa dạng và đối với dịch vụ cụ thể (mà Bạn lựa chọn sử dụng) có thể áp dụng các điều khoản dịch vụ bổ sung và/hoặc yêu cầu áp dụng điều khoản sử dụng riêng biệt (bao gồm cả yêu cầu về độ tuổi để sử dụng Dịch Vụ); trong trường hợp này, các điều khoản bổ sung và hoặc điều khoản sử dụng riêng biệt của các Dịch Vụ đó sẽ trở thành một phần thuộc thỏa thuận của Bạn với VNG nếu Bạn sử dụng các Dịch Vụ đó.</li>
+                                        <li>Các Dịch Vụ được cung cấp cho Bạn có thể được cung cấp bởi chính VNG và/hoặc Công ty con, Công ty liên kết với VNG (&quot;Công Ty Liên Kết&quot;), tùy từng trường hợp cụ thể; trong trường hợp Dịch Vụ được cung cấp bởi Công Ty Liên Kết với VNG thì Điều Khoản Sử Dụng này cũng sẽ được áp dụng giữa Bạn và Công Ty Liên Kết cung ứng Dịch Vụ đó.</li>
+                                    </ol>
+                                    <h3>Điều 2. Các Khái Niệm Và Định Nghĩa</h3>
+                                    <ol>
+                                        <li>&quot;Điều Khoản Sử Dụng&quot;: là Điều Khoản Sử Dụng Zing ID này và các bản sửa đổi, bổ sung tùy từng thời điểm.</li>
+                                        <li>&quot;ZingID&quot;: là tài khoản Zing ID được Bạn đăng ký, quản lý để dụng (các) Dịch Vụ của VNG và/hoặc Công Ty Liên Kết với VNG.</li>
+                                        <li>&quot;Thông Tin Cá Nhân&quot;: là các thông tin nhằm định danh một cá nhân cụ thể như được quy định tại khoản 4.4, Điều 4 của Điều Khoản Sử Dụng này.</li>
+                                        <li>&quot;Dữ Liệu&quot;: là các nội dung/thông tin được tạo/sinh ra trong quá trình Bạn tham gia, sử dụng Dịch Vụ của VNG và/hoặc Công Ty Liên Kết với VNG thông qua việc đăng nhập bằng ZingID và được hệ thống máy chủ (server) của VNG ghi nhận lại.</li>
+                                    </ol>
+                                    <h3>Điều 3. Yêu Cầu Về Độ Tuổi</h3>
+                                    <ol>
+                                        <li>Để tự mình khởi tạo tài khoản ZingID và sử dụng các Dịch Vụ của VNG, Bạn phải đảm bảo rằng, Bạn đã đủ mười lăm (15) tuổi. Trường hợp Bạn chưa đủ tuổi theo quy định, Bạn cần phải được người đại diện theo pháp luật của Bạn (có thể là cha mẹ hoặc người giám hộ hợp pháp) cho phép đăng ký và sử dụng tài khoản ZingID; Bạn cần yêu cầu người đại diện theo pháp luật của Bạn cùng đọc và đồng ý với các điều khoản này.</li>
+                                        <li>Trường hợp Bạn là người đại diện theo pháp luật và Bạn cho phép con / người được giám hộ của mình khởi tạo, sử dụng tài khoản ZingID và/hoặc các Dịch Vụ của VNG thì Bạn phải tuân theo các điều khoản này và chịu trách nhiệm đối với các hành động, hoạt động của con / người được giám hộ của Bạn trong các Dịch Vụ đó.</li>
+                                        <li>Các Dịch Vụ của VNG có thể có các yêu cầu khác nhau về độ tuổi để sử dụng để tuân thủ quy định pháp luật Việt Nam, ví dụ như: dịch vụ dành cho mọi lứa tuổi, dịch vụ dành cho người từ đủ mười hai (12) tuổi trở lên và dịch vụ dành cho người từ đủ mười tám (18) tuổi trở lên và/hoặc yêu cầu về thời gian sử dụng dịch vụ cho lứa tuổi (ví dụ: người chơi dưới mười tám (18) tuổi không được chơi các trò chơi điện tử G1 quá 180 phút trong 24 giờ mỗi ngày); vì vậy, để sử dụng các dịch vụ này, Bạn cần xem xét các khuyến cáo về độ tuổi sử dụng của dịch vụ, thời gian được phép sử dụng dịch vụ và đảm bảo Bạn hoặc con/người được giám hộ của Bạn đủ tuổi theo khuyến cáo từ dịch vụ được cung cấp. VNG có quyền từ chối cung ứng dịch vụ cho Bạn tại bất kỳ thời điểm nào nếu Bạn hoặc con/người được giám hộ của Bạn chưa đáp ứng yêu cầu về độ tuổi hoặc sử dụng dịch vụ quá thời gian theo quy định.</li>
+                                    </ol>
+                                    <h3>Điều 4. Đăng Ký ZingID</h3>
+                                    <ol>
+                                        <li>Để đăng ký, khởi tạo ZingID, Bạn cần tạo &quot;Tên Đăng Nhập&quot; và &quot;Mật Khẩu&quot; trên hệ thống của VNG.</li>
+                                        <li>
+                                            Việc lựa chọn Tên Đăng Nhập là quyền của Bạn; tuy nhiên, Tên Đăng Nhập của mà Bạn lựa chọn phải đảm bảo:
+                                            <ul>
+                                                <li>Không trùng lặp với các Tên Đăng Nhập đã được đăng ký trước đó; VNG sẽ có thông báo khi Tên Đăng Nhập mà Bạn lựa chọn bị trùng;</li>
+                                                <li>Không trùng hoặc gây liên tưởng đến (i) tên quốc gia; (ii) tên của các vĩ nhân, anh hùng dân tộc; (iii) tên của lãnh đạo Đảng, Nhà nước các thời kỳ;</li>
+                                                <li>Không chứa các ký tự, nội dung liên quan đến tôn giáo, chính trị, khiêu dâm, các nội dung vi phạm pháp luật và/hoặc thuần phong mỹ tục của người Việt Nam;</li>
+                                                <li>Không chứa các ký tự, nội dung xúc phạm, khích bác, gây rối đối với bất kỳ tổ chức, cá nhân nào;</li>
+                                                <li>Không chứa các ký tự, nội dung gây hiểu nhầm rằng, tài khoản ZingID đó là tài khoản quản trị, hoặc do VNG và/hoặc Công Ty Liên Kết khởi tạo để quản trị và/hoặc hỗ trợ người sử dụng.</li>
+                                            </ul>
+                                        </li>
+                                        <li>Mật khẩu là &quot;chìa khóa&quot; để đăng nhập vào tài khoản của Bạn; vì vậy, Bạn có trách nhiệm lưu trữ, bảo mật thông tin mật khẩu của Bạn và không chia sẻ thông tin mật khẩu cho bất kỳ ai. Trong bất kỳ trường hợp nào, nếu Bạn nhận thấy hay nghi ngờ tài khoản của mình bị đăng nhập trái với ý muốn của Bạn, Bạn có thể (i) ngay lập tức thay đổi mật khẩu và/hoặc (ii) thông báo cho VNG và thực hiện các thủ tục cần thiết tạm khóa tài khoản nhằm giảm thiểu các thiệt hại cho Bạn theo đúng quy trình hỗ trợ giải quyết khiếu nại khách hàng của VNG. VNG theo đây được bảo lưu và miễn trừ khỏi bất kỳ trách nhiệm nào đối với bất kỳ thiệt hại nào (nếu có) của Bạn nếu mật khẩu của Bạn bị lộ dưới bất kỳ hình thức nào.</li>
+                                        <li>
+                                            Theo quy định của pháp luật Việt Nam, Bạn cần cung cấp các thông tin sau để có thể sử dụng các Dịch Vụ của VNG và/hoặc Công Ty Liên Kết với VNG:
+                                            <ul>
+                                                <li>Họ và tên;</li>
+                                                <li>Ngày tháng năm sinh;</li>
+                                                <li>Số CMND/Thẻ Căn cước công dân/Hộ chiếu, ngày cấp, nơi cấp;</li>
+                                                <li>Địa chỉ liên hệ;</li>
+                                                <li>Thư điện tử (email);</li>
+                                                <li>Số điện thoại liên hệ (nếu có).</li>
+                                            </ul>
+                                        </li>
+                                        <li>Trường hợp Bạn chưa đủ mười bốn (14) tuổi và chưa có CMND/Thẻ Căn cước công dân/Hộ chiếu thì người đại diện theo pháp luật của Bạn phải quyết định việc thực hiện đăng ký thông tin cá nhân của chính người đại diện theo pháp luật của Bạn để thể hiện sự đồng ý và chịu trách nhiệm trước pháp luật về việc đăng ký này.</li>
+                                        <li>Trường hợp Bạn không cung cấp, cung cấp không đầy đủ hoặc không chính xác các thông tin nêu trên có thể hạn chế việc tiếp cận, sử dụng Dịch Vụ hay đảm bảo các quyền và lợi ích hợp pháp của Bạn. Trong một số trường hợp cụ thể, VNG có thể tạm ngưng cung ứng Dịch Vụ cho Bạn mà không cần báo trước cho đến khi nhận được đầy đủ, chính xác các thông tin nêu trên theo đúng quy định.</li>
+                                        <li>Nhằm đảm bảo Thông Tin Cá Nhân được Bạn cung cấp luôn được cập nhật chính xác, đầy đủ, hệ thống của VNG cho phép Bạn cập nhật Thông Tin Cá Nhân tại bất kỳ thời điểm nào, tùy theo quyết định của Bạn. Tùy từng thời điểm, loại thông tin được cập nhật và phụ thuộc vào mức độ sẵn sàng của dịch vụ, hệ thống kỹ thuật và chính sách của VNG; việc cập nhật Thông Tin Cá Nhân này có thể có hiệu lực ngay lập tức hoặc được áp dụng thời gian chờ (nếu thời gian chờ được áp dụng), VNG sẽ có thông báo cụ thể đến Bạn khi Bạn thực hiện cập nhật thông tin. Bạn cần lưu ý rằng, khi tiếp nhận, giải quyết bất kỳ khiếu nại, khiếu kiện hay yêu cầu hỗ trợ nào từ Bạn, VNG sẽ căn cứ vào Thông Tin Cá Nhân của Bạn được cập nhật tại lần gần nhất và đã được ghi nhận trên hệ thống của VNG (trường hợp áp dụng thời gian chờ thì thông tin được Bạn cập nhật có thể sẽ chưa được ghi nhận khi chưa kết thúc thời gian chờ) để xác định chủ tài khoản ZingID, các Thông Tin Cá Nhân được Bạn cung cấp trước đó sẽ không còn giá trị sử dụng.</li>
+                                        <li>Việc đăng ký, khởi tạo tài khoản ZingID, tùy từng thời điểm, có thể thực hiện bằng cách sử dụng các tài khoản mạng xã hội, OTT khác như tài khoản Facebook, Google, Yahoo, Zalo … Tuy nhiên, Bạn cần lưu ý rằng, trường hợp Bạn bị mất, bị thu hồi hay gặp bất kỳ vấn đề đăng nhập nào đối với tài khoản mạng xã hội, OTT sử dụng để tạo tài khoản ZingID thì Bạn cũng sẽ không thể đăng nhập vào tài khoản ZingID được; trong trường hợp này, Bạn cần liên hệ với chính các đơn vị, doanh nghiệp quản lý mạng xã hội, OTT để được hỗ trợ xử lý.</li>
+                                        <li>Việc Bạn sử dụng các tài khoản mạng xã hội, OTT để đăng ký, khởi tạo ZingID như quy định tại khoản 4.8 nêu trên không miễn trừ nghĩa vụ cung cấp thông tin của Bạn theo quy định tại Điều này.</li>
+                                    </ol>
+                                    <h3>Điều 5. Sử Dụng ZingID</h3>
+                                    <ol>
+                                        <li>Việc sử dụng ZingID phải tuân thủ đầy đủ các quy định tại Điều Khoản Sử Dụng này, các quy định cụ thể của các Dịch Vụ cụ thể mà Bạn lựa chọn sử dụng.</li>
+                                        <li>Bạn chịu trách nhiệm về mọi hoạt động, hành động được thực hiện từ/bởi tài khoản ZingID của Bạn, bao gồm cả việc thực hiện các biện pháp hợp lý để bảo mật tài khoản ZingID của Bạn.</li>
+                                        <li>Việc sử dụng tài khoản ZingID của Bạn phải đảm bảo (i) tuân thủ các quy định của pháp luật Việt Nam; (ii) không vi phạm Các Hành Vi Bị Cấm (như được quy định tại Điều 7 dưới đây); (iii) tôn trọng các quyền của người khác, bao gồm cả quyền riêng tư, quyền sở hữu trí tuệ; (iv) không lạm dụng hoặc làm hại người khác (hoặc đe dọa hay khuyến khích thực hiện hành vi lạm dụng hoặc gây hại đó) – ví dụ như: đưa ra các thông tin sai lệch, lừa đảo, phỉ báng, bắt nạt, quấy rối; (v) không gây hại, can thiệp hay làm gián đoạn các Dịch Vụ.</li>
+                                        <li>Nhằm đảm bảo tuân thủ các quy định tại khoản 5.3 nêu trên, VNG có thể áp dụng các biện pháp kỹ thuật cần thiết để hạn chế, cảnh báo các nội dung vi phạm (ví dụ như bộ lọc từ) và có thể ngay lập tức xóa bỏ các nội dung vi phạm của Bạn mà không cần báo trước.</li>
+                                        <li>Trường hợp Bạn vi phạm bất kỳ quy định nào của Điều Khoản Sử Dụng này, đặc biệt là vi phạm Các Hành Vi Bị Cấm và/hoặc các quy định tại khoản 5.3 nêu trên thì VNG có quyền ngay lập tức khóa tài khoản ZingID của Bạn và ngừng cung cấp bất kỳ và toàn bộ Dịch Vụ cho Bạn mà không phải bồi thường hay chịu bất kỳ trách nhiệm nào với Bạn.</li>
+                                        <li>Trường hợp Bạn không đăng nhập, sử dụng tài khoản ZingID trong vòng sáu (6) tháng liên tục (kể từ lần đăng nhập cuối cùng) thì VNG có quyền (nhưng không có nghĩa vụ) khóa tài khoản ZingID, Dữ Liệu của Bạn; điều này đồng nghĩa với việc (i) Bạn sẽ không thể sử dụng bất kỳ Dịch Vụ nào mà Bạn đăng nhập bằng tài khoản ZingID; và (ii) toàn bộ các đơn vị ảo, vật phẩm ảo, điểm thưởng … trong các Dịch Vụ đó sẽ bị xóa bỏ. Trong trường hợp này Bạn đồng ý rằng, VNG sẽ không phải bồi thường hay chịu bất kỳ trách nhiệm nào với Bạn.</li>
+                                    </ol>
+                                    <h3>Điều 6. Thu Thập, Sử Dụng Và Bảo Vệ Thông Tin Khách Hàng</h3>
+                                    <ol>
+                                        <li>Theo quy định của pháp luật Việt Nam và nhằm tối ưu hóa Dịch Vụ được cung cấp cho Bạn, VNG sẽ thực hiện thu thập và lưu trữ (i) toàn bộ Thông Tin Cá Nhân của Bạn; (ii) các thông tin, hành động của Bạn trong quá trình sử dụng ZingID và/hoặc các Dich Vụ (ví dụ như: thời gian đăng nhập, đăng xuất, địa chỉ IP, vị trí đăng nhập); (iii) các thông tin liên quan đến thanh toán; (iv) các thông tin, nội dung mà Bạn gửi, nhận, chia sẻ trong quá trình sử dụng ZingID và/hoặc Dịch Vụ (ví dụ: log chat, thông tin nhật ký được Bạn đăng tải); (v) thông tin về thiết bị mà Bạn dùng để sử dụng dịch vụ của VNG; và (vi) các thông tin khác, tùy từng thời điểm và tuân thủ theo quy định của pháp luật Việt Nam và/hoặc Cơ quan Nhà nước có thẩm quyền.</li>
+                                        <li>Theo quy định của pháp luật Việt Nam, toàn bộ Thông Tin Cá Nhân và Dữ Liệu của Bạn sẽ được lưu trữ tối thiểu hai (2) năm kể từ thời điểm Bạn cung cấp thông tin và/hoặc tạo ra dữ liệu. Thời gian lưu trữ thực tế Thông Tin Cá Nhân và Dữ Liệu của Bạn có thể sẽ lâu hơn, tùy thuộc vào khả năng và mức độ đáp ứng về cơ sở hạ tầng của VNG. Bạn có quyền yêu cầu xóa toàn bộ Thông Tin Cá Nhân và Dữ Liệu của Bạn theo đúng quy định tại <a href="/v2/policy/privacy">Chính sách bảo mật thông tin của VNG</a>.</li>
+                                        <li>Bạn theo đây đồng ý và chấp thuận không hủy ngang rằng, VNG có quyền sử dụng các thông tin nêu trên để gửi đến Bạn các tin nhắn, thư điện tử (email), gọi điện thoại và/hoặc liên hệ với Bạn theo bất kỳ cách thức nào mà VNG lựa chọn sử dụng nhằm (i) hỗ trợ, cung ứng các Dịch Vụ tốt nhất cho Bạn (ví dụ: tin nhắn xác thực tài khoản, hỗ trợ lấy lại mật khẩu …); (ii) duy trì và cải thiện Dịch Vụ; (iii) phát triển các dịch vụ mới, (iv) gửi đến Bạn các thông tin, nội dung nhằm mục đích quảng cáo, quảng bá các dịch vụ của VNG và/hoặc Công Ty Liên Kết với VNG; (v) phân tích, đo lường hiệu quả các Dịch Vụ mà Bạn sử dụng; (vi) liên hệ trực tiếp với Bạn để nhằm mục đích chăm sóc khách hàng, xác thực thông tin và các mục đích khác.</li>
+                                        <li>Các thông tin, Dữ Liệu của Bạn được VNG thu thập và lưu trữ sẽ chỉ được sử dụng trong phạm vi của VNG Group (bao gồm VNG và các Công Ty Liên Kết với VNG). VNG sẽ không chia sẻ bất kỳ Thông Tin Cá Nhân nào của Bạn cho bất kỳ bên thứ ba nào, ngoại trừ các trường hợp như được quy định tại khoản 6.5 dưới đây.</li>
+                                        <li>
+                                            VNG sẽ cung cấp, chia sẻ các Thông Tin Cá Nhân, Dữ Liệu và/hoặc các thông tin khác của Bạn mà VNG lưu trữ trong các trường hợp sau đây:<ul>
+                                                <li>Được sự đồng ý của Bạn (ví dụ: Bạn sử dụng ZingID để đăng nhập, sử dụng các dịch vụ ngoài VNG Group và Bạn đồng ý cung cấp Thông Tin Cá Nhân của Bạn cho các đơn vị, tổ chức cung ứng dịch vụ đó);</li>
+                                                <li>Theo yêu cầu của Tòa án và/hoặc Cơ quan Nhà nước có thẩm quyền; hoặc VNG chủ động cung cấp cho Cơ quan Nhà nước có thẩm quyền trong trường hợp việc sử dụng tài khoản ZingID và/hoặc Dịch Vụ của Bạn có dấu hiệu vi phạm pháp luật.</li>
+                                            </ul>
+                                        </li>
+                                        <li>VNG sẽ thực hiện các biện pháp kỹ thuật cần thiết để bảo mật thông tin của Bạn, bao gồm nhưng không giới hạn ở việc (i) mã hóa thông tin theo tiêu chuẩn phù hợp; (ii) thiết lập các hệ thống tường lửa để ngăn chặn việc xâm nhập trái phép; (iii) sử dụng dịch vụ máy chủ, chỗ đặt máy chủ tại các đơn vị, doanh nghiệp có tiêu chuẩn bảo mật cao.</li>
+                                    </ol>
+                                    <h3>Điều 7. Các Hành Vi Bị Cấm</h3>
+                                    <ol>
+                                        <li>
+                                            Lợi dụng việc sử dụng tài khoản ZingID và/hoặc Dịch Vụ nhằm mục đích:<ul>
+                                                <li>Chống lại Nhà nước Cộng Hòa Xã Hội Chủ Nghĩa Việt Nam; gây phương hại đến an ninh quốc gia, trật tự an toàn xã hội; phá hoại khối đại đoàn kết dân tộc; tuyên truyền chiến tranh, khủng bố; gây hận thù, mâu thuẫn giữa các dân tộc, sắc tộc, tôn giáo;</li>
+                                                <li>Tuyên truyền, kích động bạo lực, dâm ô, đồi trụy, tội ác, tệ nạn xã hội, mê tín dị đoan, phá hoại thuần phong, mỹ tục của dân tộc;</li>
+                                                <li>Tiết lộ bí mật nhà nước, bí mật quân sự, an ninh, kinh tế, đối ngoại và những bí mật khác do pháp luật quy định;</li>
+                                                <li>Đưa thông tin xuyên tạc, vu khống, xúc phạm uy tín của tổ chức, danh dự và nhân phẩm của cá nhân;</li>
+                                                <li>Quảng cáo, tuyên truyền, mua bán hàng hóa, dịch vụ bị cấm; truyền bá tác phẩm báo chí, văn học, nghệ thuật, xuất bản phẩm bị cấm và/hoặc quảng cáo các sản phẩm, dịch vụ khác mà chưa được VNG chấp thuận;</li>
+                                                <li>Giả mạo tổ chức, cá nhân và phát tán thông tin giả mạo, thông tin sai sự thật xâm hại đến quyền và lợi ích hợp pháp của tổ chức, cá nhân;</li>
+                                                <li>Đăng tải, chia sẻ các nội dung vi phạm quyền sở hữu trí tuệ của bất kỳ tổ chức, cá nhân nào;</li>
+                                                <li>Thực hiện hoặc nhằm thực hiện các hành vi vi phạm pháp luật khác.</li>
+                                            </ul>
+                                        </li>
+                                        <li>Cản trở việc cung cấp và truy cập thông tin hợp pháp, việc cung cấp và sử dụng các Dịch Vụ của người khác.</li>
+                                        <li>Cản trở hoạt động, xâm nhập hoặc cố gắng xâm nhập trái phép vào hệ thống máy chủ của VNG.</li>
+                                        <li>Sử dụng trái phép mật khẩu, khóa mật mã của người khác; chia sẻ trái phép thông tin riêng, thông tin cá nhân của người khác.</li>
+                                        <li>Tạo đường dẫn đến các website, ứng dụng trái phép, vi phạm pháp luật; tạo, cài đặt, phát tán phần mềm độc hại, vi-rút máy tính; xâm nhập trái phép, chiếm quyền điều khiển hệ thống thông tin, tạo lập công cụ tấn công trên Internet.</li>
+                                        <li>Mua, bán đơn vị ảo, vật phẩm ảo, điểm thưởng giữa những người sử dụng Dịch Vụ với nhau;</li>
+                                        <li>Mua, bán, trao đổi (kể cả tặng, cho) tài khoản ZingID;</li>
+                                        <li>Thực hiện các hành vi (nhằm) lừa đảo chiếm đoạt tài sản của người khác;</li>
+                                        <li>Mạo danh hoặc làm cho người khác hiểu nhầm rằng Bạn là nhân viên, cộng tác viên của VNG.</li>
+                                    </ol>
+                                    <h3>Điều 8. Quyền Sở Hữu Trí Tuệ</h3>
+                                    <ol>
+                                        <li>Một số Dịch Vụ của VNG cho phép bạn chia sẻ các nội dung thông qua hệ thống của VNG; đối với các nội dung này, Bạn cam đoan và đảm bảo rằng, Bạn là chủ sở hữu hợp pháp, duy nhất của nội dung này, trường hợp (các) nội dung mà Bạn chia sẻ có đồng sở hữu thì Bạn đảm bảo rằng, Bạn đã được (các) đồng sở hữu này đồng ý và cấp quyền đầy đủ cho Bạn.</li>
+                                        <li>Đối với các nội dung được Bạn chia sẻ thông qua hệ thống của VNG, Bạn theo đây đồng ý không hủy ngang, cấp cho VNG và Công Ty Liên Kết với VNG quyền không độc quyền, vĩnh viễn, hoàn toàn miễn phí, và trên phạm vi toàn cầu để (i) lưu trữ, tái sản xuất, phân phối, truyền đạt và sử dụng nội dung của Bạn; (ii) xuất bản, trình diễn công khai hoặc hiển thị công khai nội dung của Bạn nếu Bạn đã cho phép nội dung đó hiển thị cho người khác; (iii) chỉnh sửa và tạo tác phẩm phái sinh dựa trên nội dung của Bạn (ví dụ: định dạng lại hoặc dịch nội dung sang ngôn ngữ khác).</li>
+                                        <li>Đối với các Dịch Vụ được VNG và/hoặc Công Ty Liên Kết với VNG cung cấp cho Bạn, VNG theo đây cấp cho Bạn quyền không độc quyền, không thể chuyển giao, không thể chuyển nhượng và không được thương mại hóa để sử dụng các Dịch Vụ của VNG và/hoặc Công Ty Liên Kết với VNG.</li>
+                                        <li>Ngoài quyền sử dụng Dịch Vụ như đã được cấp cho Bạn theo quy định tại khoản 8.3 nêu trên, VNG bảo lưu toàn bộ quyền sở hữu trí tuệ đối với nhãn hiệu, mã nguồn sản phẩm, hình ảnh, âm thanh, âm nhạc … trong các Dịch Vụ cùng với các quyền khác liên quan đến Dịch Vụ được cung cấp cho Bạn.</li>
+                                    </ol>
+                                    <h3>Điều 9. Giới Hạn Trách Nhiệm Và Từ Chối Đảm Bảo</h3>
+                                    <ol>
+                                        <li>VNG cam kết sẽ cung cấp các Dịch Vụ đến Bạn trong giới hạn trình độ chuyên môn và mức độ cẩn trọng hợp lý theo đúng quy định của pháp luật.</li>
+                                        <li>Để tăng cường mức độ bảo mật, an toàn của Dịch Vụ, VNG sẽ áp dụng một hoặc một vài biện pháp kỹ thuật và/hoặc phần mềm, ứng dụng vào trong hoặc bên cạnh Dịch Vụ; mặc dù vậy, việc áp dụng các biện pháp nêu trên không được là sự đảm bảo rằng tài khoản của Bạn không bị mất, bị hack và VNG được miễn trừ hoàn toàn trách nhiệm bởi các trường hợp này.</li>
+                                        <li>VNG sẽ áp dụng các biện pháp kỹ thuật cần thiết nhằm hỗ trợ Bạn có được trải nghiệm tốt nhất khi sử dụng Dịch Vụ; mặc dù vậy, trong một số trường hợp ngoài ý muốn, Dịch Vụ có thể (i) bị gián đoạn cung cấp, (ii) bị lỗi (bug), (iii) bị mất hoặc trùng lặp một số thông tin, tính năng của Dịch Vụ và/hoặc tài khoản ZingID của Bạn; trong trường hợp này, VNG sẽ áp dụng mọi biện pháp cần thiết (trong khả năng cho phép) và trong thời gian hợp lý để khắc phục và Bạn đồng ý miễn trừ cho VNG mọi trách nhiệm liên quan.</li>
+                                        <li>VNG sẽ áp dụng các biện pháp cần thiết, theo đúng quy định pháp luật để bảo vệ, bảo mật Thông Tin Cá Nhân và Dữ Liệu của Bạn như đã nêu tại khoản 6.6, Điều 6; tuy nhiên, Bạn hiểu rõ và đồng ý rằng, không có bất kỳ hệ thống nào là an toàn tuyệt đối và chống lại được mọi cuộc tấn công, hack, cheat; vì vậy, trường hợp hệ thống của VNG bị tấn công, hack, cheat và Thông Tin Cá Nhân, Dữ Liệu của Bạn (có nguy cơ) bị lộ thì VNG sẽ ngay lập tức thực hiện các biện pháp cần thiết theo quy định của pháp luật để hạn chế tối đa ảnh hưởng đến Bạn và Bạn đồng ý miễn cho VNG khỏi bất kỳ trách nhiệm nào liên quan.</li>
+                                    </ol>
+                                    <h3>Điều 10. Các Hỗ Trợ Liên Quan Đến Tài Khoản</h3>
+                                    <ol>
+                                        <li>Mọi vấn đề hỗ trợ liên quan đến tài khoản ZingID sẽ được hỗ trợ thông qua (i) website <a target="_blank" href="https://account.support.vnggames.com/products/passport-zingid-230-aa5a5cbf15d4936b6dc7a5482cc7bba9/problems">https://account.support.vnggames.com/</a> hoặc (ii) số điện thoại hotline 1900561558 và tuân thủ theo đúng Quy trình Chăm sóc và phản hồi khách hàng của VNG tại thời điểm tiếp nhận khiếu nại.</li>
+                                        <li>Mọi khiếu nại liên quan đến tài khoản ZingID và/hoặc Dịch Vụ phải được gửi đến VNG bằng một trong các phương thức nêu trên và trong thời hạn ba (3) tháng kể từ thời điểm phát sinh vấn đề cần khiếu nại; quá thời hạn nêu trên, VNG có quyền từ chối tiếp nhận, giải quyết các khiếu nại nay.</li>
+                                        <li>Để thực hiện khiếu nại, tố cáo hay phản ánh liên quan đến tài khoản ZingID của Bạn và/hoặc Dịch Vụ thì tài khoản của Bạn phải được định danh đầy đủ để VNG có cơ sở tiếp nhận và liên hệ với Bạn. Trường hợp tài khoản của Bạn chưa được định danh đầy đủ hoặc VNG có cơ sở hợp lý để cho rằng thông tin Bạn cung cấp là không chính xác thì VNG có quyền từ chối giải quyết khiếu nại, tố cáo của Bạn đến khi tài khoản ZingID của Bạn đáp ứng được đầy đủ các yêu cầu nêu trên.</li>
+                                    </ol>
+                                    <h3>Điều 11. Tuân Thủ Pháp Luật Và Quy Định</h3>
+                                    <ol>
+                                        <li>Bạn hiểu rõ và đồng ý rằng, bên cạnh việc tuân thủ các điều khoản và điều kiện về việc sử dụng tài khoản ZingID, Bạn sẽ (i) tuân thủ đầy đủ các quy định khác của pháp luật Việt Nam; (ii) tuân thủ đầy đủ các quy định pháp luật nơi Bạn khởi tạo tài khoản ZingID và/hoặc truy cập, sử dụng Dịch Vụ và/hoặc quốc gia mà Bạn mang quốc tịch; và (iii) Bạn sẽ tự chịu trách nhiệm về bất kỳ hậu quả nào của việc không tuân thủ bất kỳ quy định nào tại nơi mà Bạn khởi tạo, truy cập, sử dụng tài khoản ZingID và/hoặc Dịch Vụ và đảm bảo VNG sẽ không phải chịu bất kỳ trách nhiệm nào liên quan.</li>
+                                        <li>Trường hợp VNG nhận được bất kỳ khiếu nại, thông báo hay yêu cầu nào liên quan đến việc Bạn không đáp ứng được các yêu cầu nêu trên và/hoặc VNG có cơ sở để suy đoán hợp lý dựa trên các thông tin mà VNG có được thì VNG có quyền (i) ngưng cung cấp Dịch Vụ cho Bạn (kể cả việc truy cập vào tài khoản ZingID của Bạn) mà không phải báo trước hay chịu bất kỳ trách nhiệm nào với Bạn và/hoặc (ii) chặn toàn bộ truy cập đến từ quốc gia nghiêm cấm việc sử dụng ZingID và/hoặc Dịch Vụ.</li>
+                                    </ol>
+                                    <h3>Điều 12. Luật Áp Dụng Và Giải Quyết Tranh Chấp</h3>
+                                    <ol>
+                                        <li>Điều Khoản Sử Dụng này được áp dụng và giải thích theo các quy định của pháp luật nước Cộng Hòa Xã Hội Chủ Nghĩa Việt Nam về mọi vấn đề, khía cạnh liên quan.</li>
+                                        <li>Trường hợp có bất kỳ tranh chấp, mẫu thuẫn nào giữa Bạn và VNG mà không thể giải quyết được trên tinh thần thương lượng và hòa giải thì Bạn đồng ý rằng, các tranh chấp đó sẽ được đưa ra giải quyết tại Tòa án nhân dân có thẩm quyền tại Thành phố Hồ Chí Minh – nơi VNG đặt trụ sở chính.</li>
+                                    </ol>
+                                    <h3>Điều 13. Điều Khoản Còn Lại</h3>
+                                    <ol>
+                                        <li>Việc một hoặc một vài điều khoản trong Điều Khoản Sử Dụng này bị Tòa án tuyên bố là vô hiệu sẽ không ảnh hưởng đến hiệu lực của các điều khoản còn lại và các điều khoản còn lại đó vẫn có giá trị ràng buộc Bạn với VNG.</li>
+                                        <li>Việc VNG không thực hiện hoặc chậm thực hiện bất kỳ quyền, hay biện pháp xử lý nào theo quy định tại Điều Khoản Sử Dụng này không được xem là sự từ bỏ bất kỳ quyền, biện pháp xử lý nào trong Điều Khoản Sử Dụng này và việc thực hiện một phần hoặc toàn bộ quyền đơn lẻ cũng không loại trừ việc thực hiện bất kỳ quyền, quyền hạn hoặc biện pháp xử lý khác quy định trong Điều Khoản Sử Dụng này.</li>
+                                    </ol>
+                                    <h3>Điều 14. Hiệu Lực Áp Dụng Và Sửa Đổi</h3>
+                                    <ol>
+                                        <li>Bạn đồng ý rằng, VNG có quyền sửa đổi, bổ sung một phần hoặc toàn bộ các quy định tại Điều Khoản Sử Dụng này mà không cần có sự đồng ý trước của Bạn. Trường hợp Bạn không đồng ý với bất kỳ điểm sửa đổi, bổ sung nào, Bạn có quyền chấm dứt sử dụng tài khoản ZingID và/hoặc Dịch Vụ trước khi các điểm sửa đổi, bổ sung đó có hiệu lực; trường hợp Bạn tiếp tục sử dụng tài khoản ZingID và/hoặc Dịch Vụ thì sẽ được hiểu là Bạn đã đồng ý với toàn bộ các điểm sửa đổi, bổ sung đó.</li>
+                                        <li>Điều Khoản Sử Dụng này có hiệu lực kể từ ngày 07 tháng 05 năm 2020 và thay thế cho tất cả các điều khoản sử dụng, Quy chế sử dụng ZingID trước đây.</li>
+                                    </ol>
+                                </body>
+
+                            </div>
+                        </div>
+                        <div rel="Notice" class="msgtooltip posleft error show" id="checkPolicy_error">
+                            <span class="tooltiparrow zidsprt"></span>
+                            <div class="tooltipbody">
+                                <span class="tipmsg_icon"></span>
+                                <div class="tipcontent"></div>
+                            </div>
+                        </div>
+
+                        <div id="checkbox_non_guardian" style="display: ">
+                            <p class="rtext">
+                                <label><input type="checkbox" id="checkPolicy18" tabindex="22"> Tôi đã đồng ý với <a href="https://id.zing.vn/v2/policy"><strong>Điều khoản sử dụng</strong></a> và <a href="https://id.zing.vn/v2/policy/privacy" target="_blank"><strong>Chính sách bảo mật</strong></a> </label>
+                            </p>
+                        </div>
+
+                        <div id="checkbox_guardian_7" style="display: ">
+                            <p class="rtext">
+                                <label><input type="checkbox" id="checkPolicy7" tabindex="22"> Người giám hộ đã đồng ý với <a href="https://id.zing.vn/v2/policy"><strong>Điều khoản sử dụng</strong></a> và <a href="https://id.zing.vn/v2/policy/privacy" target="_blank"><strong>Chính sách bảo mật</strong></a></label>
+                            </p>
+                        </div>
+
+
+                        <div id="checkbox_guardian_16" style="display: ">
+                            <p class="rtext">
+                                <label><input type="checkbox" id="checkPolicy16" tabindex="22"> Tôi đã đồng ý với <a href="https://id.zing.vn/v2/policy"><strong>Điều khoản sử dụng</strong></a> và <a href="https://id.zing.vn/v2/policy/privacy" target="_blank"><strong>Chính sách bảo mật</strong></a></label>
+                            </p>
+                            <p class="rtext">
+                                <label><input type="checkbox" id="checkPolicy16_giamho" tabindex="22"> Người giám hộ đã đồng ý với <a href="https://id.zing.vn/v2/policy"><strong>Điều khoản sử dụng</strong></a> và <a href="https://id.zing.vn/v2/policy/privacy" target="_blank"><strong>Chính sách bảo mật</strong></a></label>
+                            </p>
+                        </div>
+
+                        <a href="javascript:void(0)" onclick="backToStep1();" class="zid_backbtn" title="Quay lại">Quay lại</a>
+                        <a href="javascript:void(0)" onclick="executeCaptcha(event)" class="zid_regbtn" title="Đăng ký">Đăng ký</a>
+                        <div class="clr"></div>
+                    </div>
+                </div>-->
+                <div id="recaptcha" class="g-recaptcha" data-sitekey="6Le66CwUAAAAAPZOb-sR_nVSGuwvnTY337mPaI2R" data-size="invisible" data-callback="onSubmit"></div>
+
+
+
+                <script type="text/javascript">
+
+                    window.onSubmit = function () {
+                        try {
+                            var check = false;
+                            zm('#age').val(age);
+                            var dob = zm('[name=dob]').val();
+                            var mob = zm('[name=mob]').val();
+                            var yob = zm('[name=yob]').val();
+                            age = getAge(dob, mob, yob);
+                            if (age >= 16) {
+                                check = checkRegInputStep2NonGuardian();
+                                if (check) {
+
+                                    showLoading();
+                                    if (!$('#checkPolicy18').is(':checked')) {
+                                        grecaptcha.reset();
+                                        zmIdContent.showTooltipError("checkPolicy_error", "Bạn cần đồng ý điều khoản sử dụng");
+                                        return;
+                                    }
+                                    else {
+                                        zm('#checkPolicy_error').hide();
+                                        var account = zm("#regacc_account").val();
+                                        var a = "https://id.zing.vn/checkaccount?ACC=" + account + "&jsonp=checkAccCallbacknSubmit";
+                                        zm.getJSON(a);
+
+
+
+                                    }
+                                }
+
+                            }
+                            else {
+                                check = checkRegInputStep2Guardian();
+
+                                if (check) {
+                                    if (age < 7) {
+                                        showLoading();
+                                        if (!$('#checkPolicy7').is(':checked')) {
+                                            grecaptcha.reset();
+                                            zmIdContent.showTooltipError("checkPolicy_error", "Bạn cần đồng ý điều khoản sử dụng");
+                                            return;
+                                        }
+                                        else {
+                                            zm('#checkPolicy_error').hide();
+                                            var account = zm("#regacc_account").val();
+                                            var a = "https://id.zing.vn/checkaccount?ACC=" + account + "&jsonp=checkAccCallbacknSubmit";
+                                            zm.getJSON(a);
+
+
+
+                                        }
+                                    }
+
+
+                                    if (age >= 7 && age < 16) {
+                                        showLoading();
+                                        if (!$('#checkPolicy16').is(':checked')) {
+                                            grecaptcha.reset();
+                                            zmIdContent.showTooltipError("checkPolicy_error", "Bạn cần đồng ý điều khoản sử dụng");
+                                            return;
+                                        }
+                                        else if (!$('#checkPolicy16_giamho').is(':checked')) {
+                                            grecaptcha.reset();
+                                            zmIdContent.showTooltipError("checkPolicy_error", "Người giám hộ cần đồng ý điều khoản sử dụng");
+                                            return;
+                                        }
+                                        else {
+                                            zm('#checkPolicy_error').hide();
+                                            var account = zm("#regacc_account").val();
+                                            var a = "https://id.zing.vn/checkaccount?ACC=" + account + "&jsonp=checkAccCallbacknSubmit";
+                                            zm.getJSON(a);
+
+
+
+                                        }
+                                    }
+
+                                    if (age >= 16) {
+                                        showLoading();
+                                        if (!$('#checkPolicy16').is(':checked')) {
+                                            grecaptcha.reset();
+                                            zmIdContent.showTooltipError("checkPolicy_error", "Bạn cần đồng ý điều khoản sử dụng");
+                                            return;
+                                        }
+                                        else {
+                                            zm('#checkPolicy_error').hide();
+                                            var account = zm("#regacc_account").val();
+                                            var a = "https://id.zing.vn/checkaccount?ACC=" + account + "&jsonp=checkAccCallbacknSubmit";
+                                            zm.getJSON(a);
+
+
+
+                                        }
+                                    }
+
+
+                                }
+
+
+
+
+
+                            }
+
+                            if (!check) {
+                                grecaptcha.reset();
+                            }
+
+
+
+
+
+
+
+
+                        } catch (ex) {
+                            grecaptcha.reset();
+                        }
+
+                    }
+                    function executeCaptcha() {
+                        event.preventDefault();
+                        grecaptcha.execute();
+                    }
+                    function checkAccCallbacknSubmit(json) {
+                        setTimeout(function () {
+                            if (json['flag'] == 1) {
+                                zm("#frmReg").submit();
+                                return true;
+                            }
+                            if (json['flag'] == 3) {
+                                zm("#regacc_loading").hide();
+                                show_account_invalid();
+                                zmIdContent.showTooltipError("regacc_account_error", errMsg.Account_format);
+                                backToStep1();
+                                return false;
+                            }
+                            if (json['flag'] == 5) {
+                                zm("#regacc_loading").hide();
+                                show_account_invalid();
+                                zm("#reg_username").attr("class", "finput reg_username invalidacc");
+                                zm('#account_valid').hide();
+                                zm('#account_invalid').show();
+                                backToStep1();
+                                return false;
+                            }
+                        }, 500);
+                        return false;
+                    }
+
+                    function getAge(dob, mob, yob) {
+                        var dateString = mob + "/" + dob + "/" + yob;
+                        var today = new Date();
+                        var birthDate = new Date(dateString);
+                        var age = today.getFullYear() - birthDate.getFullYear();
+                        var m = today.getMonth() - birthDate.getMonth();
+                        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                            age--;
+                        }
+                        return age;
+                    }
+                </script>
+            </form>
+        </div>
+
+
+
+
+        <!--
+            <div class="otheracclogin">
+                <p class="htext">hoặc Đăng ký tài khoản với</p>
+                <ul class="accbtns">
+                    <!--            <li><a class="fb_acc" href="javascript:void(0)" onclick="zid_oauth.openPopup('facebook', 'https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38');
+                                    return false;" title="Facebook"><span class="acc_btnicn"></span>Facebook</a></li>
+                                <li><a class="gplus_acc" href="javascript:void(0)" onclick="zid_oauth.openPopup('google', 'https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38');
+                                    return false;" title="Google+"><span class="acc_btnicn"></span>Google+</a></li>
+                                <li><a class="yahoo_acc" href="javascript:void(0)" onclick="zid_oauth.openPopup('yahoo', 'https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38');
+                                    return false;" title="Yahoo"><span class="acc_btnicn"></span>Yahoo</a></li>
+                    <li><a class="fb_acc" href="javascript:void(0)" onclick="zmXLoginWg.openPopup('facebook', 'cb');
+                            return false;" title="Facebook"><span class="acc_btnicn"></span>Facebook</a></li>
+                    <li><a class="gplus_acc" href="javascript:void(0)" onclick="zmXLoginWg.openPopup('google', 'cb');
+                            return false;" title="Google+"><span class="acc_btnicn"></span>Google+</a></li>
+                    <li><a class="yahoo_acc" href="javascript:void(0)" onclick="zmXLoginWg.openPopup('yahoo', 'cb');
+                            return false;" title="Yahoo"><span class="acc_btnicn"></span>Yahoo</a></li>
+                </ul>
+            </div>
+        -->
+        <div class="backtologin" style="background-color: #f0f0f0; padding: 10px;">
+            Nếu bạn đã có tài khoản. Trở về <a href="javascript:void(0)" onclick="zid.goLogin();"><strong>Trang chủ</strong></a> để đăng nhập.
+        </div>
+    </div>
+    <script type="text/javascript">
+        zm.ready(function () {
+            var jsonStr = '';
+            var jsonArray = JSON.parse(jsonStr);
+            for (var i in jsonArray) {
+                var counter = jsonArray[i];
+                zmIdContent.showTooltipError(counter.id, counter.msg);
+            }
+        });
+    </script>
+    <script language="javascript" src="/Content/js/zid_xlogin_1.06.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript" src="/Content/js/zid_register_full_05.js"></script>
+    <script type="text/javascript">
+        window.zAsyncInit = function () {
+            zmeOpenWidget.init({
+                apikey: '92140c0e46c54994812403f564787c14',
+                pid: '38',
+                callback: 'cb',
+                tpl: '5'
+            });
+        };
+        function cb(cbdata, acn, zid, uin, autcode, obj) {
+            location.reload();
+        }
+        ;
+        (function (d) {
+            var js, id = 'widget-jssdk', ref = d.getElementsByTagName('script')[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement('script');
+            js.id = id;
+            js.async = true;
+            var t = Math.floor(Math.random() * 10000);
+            js.src = "https://stc-id.zing.vn/widget/js/openwidget4.js?t=" + t;
+            ref.parentNode.insertBefore(js, ref);
+        }(document));
+    </script>
+    <script src="/Content/js/api.js" async defer></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+

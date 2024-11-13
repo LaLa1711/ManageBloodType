@@ -1,0 +1,51 @@
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../Roboto-Regular.eot'); /* IE9 Compat Modes */
+	src: url('../Roboto-Regular.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('../fonts/Roboto-Regular.woff') format('woff'), /* Modern Browsers */
+		url('../fonts/Roboto-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+		url('../img/Roboto-Regular.svg#RobotoRegular') format('svg'); /* Legacy iOS */
+}
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 700;
+	src: url('../Roboto-Bold.eot');
+	src: url('../Roboto-Bold.eot#iefix') format('embedded-opentype'),
+		url('../fonts/Roboto-Bold.woff') format('woff'),
+		url('../fonts/Roboto-Bold.ttf')  format('truetype'),
+		url('../img/Roboto-Bold.svg#RobotoBold') format('svg');
+}
+@font-face {
+	font-family: 'Roboto';
+	font-style: italic;
+	font-weight: 400;
+	src: url('../Roboto-Italic.eot');
+	src: url('../Roboto-Italic.eot#iefix') format('embedded-opentype'),
+		url('../fonts/Roboto-Italic.woff') format('woff'),
+		url('../fonts/Roboto-Italic.ttf')  format('truetype'),
+		url('../img/Roboto-Italic.svg#RobotoItalic') format('svg');
+}
+@font-face {
+	font-family: 'Roboto';
+	font-style: italic;
+	font-weight: 700;
+	src: url('../Roboto-BoldItalic.eot');
+	src: url('../Roboto-BoldItalic.eot#iefix') format('embedded-opentype'),
+		url('../fonts/Roboto-BoldItalic.woff') format('woff'),
+		url('../fonts/Roboto-BoldItalic.ttf')  format('truetype'),
+		url('../img/Roboto-BoldItalic.svg#RobotoBoldItalic') format('svg');
+}
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 300;
+	src: url('../Roboto-Light.eot');
+	src: url('../Roboto-Light.eot#iefix') format('embedded-opentype'),
+		url('../fonts/Roboto-Light.woff') format('woff'),
+		url('../fonts/Roboto-Light.ttf')  format('truetype'),
+		url('../img/Roboto-Light.svg#RobotoLight') format('svg');
+}
+

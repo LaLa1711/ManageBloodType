@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+
+<div class="zidbody">
+    <div class="zid_loginform" style="position: relative; ">
+
+        <h2 class=" formheader">Quên thông tin tài khoản</h2>
+
+        <form id="frmForgotInfo" name="frmForgotInfo" action="" method="post">
+            <input type="hidden" name="tokenCaptcha" id="tokenCaptcha" value="">
+            <!--<label class="zidfglb">Tên/ Email/ Số điện thoại <b style="color: #42a3d6;">đăng nhập</b>:</label>-->
+            <label class="zidfglb">Tên đăng nhập <span style="font-weight: normal;font-size: 12px;">(hoặc Email đăng nhập, hoặc SĐT đăng nhập)</span></label>
+            <p class="finput zidforgotinput" style="position: relative">
+                <input class="input_login" type="text" tabindex="1" name="aliasname" id="sAliasName" maxlength="100" value="">
+                <span id="sAliasName_icon" style="display: none;position: absolute;right: 10px;top:15px;">
+                    <img src="/Content/img/checkbullet.gif" alt="finish">
+                </span>
+            </p>
+            <span id="sAliasName_note" style="display:none;"></span>
+            <div id="acnLikePhone" style="float: right;font-weight: normal;font-size: 12px;padding-bottom: 5px;display: none;">
+                <input id="acnLikePhone_check" type="checkbox" value="true" name="acnLikePhone" tabindex="2" style="vertical-align: middle;"> Đây là Tên đăng nhập
+            </div>
+            <span class="Notice" id="sAliasName_err" style="width:330px;height:40px;">&nbsp;</span>
+            <label class="zidfglb">Bạn đã quên thông tin gì?</label>
+            <ul class="zidfglist">
+                <li>
+                    <label>
+                        <input type="radio" tabindex="3" name="forgotType" value="password" id="forgotTypePassword" class="list_radio">Quên mật khẩu
+
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" tabindex="4" name="forgotType" value="gamecode" id="forgotTypeGamecode" class="list_radio">Quên mã game (Mật khẩu cấp 2)
+
+                    </label>
+                </li>
+            </ul>
+            <div class="zidfg_captchapic">
+                <label class="zidfglb">Mã kiểm tra:</label>
+                <div class="captchaborder" style="margin-top: -2px;">
+                    <p class="catchacode"> <img src="" id="sVerifyImg" alt="mã kiểm tra"> </p>
+                    <p class="captcha_refresh"><a title="Tạo mã kiểm tra khác" href="javascript:void(0)" onclick="refreshCaptcha2();"></a></p>
+                </div>
+            </div>
+            <div class="zidfg_entercaptcha">
+                <label class="zidfglb">Nhập mã kiểm tra:</label>
+                <p class=" finput zidforgotinput" style="position: relative">
+                    <input class="input_login" id="sVerifyCode" tabindex="5" maxlength="6" name="captcha">
+                    <span id="sVerifyCode_icon" style="display: none;position: absolute;right: 10px;top:15px;">
+                        <img src="/Content/img/checkbullet.gif" alt="finish">
+                    </span>
+                </p>
+                <span class="Notice" id="sVerifyCode_err" style="max-width: 200px;">&nbsp;</span>
+            </div>
+            <div class=" zidfbot">
+                <a title="Bỏ qua" class="zidcancelbtn" href="https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38" tabindex="7"></a>
+                <a title="Tiếp tục" class="zidnextbtn" href="javascript:void(0)" onclick="checkValidForm();" tabindex="6"></a>
+            </div>
+        </form>
+        <div class="clr"></div>
+        <div>
+            <!--errAliasCode is index of array AliasName_Error in general.js file-->
+            <input type="hidden" id="errAlias" value="">
+            <!--errCaptchaCode is index of array Verify_Error in general.js file-->
+            <input type="hidden" id="errCaptcha" value="">
+            <!--Signal to set attribute check forgotType-->
+            <input type="hidden" id="forgotType" value="">
+        </div>
+        <script language="javascript" type="text/javascript" src="/Content/js/general-1.07.js"></script>
+        <script language="javascript" type="text/javascript" src="/Content/js/forgot_info_index-1.03.js"></script>
+        <script language="javascript" type="text/javascript">
+            refreshCaptcha2();
+        </script>
+    </div>
+</div>
+
+

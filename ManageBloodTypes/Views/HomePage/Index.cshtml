@@ -1,0 +1,419 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+<!--<div class="zid_header">
+    <div class="zid_header_inner">
+        <input id="serverdomain" type="hidden" value="https://id.zing.vn/v2" /></input>
+        <input id="acn" type="hidden" value="inohavename" /></input>-->
+        @*<h1 class="zidlogo"><a class="zidsprt" href="https://id.zing.vn/v2?apikey=92140c0e46c54994812403f564787c14&pid=38" title="Trang chủ Zing ID">Zing ID</a></h1>*@
+
+        <!--<div class="zidlogfrom">
+            Chào <strong>Chung Qu&#7889;c T&agravei</strong> <span class="logappname"> <a href="https://sso3.zing.vn/logout?return=https%3A%2F%2Fid.zing.vn%2Fv2%2Flogin%3Fapikey%3D92140c0e46c54994812403f564787c14%26data%3DdmEQVHplFFN0QlUmZQ"> Thoát </a></span>
+        </div>
+
+
+
+
+    </div>
+</div>-->
+<div class="accuser_code">
+    <div class="accuser_code_inner">
+        Tài khoản (Zing ID): <strong>inohavename</strong>  |  Mã số tài khoản: <strong>9445247871</strong>
+    </div>
+</div>
+
+
+<div class="zidbody">
+
+
+
+
+
+
+
+    <div class="zingid_accinfo">
+        <div class="zid_sidemenu">
+            <p class="zidmitem">
+                <a href="https://id.zing.vn/v2/infosetting/general?apikey=92140c0e46c54994812403f564787c14&pid=38" class="selected">
+                    <span class="zidm_itemwrapper">
+                        <em class="menuicn logininfo_icn"></em>Thông tin đăng nhập<span>Quản lý thông tin dùng để đăng nhập</span>
+                    </span>
+                </a>
+            </p>
+            @*<p class="zidmitem">
+                <a href="https://id.zing.vn/v2/infosetting/personal?apikey=92140c0e46c54994812403f564787c14&pid=38" class="">
+                    <span class="zidm_itemwrapper"><em class="menuicn generalinfo_icn"></em>Thông tin chung<span>Xem và cập nhật thông tin cá nhân</span></span>
+                </a>
+            </p>
+
+            <p class="zidmitem">
+                <a href="https://id.zing.vn/v2/infosetting/mapping?apikey=92140c0e46c54994812403f564787c14&pid=38" class="">
+                    <span class="zidm_itemwrapper"><em class="menuicn socialconnect_icn"></em>Thông tin kết nối<span>Kết nối tài khoản Zing ID với tài khoản Facebook, Google, Yahoo</span></span>
+                </a>
+            </p>
+            <p class="zidmitem">
+                <a href="https://id.zing.vn/v2/infosetting/security?apikey=92140c0e46c54994812403f564787c14&pid=38" class="">
+                    <span class="zidm_itemwrapper"><em class="menuicn security_icn"></em>Bảo vệ tài khoản<span>Chức năng hỗ trợ bảo vệ tài khoản</span></span>
+                </a>
+            </p>*@
+            <!--
+                <p class="zidmitem">
+                    <a href="https://id.zing.vn/v2/infosetting/gamelogins?apikey=92140c0e46c54994812403f564787c14&pid=38" class="">
+                        <span class="zidm_itemwrapper"><em class="menuicn zxusmsreg_icn"></em>Đăng nhập trò chơi<span>Chuyển đổi đăng nhập tài khoản trò chơi thành Zing ID</span></span>
+                    </a>
+                </p>
+            -->
+            <!--    <p class="zidmitem">
+                    <a href="https://id.zing.vn/v2/infosetting/phonezx?apikey=92140c0e46c54994812403f564787c14&pid=38" class="">
+                        <span class="zidm_itemwrapper"><em class="menuicn zxusmsreg_icn"></em>Đăng ký số điện thoại<span>Dùng để nạp Zing Xu bằng SMS</span></span>
+                    </a>
+                </p>
+            <p class="zidmitem">
+                <a href="https://id.zing.vn/v2/infosetting/otservice?apikey=92140c0e46c54994812403f564787c14&pid=38" class="">
+                    <span class="zidm_itemwrapper"><em class="menuicn zxusmsreg_icn"></em>Các dịch vụ khác<span>Dịch vụ đăng ký SĐT nạp ZingXu, nhận thông tin từ các sản phẩm VNG</span></span>
+                </a>
+            </p>
+            <p class="zidmitem">
+                <a href="https://id.zing.vn/v2/suggestapp?apikey=92140c0e46c54994812403f564787c14&pid=38" class="">
+                    <span class="zidm_itemwrapper"><em class="menuicn like_icn"></em>Bạn có thể thích<span>Game được đề xuất cho chính bạn!</span></span>
+                </a>
+            </p>-->
+            <!--
+            <p class="zidmitem">
+                    <a href="https://id.zing.vn/v2/hotgames?apikey=92140c0e46c54994812403f564787c14&pid=38" class="">
+                        <span class="zidm_itemwrapper"><em class="menuicn hotgame_icn"></em>Có gì mới <img border="0" src="http://img.me.zdn.vn/images/app_uploads/newv4-1.01.png"><span>Game online đang dẫn đầu hiện nay cùng nhiều quà tặng hấp dẫn</span></span>
+                    </a>
+                </p>
+                <p class="zidmitem">
+                    <a href="https://id.zing.vn/v2/hotevents?apikey=92140c0e46c54994812403f564787c14&pid=38" class="">
+                        <span class="zidm_itemwrapper"><em class="menuicn hotevent_icn"></em>Có gì hay <img border="0" src="http://img.me.zdn.vn/images/app_uploads/hotv4-1.01.png"><span>Sự kiện với nghiều quà tặng hấp dẫn, giá trị mà bạn không thể bỏ qua</span></span>
+                    </a>
+                </p>
+
+            -->
+            <!--<p class="qcbanner_sidepanel"><a href="#"><img src="https://stc-id.zing.vn/login/images/banner/left/269x120_giaicuu.jpg"  alt="" /></a></p>-->
+            <!-- <div class="game_slidebanner">
+                 <div class="jcarousel2" data-jcarousel="true" data-jcarouselautoscroll="true">
+                     <ul id="leftMenuBanner">
+                     </ul>
+                 </div>
+             </div>
+            -->
+            <!--     <p class="zidmitem">
+                    <a href="https://id.zing.vn/v2/infosetting/smsgame?apikey=92140c0e46c54994812403f564787c14&pid=38" class="">
+                        <span class="zidm_itemwrapper"><em class="menuicn zxusmsreg_icn"></em>Đăng ký nhận tin nhắn<span>Dùng để nhận thông tin từ các sản phẩm VNG</span></span>
+                    </a>
+                </p>-->
+        </div>
+
+
+        <!--
+        <script type="text/javascript">
+            getBannerLeftMenu();
+            function getBannerLeftMenu() {
+
+                var where = "zingid_info_bnleftmenu";
+                var acn = $("#acn").val();
+                $.ajax({
+                    type: "GET",
+                    url: "/v2/tracking?action=getBannerLeftMenu&acn="+acn
+                })
+                        .done(function(msg) {
+                            var itemData = JSON.parse(msg);
+                            var html = "";
+                            var img = generateImageTracking("SHOW",itemData.type, itemData.appid, itemData.appname, itemData.itemid, where);
+                            html += '<li class="slideimgwrapper qcbanner_sidepanel"><a target="_blank"  ';
+                            html += '  onclick="' + "trackingClick('CLICK','" + itemData.type + "', '" + itemData.appid + "','" + itemData.appname + "' , '" + itemData.itemid + "','" + where + "');" + '"';
+                            html += 'href="' + itemData.link + '">' + img.innerHTML + '<img src="' + itemData.img + '"  alt="" /></a>      </li>';
+                            document.getElementById("leftMenuBanner").innerHTML += html;
+                        });
+            }
+        </script>
+        -->
+
+        <link rel="stylesheet" type="text/css" href="https://stc-id.zing.vn/login/forgotinfo/css/password_level-1.00.css" />
+        <div class="zid_infocontent">
+            <h2 class="content_title"><span class="titlebullet zidsprt"></span>Thông tin đăng nhập</h2>
+            <div class="inforow">
+                <label>Tên đăng nhập:</label>
+                <div class="infotext"><strong>inohavename</strong></div>
+            </div>
+            <div id="email_general" style="position: relative">
+                <div id="emaillogin_loading" style="display: none; position: absolute; width: 100%; background-color: rgb(236, 236, 236); height: 100%; opacity: 0.5; text-align: center;">
+                    <img src="https://stc-id.zing.vn/login/images/loader.gif" style="height: 100px;padding-top: 50px;" />
+                </div>
+                <div id="email" class="inforow" rel="display">
+                    <label>Email đăng nhập: </label>
+
+                    <p class="lk_update"><a href="https://id.zing.vn/v2/verifyemail?apikey=92140c0e46c54994812403f564787c14&pid=38&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfoemaillogin%2Fcomplete%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38">Cập nhật</a></p>
+
+                    <span style="font-size:12px"><i>(Chưa có thông tin)</i></span>
+
+                    <div rel="listemails">
+
+                    </div>
+                </div>
+                <div id="email_edit_fake" class="subcont sub_chgmail" style="display:none">
+                    <div class="inforow">
+                        <label>Email đăng nhập:</label>
+                        <div class="infotext">
+                            <div class="rowcont">
+                                <p class="subcont_lb">Email chính:</p>
+                                <div class="subcont_text">
+                                    <ul class="listemail">
+
+                                        <div rel="listemails">
+
+                                        </div>
+                                    </ul>
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+                            <div class="rowcont">
+                                <p style="padding:10px 0px;"><i>Để lưu lại thay đổi, vui lòng nhập mật khẩu Zing ID để xác nhận</i></p>
+                                <input type="password" id="email_pwd" placeholder="Nhập mật khẩu" class="subform_input" onkeypress="email_pwdkeypress(event);" maxlength="32" />
+                                <div class="clr"></div>
+                            </div>
+
+                            <div class="warning" id="email_error" style="margin-left:10px;">&nbsp;</div>
+
+                        </div>
+                    </div>
+                    <p class="subform_btn">
+
+                        <a href="https://id.zing.vn/v2/verifyemail?apikey=92140c0e46c54994812403f564787c14&pid=38&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfoemaillogin%2Fcomplete%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38" style="float: left;">Bạn muốn thêm Email khác ?</a>
+                        <a href="javascript:void(0)" onclick="updateEmail('email')" class="sfbtn_submit">Cập nhật</a>
+                        <a href="javascript:void(0)" onclick="hideEmailEdit('email');" class="sfbtn_cancel">Bỏ qua</a>
+                    </p>
+                </div>
+                <div id="email_edit" rel="edit" class="subcont sub_chgmail" style="display:none;">
+                    &nbsp;
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div id="phone_general" style="position: relative">
+                <div id="phonelogin_loading" style="display: none; position: absolute; width: 100%; background-color: rgb(236, 236, 236); height: 100%; opacity: 0.5; text-align: center;">
+                    <img src="https://stc-id.zing.vn/login/images/loader.gif" style="height: 100px;padding-top: 50px;" />
+                </div>
+                <div id="phone" class="inforow" rel="display">
+                    <label>SĐT đăng nhập: </label>
+
+                    <p class="lk_update"><a href="https://id.zing.vn/v2/smsnotify?apikey=92140c0e46c54994812403f564787c14&pid=38&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38">Cập nhật</a></p>
+
+
+                    <p class="infotext" rel="phone_primary" style="font-weight:bold">090****087</p>
+
+                    <div rel="listPhones">
+
+                    </div>
+                </div>
+                <div id="phone_edit_fake" class="subcont sub_chgmail" style="display:none">
+                    <div class="inforow">
+                        <label>SĐT đăng nhập: </label>
+                        <div class="infotext">
+                            <div class="rowcont">
+                                <p class="subcont_lb">SĐT chính:</p>
+                                <div class="subcont_text">
+                                    <ul class="listemail">
+
+                                        <li>
+                                            <input type="radio" rel="phone_primary" name="primary_phone" checked=checked value="0906613087" />
+                                            <span class="mailtxt" rel="phone_primary">090****087</span>
+                                        </li>
+
+                                        <div rel="listphones">
+
+                                        </div>
+                                    </ul>
+                                </div>
+                                <div class="clr"></div>
+                            </div>
+
+                            <div class="rowcont">
+                                <p style="padding:10px 0px;"><i>Để lưu lại thay đổi, vui lòng nhập mật khẩu Zing ID để xác nhận</i></p>
+                                <input type="password" id="phonelogin_pwd" placeholder="Nhập mật khẩu" class="subform_input" maxlength="32" />
+                                <div class="clr"></div>
+                            </div>
+
+                            <div class="warning" id="phone_error" style="margin-left:10px;">&nbsp;</div>
+
+                        </div>
+                    </div>
+                    <p class="subform_btn">
+                        <a href="https://id.zing.vn/v2/smsnotify?apikey=92140c0e46c54994812403f564787c14&pid=38&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38" style="float: left;">Bạn muốn thêm số điện thoại khác ?</a>
+                        <a href="javascript:void(0)" onclick="updatePhone()" class="sfbtn_submit">Cập nhật</a>
+                        <a href="javascript:void(0)" onclick="hidePhoneEdit();" class="sfbtn_cancel">Bỏ qua</a>
+                    </p>
+                </div>
+                <div id="phone_edit" rel="edit" class="subcont sub_chgmail" style="display:none;">
+                    &nbsp;
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div id="pwd" class="inforow" rel="display">
+                <label>Mật khẩu:   </label>
+                <p class="lk_update"><a href="javascript:void(0)" onclick="showPwdEdit()">Đổi mật khẩu</a></p>
+                <!--<p class="lk_update"><a href="https://id.zing.vn/changepass/index.38.html" >Đổi mật khẩu</a></p>-->
+                <div class="infotext">********</div>
+            </div>
+            <div id="pwd_edit_form" rel="edit" style="position: relative;display:none">
+                <div id="loading" style="display:none;z-index:1000;position: absolute;width: 100%;background-color: #ECECEC;height: 100%;opacity: 0.5;text-align: center;">
+                    <img src="https://stc-id.zing.vn/login/images/loader.gif" style="height: 100px;padding-top:120px;" />
+                </div>
+                <input type="hidden" name="tokenCaptcha" id="tokenCaptcha" value="" />
+                <input type="hidden" name="pwd_tokenExpire" id="pwd_tokenExpire" value="" />
+                <form id="frm_pwd">
+                    <div class="subcont sub_chgpass" id="pwd_edit">
+                        <div class="inforow">
+                            <label>Mật khẩu:</label>
+                            <div class="infotext">
+                                <div class="rowcont">
+                                    <p class="subcont_lb_gc">Mật khẩu hiện tại:</p>
+                                    <div class="subcont_text_gc">
+                                        <input class="subform_input_gc" tabindex="1" type="password" maxlength="32" name="old_password" id="sOldPassword" />
+                                        <span id="sOldPassword_icon" style="display: none">
+                                            <img src="https://stc-id.zing.vn/login/forgotinfo/images/checkbullet.gif" class="check_icon" alt="finish" />
+                                        </span>
+                                        <div class="clr"></div>
+                                        <span class="warning" rel="1" id="sOldPassword_err">&nbsp;</span>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="rowcont">
+                                    <p class="subcont_lb_gc">Mật khẩu mới:</p>
+                                    <div class="subcont_text_gc" style="position:relative;">
+                                        <input id="new_password" tabindex="2" name="new_password" type="password" maxlength="32" class="subform_input_gc" style="float: left" />
+                                        <div class="stronglevel" style="float: left;display: block;font-size:12px">
+                                            <span style="display: inline-block;float: left;">Mức độ bảo mật</span>
+                                            <div style="float: left;margin: 8px 0px 0px 5px;">
+                                                <span class="meter" id="level1"></span>
+                                                <span class="meter" id="level2"></span>
+                                                <span class="meter" id="level3"></span>
+                                                <span class="meter" id="level4"></span>
+                                            </div>
+                                        </div>
+                                        <div class="clr"></div>
+                                        <div id="new_password_note" class="formtipbubble" style="display:none;top:35px;right:-15px">
+                                            <span class="formtip_arrow zidsprt"></span>
+                                            <div class="formtip_inner">
+                                                Mật khẩu phải có từ 6-32 ký tự.
+
+                                            </div>
+                                        </div>
+                                        <div class="clr"></div>
+                                        <span class="warning" rel="2" id="new_password_err">&nbsp;</span>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="rowcont">
+                                    <p class="subcont_lb_gc">Xác nhận mật khẩu:</p>
+                                    <div class="subcont_text_gc">
+                                        <input type="password" tabindex="3" maxlength="32" name="confirm_password" id="confirm_password" class="subform_input_gc" />
+                                        <span id="confirm_password_icon" style=" display:none">
+                                            <img src="https://stc-id.zing.vn/login/forgotinfo/images/checkbullet.gif" class="check_icon" alt="finish" />
+                                        </span>
+                                        <div class="clr"></div>
+                                        <span class="warning" rel="3" id="confirm_password_err">&nbsp;</span>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <div class="rowcont" style="padding-bottom:5px">
+                                    <p class="subcont_lb_gc">Mã kiểm tra:</p>
+
+                                    <div class="subcont_text_gc">
+                                        <div class="zidfg_captchapic" style="width:210px;">
+                                            <div class="captchaborder">
+                                                <p class="catchacode" style="width:170px;"><img src="" id="sVerifyImg" alt="Mã kiểm tra" style="width:170px;" /></p>
+                                                <p class="captcha_refresh"><a onclick="refreshCaptcha2();" href="javascript:void(0);" title="Tạo mã kiểm tra khác"></a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rowcont">
+                                    <p class="subcont_lb_gc">Nhập mã kiểm tra:</p>
+                                    <div class="subcont_text_gc">
+                                        <input id="sVerifyCode" tabindex="4" maxlength="6" name="captcha" class="subform_input_gc" />
+                                        <span id="sVerifyCode_icon" style="display:none ">
+                                            <img src="https://stc-id.zing.vn/login/forgotinfo/images/checkbullet.gif" class="check_icon" alt="finish" />
+                                        </span>
+                                        <div class="clr"></div>
+                                        <span id="sVerifyCode_note" style="display: none;">
+                                            <span>Khi nhập vào mã này, sẽ giúp VNG ngăn chặn những đăng ký giả mạo.</span>
+                                        </span>
+                                        <div class="clr"></div>
+                                        <span class="warning" rel="4" id="sVerifyCode_err">&nbsp;</span>
+                                    </div>
+                                    <div class="clr"></div>
+                                </div>
+                                <span class="warning" rel="5" id="pwd_err">&nbsp;</span>
+                            </div>
+                        </div>
+                        <p class="subform_btn">
+                            <a href="https://id.zing.vn/v2/forgotinfo?apikey=92140c0e46c54994812403f564787c14&pid=38" style="float: left;">Quên mật khẩu ?</a>
+                            <a href="javascript:void(0)" tabindex="5" onclick="updatePwd();" class="sfbtn_submit">Cập nhật</a>
+                            <a href="javascript:void(0)" onclick="hidePwdEdit();" class="sfbtn_cancel">Bỏ qua</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <script language="javascript" type="text/javascript" src="https://stc-id.zing.vn/login/forgotinfo/js/changepass-1.04.js"></script>
+
+
+
+        </div>
+        <div class="clr"></div>
+        <script language="javascript" type="text/javascript" src="https://stc-id.zing.vn/login/forgotinfo/js/general-1.07.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <!--<div class="footerbanner">
+        <iframe width="0" height="0" src="http://me.zing.vn/utype/kvtm?po=bannerid" style="display:none"></iframe>
+        <a href="http://goo.gl/LAVyq9" target="_blank">
+            <img src="https://stc-id.zing.vn/login/images/banner/zmmb_wc_v2_800x90.swf" width="800" height="90" alt="" />
+            <embed src="https://stc-id.zing.vn/login/images/banner/zmmb_wc_v2_800x90.swf?clickTAG=http://goo.gl/LAVyq9" width="800" height="90" alt="" />
+        </a>
+    </div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
