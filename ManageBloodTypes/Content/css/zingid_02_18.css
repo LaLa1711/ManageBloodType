@@ -139,6 +139,55 @@ h3{font-size:17px;border-bottom:1px solid #eee;padding-bottom:10px;margin-bottom
 .zid_header{padding:7px 10px;border-bottom:1px solid #387dc9;height:44px;background-color:#42a3d6;position:relative;z-index: 10;}
 .zidlogo,.zidlogo a{float:left;width:108px;height:44px;background-position:0 0;}
 .zidlogo a{text-indent:-99999em;}
+/*.additional-logo {
+    height: 44px; 
+    width: auto; 
+    margin-left: 10px; 
+    display: inline-block;
+    vertical-align: middle;
+}*/
+
+.additional-logo {
+    width: 250px;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+/*    .logo-container-head {
+        position: absolute;
+        top: -13px;
+        left: 140px;
+    }*/
+
+    .additional-logo {
+        width: 385px;
+        height: auto;
+        position: absolute;
+        top: 18px;
+        left: 27px;
+    }
+}
+
+@media (max-width: 767px) {
+/*    .logo-container-head {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+    }*/
+
+    .additional-logo {
+        width: 345px;
+        height: auto;
+        position: absolute;
+        top: 2px;
+        left: 38px;
+    }
+}
+
+
+
+
+
 .zidlogfrom{float:right;color:#fff;line-height:22px;font-size:14px;text-align:right;}
 .zidlogapp_photo{float:right;margin-left:8px;border-radius:5px;width:46px;height:46px;border-radius:100%;}
 .logappname,.logappname a{display:block;color:#fff;text-transform:uppercase;font-weight:bold;}
@@ -280,6 +329,56 @@ h3{font-size:17px;border-bottom:1px solid #eee;padding-bottom:10px;margin-bottom
 
 
 
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.edit-button {
+    position: absolute;
+    top: 80px;
+    right: 7px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+    padding: 5px;
+    border-radius: 100%;
+}
+
+/* Styles cho modal */
+.modal {
+    display: none; /* Ẩn modal mặc định */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
 
 
 
@@ -340,7 +439,8 @@ h3{font-size:17px;border-bottom:1px solid #eee;padding-bottom:10px;margin-bottom
 .zidregmethodtab li a .email_icon{background-position:-55px -112px;}
 .zidregmethodtab li a.selected .email_icon,.zidregmethodtab li a:hover .email_icon{background-position:-32px -112px;}
 .backtologin{text-align:center;font-size:14px;color:#999;padding-top:15px;border-top:1px dashed #ddd;}
-.reg_username{width:315px;}
+.reg_username{padding:8px;border:1px solid #bbb;position:relative;} 
+/*{width:315px;}*/
 .regcaptcha .reg_entercaptcha{margin-left:237px;}
 .regcaptcha .zidfg_captchapic .captchaborder,.regcaptcha .zidfg_captchapic .catchacode,.regcaptcha .zidfg_captchapic .catchacode img{height:41px;}
 .regcaptcha .zidfg_captchapic .captcha_refresh a{margin-top:8px;}

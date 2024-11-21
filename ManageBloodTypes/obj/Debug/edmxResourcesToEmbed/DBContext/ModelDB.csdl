@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLMauModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbNgheNghiep">
+    <Key>
+      <PropertyRef Name="IDNgheNghiep" />
+    </Key>
+    <Property Name="IDNgheNghiep" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenNgheNghiep" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Hide" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbNhomMau">
+    <Key>
+      <PropertyRef Name="IDNhomMau" />
+    </Key>
+    <Property Name="IDNhomMau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenNhomMau" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Hide" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbQuanHuyen">
+    <Key>
+      <PropertyRef Name="IDQuan" />
+    </Key>
+    <Property Name="IDTP" Type="Int32" />
+    <Property Name="TenQuan" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IDQuan" Type="Int32" Nullable="false" />
+    <Property Name="Hide" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbQuyen">
+    <Key>
+      <PropertyRef Name="IDQuyen" />
+    </Key>
+    <Property Name="IDQuyen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenQuyen" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Hide" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbThongTinCaNhan">
+    <Key>
+      <PropertyRef Name="IDThongTin" />
+    </Key>
+    <Property Name="IDThongTin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="Gmail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IDPhuong" Type="Int32" />
+    <Property Name="IDQuan" Type="Int32" />
+    <Property Name="IDThanhPho" Type="Int32" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="GioiTinh" Type="Boolean" />
+    <Property Name="CCCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NgayCap" Type="DateTime" Precision="0" />
+    <Property Name="NoiCap_IDTP" Type="Int32" />
+    <Property Name="HinhAnh" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TinhTrangHonNhan" Type="Int32" />
+    <Property Name="NgheNghiep" Type="Int32" />
+    <Property Name="IDNhomMau" Type="Int32" />
+    <Property Name="Hide" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbTinhThanhPho">
+    <Key>
+      <PropertyRef Name="IDTP" />
+    </Key>
+    <Property Name="IDTP" Type="Int32" Nullable="false" />
+    <Property Name="TenTP" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Hide" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbTinhTrangHonNhan">
+    <Key>
+      <PropertyRef Name="IDTinhTrangHonNhan" />
+    </Key>
+    <Property Name="IDTinhTrangHonNhan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenTinhTrang" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Hide" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbXaPhuong">
+    <Key>
+      <PropertyRef Name="IDPhuong" />
+    </Key>
+    <Property Name="IDQuan" Type="Int32" />
+    <Property Name="TenPhuong" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IDPhuong" Type="Int32" Nullable="false" />
+    <Property Name="Hide" Type="Boolean" />
+  </EntityType>
+  <EntityContainer Name="QLMauEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbNgheNghieps" EntityType="Self.tbNgheNghiep" />
+    <EntitySet Name="tbNhomMaus" EntityType="Self.tbNhomMau" />
+    <EntitySet Name="tbQuanHuyens" EntityType="Self.tbQuanHuyen" />
+    <EntitySet Name="tbQuyens" EntityType="Self.tbQuyen" />
+    <EntitySet Name="tbThongTinCaNhans" EntityType="Self.tbThongTinCaNhan" />
+    <EntitySet Name="tbTinhThanhPhoes" EntityType="Self.tbTinhThanhPho" />
+    <EntitySet Name="tbTinhTrangHonNhans" EntityType="Self.tbTinhTrangHonNhan" />
+    <EntitySet Name="tbXaPhuongs" EntityType="Self.tbXaPhuong" />
+  </EntityContainer>
+</Schema>

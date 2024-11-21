@@ -77,3 +77,7 @@ E:\Downloads\New folder\ManageBloodTypes\ManageBloodTypes\obj\Debug\ManageBloodT
 E:\Downloads\New folder\ManageBloodTypes\ManageBloodTypes\obj\Debug\ManageBloodTypes.csproj.CopyComplete
 E:\Downloads\New folder\ManageBloodTypes\ManageBloodTypes\obj\Debug\ManageBloodTypes.dll
 E:\Downloads\New folder\ManageBloodTypes\ManageBloodTypes\obj\Debug\ManageBloodTypes.pdb
+E:\Downloads\New folder\ManageBloodTypes\ManageBloodTypes\bin\EntityFramework.dll
+E:\Downloads\New folder\ManageBloodTypes\ManageBloodTypes\bin\EntityFramework.SqlServer.dll
+E:\Downloads\New folder\ManageBloodTypes\ManageBloodTypes\bin\EntityFramework.xml
+E:\Downloads\New folder\ManageBloodTypes\ManageBloodTypes\bin\EntityFramework.SqlServer.xml

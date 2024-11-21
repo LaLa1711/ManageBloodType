@@ -1,9 +1,9 @@
 var errMsg = {
     require_err: 'Bạn cần nhập thông tin này',
     select_err: 'Bạn cần chọn thông tin này',
-    Account_invalid: 'Tên tài khoản từ 6-24 ký tự',
+    Account_invalid: 'Email tài khoản từ 16-100 ký tự',
     Account_existed: 'Tài khoản đã tồn tại',
-    Account_format: 'Tài khoản cần bao gồm chữ, số. Không có khoảng trắng và kí tự đặc biêt.',
+    Account_format: 'Vui lòng nhập đúng định dạng',  //thông báo email
     Fullname_same: 'Vui lòng nhập giá trị mới',
     Fullname_invalid: 'Họ tên từ 2-40 ký tự',
     Gender_invalid: 'Bạn cần nhập thông tin này',
@@ -249,26 +249,35 @@ function checkAccount(account) {
 function checkRegAccount(account, gotostep2) {
     if (account == "" || account == zm("#regacc_account").attr("placeholder")) {
         show_account_invalid();
-        zmIdContent.showTooltipError("regacc_account_error", errMsg.require_err);
+        zmIdContent.showTooltipError("regacc_account_error", errMsg.require_err);  // email
         return false;
     }
-    if (account.length < 6 || account.length > 24) {
+    if (account.length < 16 || account.length > 100) {
         show_account_invalid();
         zmIdContent.showTooltipError("regacc_account_error", errMsg.Account_invalid);
         return false;
     }
-    var isPass = /^[a-zA-Z0-9\._]+$/.test(account);
+    //var isPass = /^[a-zA-Z0-9\._]+$/.test(account);
+    //if (!isPass) {
+    //    show_account_invalid();
+    //    zmIdContent.showTooltipError("regacc_account_error", errMsg.Account_format);
+    //    return false;
+    //}
+
+    var isPass = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}$/.test(account);
+
     if (!isPass) {
         show_account_invalid();
         zmIdContent.showTooltipError("regacc_account_error", errMsg.Account_format);
         return false;
     }
-    var isNumber = /^[0-9]+$/.test(account);
-    if (isNumber) {
-        show_account_invalid();
-        zmIdContent.showTooltipError("regacc_account_error", errMsg.Account_format);
-        return false;
-    }
+
+    //var isNumber = /^[0-9]+$/.test(account);
+    //if (isNumber) {
+    //    show_account_invalid();
+    //    zmIdContent.showTooltipError("regacc_account_error", errMsg.Account_format);
+    //    return false;
+    //}
     if (gotostep2 == "true") {
         checkAccountExistnStep2();
     }
@@ -284,7 +293,7 @@ function checkAccCallback(json) {
     }
     if (json['flag'] == 3) {
         show_account_invalid();
-        zmIdContent.showTooltipError("regacc_account_error", errMsg.Account_format);
+        zmIdContent.showTooltipError("regacc_account_error1", errMsg.Account_format);
         return false;
     }
     if (json['flag'] == 5) {
@@ -310,7 +319,7 @@ function checkAccnGotoStep2(json) {
         if (json['flag'] == 3) {
             zm("#regacc_loading").hide();
             show_account_invalid();
-            zmIdContent.showTooltipError("regacc_account_error", errMsg.Account_format);
+            zmIdContent.showTooltipError("regacc_account_error1", errMsg.Account_format);
             return false;
         }
         if (json['flag'] == 5) {

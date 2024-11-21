@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_Layout_Login.cshtml";
+}
+
+<div style="max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
+    <h2 style="text-align: center;">Đăng nhập</h2>
+
+    <form action="/Login/Index" method="post">
+        <!-- Email -->
+        <div style="margin-bottom: 15px;">
+            <label for="Email">Email</label>
+            <input type="text" id="Email" name="Gmail" class="form-control" placeholder="Nhập email" />
+            @if (!string.IsNullOrEmpty(ViewBag.EmailError))
+            {
+                <span style="color: red;">@ViewBag.EmailError</span>
+            }
+        </div>
+
+        <!-- Password -->
+        <div style="margin-bottom: 15px;">
+            <label for="Password">Mật khẩu</label>
+            <input type="password" id="Password" name="MatKhau" class="form-control" placeholder="Nhập mật khẩu" />
+            @if (!string.IsNullOrEmpty(ViewBag.PasswordError))
+            {
+                <span style="color: red;">@ViewBag.PasswordError</span>
+            }
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" style="width: 100%; background: #0072C6; color: #fff; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">
+            Đăng nhập
+        </button>
+    </form>
+</div>

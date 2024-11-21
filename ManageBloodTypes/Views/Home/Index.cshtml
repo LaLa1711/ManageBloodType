@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout_Login.cshtml";
 }
 
+
 <div class="zidbody">
     <div class="logo-container">
         <img src="/Content/img/logo.png" alt="Logo" class="header-logo" />
@@ -14,7 +15,13 @@
         </div>
 
         <h2 class="formheader" style="font-weight: bold; text-align: center; margin-bottom: 30px; ">Đăng nhập</h2>
-        <form id="frmLogin" onsubmit="submitLogin(); return false;" name="frmLogin" action="https://sso3.zing.vn/alogin" method="post" enctype="application/x-www-form-urlencoded">
+        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+        {
+            <div class="error-message" style="color: red; text-align: center; margin-bottom: 20px;">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+        <form id="frmLogin" onsubmit="submitLogin(); return false;" name="frmLogin" action="/Home/Index" method="post" enctype="application/x-www-form-urlencoded">
             <input type="hidden" name="pid" value="38">
             <input type="hidden" name="u1" value="https://id.zing.vn/v2/login/cb?apikey=92140c0e46c54994812403f564787c14&pid=38&_src=&utm_source=&utm_medium=&utm_term=&utm_content=&utm_campaign=&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38&referer=">
             <input type="hidden" name="fp" value="https://id.zing.vn/v2/login/cb?apikey=92140c0e46c54994812403f564787c14&pid=38&_src=&utm_source=&utm_medium=&utm_term=&utm_content=&utm_campaign=&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38&referer=">
@@ -22,7 +29,7 @@
             <input style="display:none">
             <input type="password" style="display:none">
 
-
+            @**@
             <div rel="Notice" class="msgtooltip posleft error show" id="login_account_error">
                 <span class="tooltiparrow zidsprt"></span>
                 <div class="tooltipbody">
@@ -30,8 +37,15 @@
                     <div class="tipcontent"></div>
                 </div>
             </div>
+
             <p class="finput">
-                <input tabindex="1" value="" autocomplete="off" class="input_login" type="text" name="u" id="login_account" placeholder="Email hoặc số điện thoại">
+                @*<input tabindex="1" autocomplete="off" class="input_login" type="text" name="Gmail" id="login_account" placeholder="Email hoặc số điện thoại" required>*@
+
+                <input tabindex="1" value="" autocomplete="off" class="input_login" type="text" name="Gmail" id="login_account" placeholder="email hoặc số điện thoại">
+                @if (!string.IsNullOrEmpty(ViewBag.EmailError))
+                {
+                    <span style="color: red;">@ViewBag.EmailError</span>
+                }
             </p>
             <script>
                 $("#login_account").val("");
@@ -45,9 +59,15 @@
             </div>
             <p class="finput">
                 <input type="text" class="input_login" id="fake_login_pwd" value="Mật khẩu" style="display:none" tabindex="2">
-                <input type="password" class="input_login" name="p" id="login_pwd" placeholder="Mật khẩu" tabindex="2">
-            </p>
+                <input type="password" class="input_login" name="MatKhau" id="login_pwd" placeholder="Mật khẩu" tabindex="2">
+                @if (!string.IsNullOrEmpty(ViewBag.PasswordError))
+                {
+                    <span style="color: red;">@ViewBag.PasswordError</span>
+                }
+                @*<input type="password" class="input_login" name="Password" id="login_pwd" placeholder="Mật khẩu" tabindex="2" required>*@
 
+            </p>
+            @**@
             @*<div class="zidfbot">
                 <a tabindex="3" href="#" onclick="submitLogin();" class="zidsignin_btn" title="Đăng nhập">Đăng nhập</a>
                 <p><a href="https://id.zing.vn/v2/forgotinfo?apikey=92140c0e46c54994812403f564787c14&pid=38">Quên mật khẩu?</a></p>
@@ -61,9 +81,12 @@
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
                     <p><a href="https://id.zing.vn/v2/forgotinfo?apikey=92140c0e46c54994812403f564787c14&pid=38">Quên mật khẩu?</a></p>
-                    <span>Bạn chưa có tài khoản? <a href="https://www.topcv.vn/sign-up">Đăng ký ngay</a></span>
+                    <span>Bạn chưa có tài khoản? <a href="/Register/Index">Đăng ký ngay</a></span>
                 </div>
-                <a href="#" onclick="submitLogin();" style="background: #0072C6; color: #fff; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none;">Đăng nhập</a>
+                @*<a href="/HomePage/Index" onclick="submitlogin();" style="background: #0072c6; color: #fff; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none;">đăng nhập</a>*@
+            <button type="submit" onclick="submitlogin();" style="background: #0072c6; color: #fff; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none;">
+                Đăng Nhập
+            </button>
             </div>
 
 
@@ -91,29 +114,27 @@
 
     </div>
     <!--<div style="zidlogincont">-->
-        @*<p class="txtintro">
+    @*<p class="txtintro">
             Chỉ với một tài khoản Zing ID,<br>
             sử dụng được cho các game của VNG.
         </p>*@
-        <!--<p>
-        <a href="/v2/register?apikey=92140c0e46c54994812403f564787c14&pid=38&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38" 
-           class="zidregbtn" title="Đăng ký ngay">Đăng ký ngay</a></p>-->
+    <!--<p>
+    <a href="/v2/register?apikey=92140c0e46c54994812403f564787c14&pid=38&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38"
+       class="zidregbtn" title="Đăng ký ngay">Đăng ký ngay</a></p>-->
+    <!--
+        <div class="otheracclogin">
+            <p class="htext">Hoặc đăng nhập với tài khoản khác</p>
+            <ul class="accbtns">
+                <li><a class="fb_acc" href="javascript:void(0)" onclick="zmXLoginWg.openPopup('facebook', 'cb');
+                                    return false;" title="Facebook"><span class="acc_btnicn"></span>Facebook</a></li>
+                <li><a class="gplus_acc" href="javascript:void(0)" onclick="zmXLoginWg.openPopup('google', 'cb');
+                                    return false;" title="Google+"><span class="acc_btnicn"></span>Google+</a></li>
+            </ul>
+        </div>
 
-        <!--
-            <div class="otheracclogin">
-                <p class="htext">Hoặc đăng nhập với tài khoản khác</p>
-                <ul class="accbtns">
-                    <li><a class="fb_acc" href="javascript:void(0)" onclick="zmXLoginWg.openPopup('facebook', 'cb');
-                                        return false;" title="Facebook"><span class="acc_btnicn"></span>Facebook</a></li>
-                    <li><a class="gplus_acc" href="javascript:void(0)" onclick="zmXLoginWg.openPopup('google', 'cb');
-                                        return false;" title="Google+"><span class="acc_btnicn"></span>Google+</a></li>
-                </ul>
-            </div>
-
-        -->
+    -->
     <!--</div>
     <div class="clr"></div>-->
-
     <!--<div class="qcbanner_login" style="display:">
         <div class="zid_promote">
             <h3><em class="htitle_icon"></em>Các sản phẩm sử dụng Zing ID</h3>
@@ -132,7 +153,6 @@
         </a>
     </div>-->
     <!--<script language="javascript" src="https://stc-id.zing.vn/xlogin/js/zid_xlogin_1.06.js" type="text/javascript"></script>-->
-
     @*<script type="text/javascript">
         window.zAsyncInit = function () {
             zmeOpenWidget.init({

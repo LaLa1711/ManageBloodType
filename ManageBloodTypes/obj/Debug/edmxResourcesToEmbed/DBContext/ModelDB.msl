@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLMauModelStoreContainer" CdmEntityContainer="QLMauEntities">
+    <EntitySetMapping Name="tbNgheNghieps">
+      <EntityTypeMapping TypeName="QLMauModel.tbNgheNghiep">
+        <MappingFragment StoreEntitySet="tbNgheNghiep">
+          <ScalarProperty Name="IDNgheNghiep" ColumnName="IDNgheNghiep" />
+          <ScalarProperty Name="TenNgheNghiep" ColumnName="TenNgheNghiep" />
+          <ScalarProperty Name="Hide" ColumnName="Hide" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbNhomMaus">
+      <EntityTypeMapping TypeName="QLMauModel.tbNhomMau">
+        <MappingFragment StoreEntitySet="tbNhomMau">
+          <ScalarProperty Name="IDNhomMau" ColumnName="IDNhomMau" />
+          <ScalarProperty Name="TenNhomMau" ColumnName="TenNhomMau" />
+          <ScalarProperty Name="Hide" ColumnName="Hide" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbQuanHuyens">
+      <EntityTypeMapping TypeName="QLMauModel.tbQuanHuyen">
+        <MappingFragment StoreEntitySet="tbQuanHuyen">
+          <ScalarProperty Name="IDTP" ColumnName="IDTP" />
+          <ScalarProperty Name="TenQuan" ColumnName="TenQuan" />
+          <ScalarProperty Name="IDQuan" ColumnName="IDQuan" />
+          <ScalarProperty Name="Hide" ColumnName="Hide" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbQuyens">
+      <EntityTypeMapping TypeName="QLMauModel.tbQuyen">
+        <MappingFragment StoreEntitySet="tbQuyen">
+          <ScalarProperty Name="IDQuyen" ColumnName="IDQuyen" />
+          <ScalarProperty Name="TenQuyen" ColumnName="TenQuyen" />
+          <ScalarProperty Name="Hide" ColumnName="Hide" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbThongTinCaNhans">
+      <EntityTypeMapping TypeName="QLMauModel.tbThongTinCaNhan">
+        <MappingFragment StoreEntitySet="tbThongTinCaNhan">
+          <ScalarProperty Name="IDThongTin" ColumnName="IDThongTin" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="Gmail" ColumnName="Gmail" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="IDPhuong" ColumnName="IDPhuong" />
+          <ScalarProperty Name="IDQuan" ColumnName="IDQuan" />
+          <ScalarProperty Name="IDThanhPho" ColumnName="IDThanhPho" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="CCCD" ColumnName="CCCD" />
+          <ScalarProperty Name="NgayCap" ColumnName="NgayCap" />
+          <ScalarProperty Name="NoiCap_IDTP" ColumnName="NoiCap_IDTP" />
+          <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+          <ScalarProperty Name="TinhTrangHonNhan" ColumnName="TinhTrangHonNhan" />
+          <ScalarProperty Name="NgheNghiep" ColumnName="NgheNghiep" />
+          <ScalarProperty Name="IDNhomMau" ColumnName="IDNhomMau" />
+          <ScalarProperty Name="Hide" ColumnName="Hide" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbTinhThanhPhoes">
+      <EntityTypeMapping TypeName="QLMauModel.tbTinhThanhPho">
+        <MappingFragment StoreEntitySet="tbTinhThanhPho">
+          <ScalarProperty Name="IDTP" ColumnName="IDTP" />
+          <ScalarProperty Name="TenTP" ColumnName="TenTP" />
+          <ScalarProperty Name="Hide" ColumnName="Hide" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbTinhTrangHonNhans">
+      <EntityTypeMapping TypeName="QLMauModel.tbTinhTrangHonNhan">
+        <MappingFragment StoreEntitySet="tbTinhTrangHonNhan">
+          <ScalarProperty Name="IDTinhTrangHonNhan" ColumnName="IDTinhTrangHonNhan" />
+          <ScalarProperty Name="TenTinhTrang" ColumnName="TenTinhTrang" />
+          <ScalarProperty Name="Hide" ColumnName="Hide" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbXaPhuongs">
+      <EntityTypeMapping TypeName="QLMauModel.tbXaPhuong">
+        <MappingFragment StoreEntitySet="tbXaPhuong">
+          <ScalarProperty Name="IDQuan" ColumnName="IDQuan" />
+          <ScalarProperty Name="TenPhuong" ColumnName="TenPhuong" />
+          <ScalarProperty Name="IDPhuong" ColumnName="IDPhuong" />
+          <ScalarProperty Name="Hide" ColumnName="Hide" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
