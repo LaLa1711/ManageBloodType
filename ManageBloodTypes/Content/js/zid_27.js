@@ -715,6 +715,12 @@ function showPersonalEdit() {
         return
     }
 }
+
+
+
+
+
+
 function hidePersonalEdit() {
     var id = "personal";
 

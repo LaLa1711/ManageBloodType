@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLMauModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLMauModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbBloodInfor">
+          <Key>
+            <PropertyRef Name="IDThTinMau" />
+          </Key>
+          <Property Name="IDThTinMau" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="150" />
+          <Property Name="NoiDung" Type="nvarchar(max)" />
+          <Property Name="HinhAnh" Type="varchar(max)" />
+          <Property Name="Hide" Type="bit" />
+        </EntityType>
         <EntityType Name="tbNgheNghiep">
           <Key>
             <PropertyRef Name="IDNgheNghiep" />
@@ -43,6 +53,7 @@
             <PropertyRef Name="IDThongTin" />
           </Key>
           <Property Name="IDThongTin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTaiKhoan" Type="int" />
           <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
           <Property Name="SDT" Type="varchar" MaxLength="11" />
           <Property Name="Gmail" Type="varchar" MaxLength="150" />
@@ -57,7 +68,7 @@
           <Property Name="NgayCap" Type="date" />
           <Property Name="NoiCap_IDTP" Type="int" />
           <Property Name="HinhAnh" Type="varchar" MaxLength="200" />
-          <Property Name="TinhTrangHonNhan" Type="int" />
+          <Property Name="TinhTrangHonNhan" Type="bit" />
           <Property Name="NgheNghiep" Type="int" />
           <Property Name="IDNhomMau" Type="int" />
           <Property Name="Hide" Type="bit" />
@@ -70,14 +81,6 @@
           <Property Name="TenTP" Type="nvarchar" MaxLength="150" />
           <Property Name="Hide" Type="bit" />
         </EntityType>
-        <EntityType Name="tbTinhTrangHonNhan">
-          <Key>
-            <PropertyRef Name="IDTinhTrangHonNhan" />
-          </Key>
-          <Property Name="IDTinhTrangHonNhan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenTinhTrang" Type="nvarchar" MaxLength="150" />
-          <Property Name="Hide" Type="bit" />
-        </EntityType>
         <EntityType Name="tbXaPhuong">
           <Key>
             <PropertyRef Name="IDPhuong" />
@@ -88,17 +91,16 @@
           <Property Name="Hide" Type="bit" />
         </EntityType>
         <EntityContainer Name="QLMauModelStoreContainer">
+          <EntitySet Name="tbBloodInfor" EntityType="Self.tbBloodInfor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbNgheNghiep" EntityType="Self.tbNgheNghiep" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbNhomMau" EntityType="Self.tbNhomMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbQuanHuyen" EntityType="Self.tbQuanHuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbQuyen" EntityType="Self.tbQuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbThongTinCaNhan" EntityType="Self.tbThongTinCaNhan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbTinhThanhPho" EntityType="Self.tbTinhThanhPho" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tbTinhTrangHonNhan" EntityType="Self.tbTinhTrangHonNhan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbXaPhuong" EntityType="Self.tbXaPhuong" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLMauModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -135,44 +137,12 @@
           <Property Name="TenQuyen" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Hide" Type="Boolean" />
         </EntityType>
-        <EntityType Name="tbThongTinCaNhan">
-          <Key>
-            <PropertyRef Name="IDThongTin" />
-          </Key>
-          <Property Name="IDThongTin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SDT" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="Gmail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="IDPhuong" Type="Int32" />
-          <Property Name="IDQuan" Type="Int32" />
-          <Property Name="IDThanhPho" Type="Int32" />
-          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
-          <Property Name="GioiTinh" Type="Boolean" />
-          <Property Name="CCCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NgayCap" Type="DateTime" Precision="0" />
-          <Property Name="NoiCap_IDTP" Type="Int32" />
-          <Property Name="HinhAnh" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="TinhTrangHonNhan" Type="Int32" />
-          <Property Name="NgheNghiep" Type="Int32" />
-          <Property Name="IDNhomMau" Type="Int32" />
-          <Property Name="Hide" Type="Boolean" />
-        </EntityType>
         <EntityType Name="tbTinhThanhPho">
           <Key>
             <PropertyRef Name="IDTP" />
           </Key>
           <Property Name="IDTP" Type="Int32" Nullable="false" />
           <Property Name="TenTP" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Hide" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="tbTinhTrangHonNhan">
-          <Key>
-            <PropertyRef Name="IDTinhTrangHonNhan" />
-          </Key>
-          <Property Name="IDTinhTrangHonNhan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenTinhTrang" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Hide" Type="Boolean" />
         </EntityType>
         <EntityType Name="tbXaPhuong">
@@ -189,11 +159,46 @@
           <EntitySet Name="tbNhomMaus" EntityType="Self.tbNhomMau" />
           <EntitySet Name="tbQuanHuyens" EntityType="Self.tbQuanHuyen" />
           <EntitySet Name="tbQuyens" EntityType="Self.tbQuyen" />
-          <EntitySet Name="tbThongTinCaNhans" EntityType="Self.tbThongTinCaNhan" />
           <EntitySet Name="tbTinhThanhPhoes" EntityType="Self.tbTinhThanhPho" />
-          <EntitySet Name="tbTinhTrangHonNhans" EntityType="Self.tbTinhTrangHonNhan" />
           <EntitySet Name="tbXaPhuongs" EntityType="Self.tbXaPhuong" />
+          <EntitySet Name="tbBloodInfors" EntityType="QLMauModel.tbBloodInfor" />
+          <EntitySet Name="tbThongTinCaNhans" EntityType="QLMauModel.tbThongTinCaNhan" />
         </EntityContainer>
+        <EntityType Name="tbBloodInfor">
+          <Key>
+            <PropertyRef Name="IDThTinMau" />
+          </Key>
+          <Property Name="IDThTinMau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Hide" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbThongTinCaNhan">
+          <Key>
+            <PropertyRef Name="IDThongTin" />
+          </Key>
+          <Property Name="IDThongTin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTaiKhoan" Type="Int32" />
+          <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Gmail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IDPhuong" Type="Int32" />
+          <Property Name="IDQuan" Type="Int32" />
+          <Property Name="IDThanhPho" Type="Int32" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="GioiTinh" Type="Boolean" />
+          <Property Name="CCCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NgayCap" Type="DateTime" Precision="0" />
+          <Property Name="NoiCap_IDTP" Type="Int32" />
+          <Property Name="HinhAnh" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TinhTrangHonNhan" Type="Boolean" />
+          <Property Name="NgheNghiep" Type="Int32" />
+          <Property Name="IDNhomMau" Type="Int32" />
+          <Property Name="Hide" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -237,45 +242,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbThongTinCaNhans">
-            <EntityTypeMapping TypeName="QLMauModel.tbThongTinCaNhan">
-              <MappingFragment StoreEntitySet="tbThongTinCaNhan">
-                <ScalarProperty Name="IDThongTin" ColumnName="IDThongTin" />
-                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-                <ScalarProperty Name="SDT" ColumnName="SDT" />
-                <ScalarProperty Name="Gmail" ColumnName="Gmail" />
-                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
-                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-                <ScalarProperty Name="IDPhuong" ColumnName="IDPhuong" />
-                <ScalarProperty Name="IDQuan" ColumnName="IDQuan" />
-                <ScalarProperty Name="IDThanhPho" ColumnName="IDThanhPho" />
-                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
-                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
-                <ScalarProperty Name="CCCD" ColumnName="CCCD" />
-                <ScalarProperty Name="NgayCap" ColumnName="NgayCap" />
-                <ScalarProperty Name="NoiCap_IDTP" ColumnName="NoiCap_IDTP" />
-                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
-                <ScalarProperty Name="TinhTrangHonNhan" ColumnName="TinhTrangHonNhan" />
-                <ScalarProperty Name="NgheNghiep" ColumnName="NgheNghiep" />
-                <ScalarProperty Name="IDNhomMau" ColumnName="IDNhomMau" />
-                <ScalarProperty Name="Hide" ColumnName="Hide" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbTinhThanhPhoes">
             <EntityTypeMapping TypeName="QLMauModel.tbTinhThanhPho">
               <MappingFragment StoreEntitySet="tbTinhThanhPho">
                 <ScalarProperty Name="IDTP" ColumnName="IDTP" />
                 <ScalarProperty Name="TenTP" ColumnName="TenTP" />
-                <ScalarProperty Name="Hide" ColumnName="Hide" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbTinhTrangHonNhans">
-            <EntityTypeMapping TypeName="QLMauModel.tbTinhTrangHonNhan">
-              <MappingFragment StoreEntitySet="tbTinhTrangHonNhan">
-                <ScalarProperty Name="IDTinhTrangHonNhan" ColumnName="IDTinhTrangHonNhan" />
-                <ScalarProperty Name="TenTinhTrang" ColumnName="TenTinhTrang" />
                 <ScalarProperty Name="Hide" ColumnName="Hide" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -287,6 +258,43 @@
                 <ScalarProperty Name="TenPhuong" ColumnName="TenPhuong" />
                 <ScalarProperty Name="IDPhuong" ColumnName="IDPhuong" />
                 <ScalarProperty Name="Hide" ColumnName="Hide" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbBloodInfors">
+            <EntityTypeMapping TypeName="QLMauModel.tbBloodInfor">
+              <MappingFragment StoreEntitySet="tbBloodInfor">
+                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="IDThTinMau" ColumnName="IDThTinMau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbThongTinCaNhans">
+            <EntityTypeMapping TypeName="QLMauModel.tbThongTinCaNhan">
+              <MappingFragment StoreEntitySet="tbThongTinCaNhan">
+                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="IDNhomMau" ColumnName="IDNhomMau" />
+                <ScalarProperty Name="NgheNghiep" ColumnName="NgheNghiep" />
+                <ScalarProperty Name="TinhTrangHonNhan" ColumnName="TinhTrangHonNhan" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="NoiCap_IDTP" ColumnName="NoiCap_IDTP" />
+                <ScalarProperty Name="NgayCap" ColumnName="NgayCap" />
+                <ScalarProperty Name="CCCD" ColumnName="CCCD" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="IDThanhPho" ColumnName="IDThanhPho" />
+                <ScalarProperty Name="IDQuan" ColumnName="IDQuan" />
+                <ScalarProperty Name="IDPhuong" ColumnName="IDPhuong" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="Gmail" ColumnName="Gmail" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
+                <ScalarProperty Name="IDThongTin" ColumnName="IDThongTin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

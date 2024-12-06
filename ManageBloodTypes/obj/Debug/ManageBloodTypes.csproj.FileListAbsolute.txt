@@ -81,3 +81,5 @@ E:\Downloads\New folder\ManageBloodTypes\ManageBloodTypes\bin\EntityFramework.dl
 E:\Downloads\New folder\ManageBloodTypes\ManageBloodTypes\bin\EntityFramework.SqlServer.dll
 E:\Downloads\New folder\ManageBloodTypes\ManageBloodTypes\bin\EntityFramework.xml
 E:\Downloads\New folder\ManageBloodTypes\ManageBloodTypes\bin\EntityFramework.SqlServer.xml
+E:\Downloads\New folder\ManageBloodTypes\ManageBloodTypes\bin\EPPlus.dll
+E:\Downloads\New folder\ManageBloodTypes\ManageBloodTypes\bin\CKFinder.dll

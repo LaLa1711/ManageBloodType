@@ -33,44 +33,12 @@
     <Property Name="TenQuyen" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="Hide" Type="Boolean" />
   </EntityType>
-  <EntityType Name="tbThongTinCaNhan">
-    <Key>
-      <PropertyRef Name="IDThongTin" />
-    </Key>
-    <Property Name="IDThongTin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="SDT" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-    <Property Name="Gmail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="IDPhuong" Type="Int32" />
-    <Property Name="IDQuan" Type="Int32" />
-    <Property Name="IDThanhPho" Type="Int32" />
-    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
-    <Property Name="GioiTinh" Type="Boolean" />
-    <Property Name="CCCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="NgayCap" Type="DateTime" Precision="0" />
-    <Property Name="NoiCap_IDTP" Type="Int32" />
-    <Property Name="HinhAnh" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="TinhTrangHonNhan" Type="Int32" />
-    <Property Name="NgheNghiep" Type="Int32" />
-    <Property Name="IDNhomMau" Type="Int32" />
-    <Property Name="Hide" Type="Boolean" />
-  </EntityType>
   <EntityType Name="tbTinhThanhPho">
     <Key>
       <PropertyRef Name="IDTP" />
     </Key>
     <Property Name="IDTP" Type="Int32" Nullable="false" />
     <Property Name="TenTP" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="Hide" Type="Boolean" />
-  </EntityType>
-  <EntityType Name="tbTinhTrangHonNhan">
-    <Key>
-      <PropertyRef Name="IDTinhTrangHonNhan" />
-    </Key>
-    <Property Name="IDTinhTrangHonNhan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TenTinhTrang" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="Hide" Type="Boolean" />
   </EntityType>
   <EntityType Name="tbXaPhuong">
@@ -87,9 +55,44 @@
     <EntitySet Name="tbNhomMaus" EntityType="Self.tbNhomMau" />
     <EntitySet Name="tbQuanHuyens" EntityType="Self.tbQuanHuyen" />
     <EntitySet Name="tbQuyens" EntityType="Self.tbQuyen" />
-    <EntitySet Name="tbThongTinCaNhans" EntityType="Self.tbThongTinCaNhan" />
     <EntitySet Name="tbTinhThanhPhoes" EntityType="Self.tbTinhThanhPho" />
-    <EntitySet Name="tbTinhTrangHonNhans" EntityType="Self.tbTinhTrangHonNhan" />
     <EntitySet Name="tbXaPhuongs" EntityType="Self.tbXaPhuong" />
+    <EntitySet Name="tbBloodInfors" EntityType="QLMauModel.tbBloodInfor" />
+    <EntitySet Name="tbThongTinCaNhans" EntityType="QLMauModel.tbThongTinCaNhan" />
   </EntityContainer>
+  <EntityType Name="tbBloodInfor">
+    <Key>
+      <PropertyRef Name="IDThTinMau" />
+    </Key>
+    <Property Name="IDThTinMau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TieuDe" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Hide" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbThongTinCaNhan">
+    <Key>
+      <PropertyRef Name="IDThongTin" />
+    </Key>
+    <Property Name="IDThongTin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaTaiKhoan" Type="Int32" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="Gmail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IDPhuong" Type="Int32" />
+    <Property Name="IDQuan" Type="Int32" />
+    <Property Name="IDThanhPho" Type="Int32" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="GioiTinh" Type="Boolean" />
+    <Property Name="CCCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NgayCap" Type="DateTime" Precision="0" />
+    <Property Name="NoiCap_IDTP" Type="Int32" />
+    <Property Name="HinhAnh" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TinhTrangHonNhan" Type="Boolean" />
+    <Property Name="NgheNghiep" Type="Int32" />
+    <Property Name="IDNhomMau" Type="Int32" />
+    <Property Name="Hide" Type="Boolean" />
+  </EntityType>
 </Schema>

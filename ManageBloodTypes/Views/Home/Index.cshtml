@@ -41,7 +41,8 @@
             <p class="finput">
                 @*<input tabindex="1" autocomplete="off" class="input_login" type="text" name="Gmail" id="login_account" placeholder="Email hoặc số điện thoại" required>*@
 
-                <input tabindex="1" value="" autocomplete="off" class="input_login" type="text" name="Gmail" id="login_account" placeholder="email hoặc số điện thoại">
+                <input tabindex="1" value="@(!string.IsNullOrEmpty(Request["Gmail"]) ? Request["Gmail"] : "")
+" autocomplete="off" class="input_login" type="text" name="Gmail" id="login_account" placeholder="Email đăng nhập">
                 @if (!string.IsNullOrEmpty(ViewBag.EmailError))
                 {
                     <span style="color: red;">@ViewBag.EmailError</span>
@@ -80,7 +81,7 @@
             </div>*@
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                    <p><a href="https://id.zing.vn/v2/forgotinfo?apikey=92140c0e46c54994812403f564787c14&pid=38">Quên mật khẩu?</a></p>
+                    <p><a href="/ForgotPassword/Index">Quên mật khẩu?</a></p>
                     <span>Bạn chưa có tài khoản? <a href="/Register/Index">Đăng ký ngay</a></span>
                 </div>
                 @*<a href="/HomePage/Index" onclick="submitlogin();" style="background: #0072c6; color: #fff; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none;">đăng nhập</a>*@

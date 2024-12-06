@@ -56,9 +56,31 @@ namespace ManageBloodTypes.Controllers
                 ViewBag.PasswordError = "Mật khẩu không đúng.";
                 return View();
             }
-
+            if (Gmail.Trim().ToLower() == "bacsi123@gmail.com" && MatKhau.Trim() == "Bacsi123")
+            {
+                Session["UserEmail"] = user.Gmail;
+                Session["MaTaiKhoan"] = user.MaTaiKhoan;
+                Session["HoTen"] = user.HoTen;
+                return RedirectToAction("Index", "Search");
+            }
+            if (Gmail.Trim().ToLower() == "admin123@gmail.com" && MatKhau.Trim() == "Admin123")
+            {
+                Session["HinhAnh"] = user.HinhAnh;
+                Session["UserEmail"] = user.Gmail;
+                Session["MaTaiKhoan"] = user.MaTaiKhoan;
+                Session["HoTen"] = user.HoTen;
+                return RedirectToAction("Index", "Home", new { area = "Admin" });
+            }
+            Session["UserEmail"] = user.Gmail;
+            Session["HoTen"] = user.HoTen;
             // Đăng nhập thành công, chuyển hướng đến Dashboard
-            return RedirectToAction("Index", "HomePage");
+            return RedirectToAction("Home", "HomePage");
+        }
+
+        public ActionResult Logout()
+        {
+            Session.Clear(); // Xóa session
+            return RedirectToAction("Index", "Home"); // Chuyển hướng
         }
 
         public ActionResult About()

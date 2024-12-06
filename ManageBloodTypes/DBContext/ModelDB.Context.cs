@@ -29,9 +29,9 @@ namespace ManageBloodTypes.DBContext
         public virtual DbSet<tbNhomMau> tbNhomMaus { get; set; }
         public virtual DbSet<tbQuanHuyen> tbQuanHuyens { get; set; }
         public virtual DbSet<tbQuyen> tbQuyens { get; set; }
-        public virtual DbSet<tbThongTinCaNhan> tbThongTinCaNhans { get; set; }
         public virtual DbSet<tbTinhThanhPho> tbTinhThanhPhoes { get; set; }
-        public virtual DbSet<tbTinhTrangHonNhan> tbTinhTrangHonNhans { get; set; }
         public virtual DbSet<tbXaPhuong> tbXaPhuongs { get; set; }
+        public virtual DbSet<tbBloodInfor> tbBloodInfors { get; set; }
+        public virtual DbSet<tbThongTinCaNhan> tbThongTinCaNhans { get; set; }
     }
 }

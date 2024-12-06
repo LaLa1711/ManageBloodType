@@ -1,0 +1,266 @@
+﻿@model ManageBloodTypes.DBContext.tbThongTinCaNhan
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>QUẢN LÝ THÔNG TIN KHÁCH HÀNG</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index">Home</a></li>
+                <li class="breadcrumb-item">Forms</li>
+                <li class="breadcrumb-item active">Elements</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">THÔNG TIN KHÁCH HÀNG</h5>
+
+                        <!-- General Form Elements -->
+                        <form action="/Admin/AThongTinCaNhans/Edit/@Model.IDThongTin" method="post" enctype="multipart/form-data">
+
+                            @Html.HiddenFor(model => model.IDThongTin)
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Mã Tài Khoản</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control">
+                                        @Html.Raw(Model.MaTaiKhoan)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputNumber" class="col-sm-2 col-form-label">Hình Ảnh</label>
+                                <div class="col-sm-10">
+                                    <img src="@Model.HinhAnh" width="180" />
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Họ Tên</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control">
+                                        @Html.Raw(Model.HoTen)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Số Điện Thoại</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control ">
+                                        @Html.Raw(Model.SDT)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control ">
+                                        @Html.Raw(Model.Gmail)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Mật Khẩu</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control ">
+                                        @Html.Raw(Model.MatKhau)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Địa Chỉ</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control ">
+                                        @Html.Raw(Model.DiaChi),
+                                        @if (Model.IDPhuong.HasValue && Model.IDPhuong.Value != 0)
+                                        {
+                                            @Html.Action("GetPhuongXaName", "AThongTinCaNhans", new { id = Model.IDPhuong })
+                                        }
+                                        else
+                                        {
+                                            <text>(Chưa có thông tin)</text>
+                                        },
+                                        @if (Model.IDQuan.HasValue && Model.IDQuan.Value != 0)
+                                        {
+                                            @Html.Action("GetQuanHuyenName", "AThongTinCaNhans", new { id = Model.IDQuan })
+                                        }
+                                        else
+                                        {
+                                            <text>(Chưa có thông tin)</text>
+                                        },
+                                        @if (Model.IDThanhPho.HasValue && Model.IDThanhPho.Value != 0)
+                                        {
+                                            @Html.Action("GetThanhPhoName", "AThongTinCaNhans", new { id = Model.IDThanhPho })
+                                        }
+                                        else
+                                        {
+                                            <text>(Chưa có thông tin)</text>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Ngày Sinh</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control ">
+                                        @if (Model.NgaySinh.HasValue) // Kiểm tra xem ThoiGian có giá trị hay không
+                                        {
+                                            <span >@Model.NgaySinh.Value.ToString("dd/MM/yyyy")</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Không có thời gian</span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Giới Tính</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control ">
+                                        @if (Model.GioiTinh == null)
+                                        {
+                                            <span>(Chưa có thông tin)</span> 
+                                        }
+                                        else if (Model.GioiTinh == true)
+                                        {
+                                            <span>Nam</span> 
+                                        }
+                                        else
+                                        {
+                                            <span>Nữ</span> 
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">CCCD</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control ">
+                                        @Html.Raw(Model.CCCD)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Ngày Cấp</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control ">
+                                        @if (Model.NgayCap.HasValue) // Kiểm tra xem ThoiGian có giá trị hay không
+                                        {
+                                            <span >@Model.NgayCap.Value.ToString("dd/MM/yyyy")</span>
+                                        }
+                                        else
+                                        {
+                                            <span >Không có thời gian</span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Nơi Cấp</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control ">
+                                        @if (Model.NoiCap_IDTP.HasValue && Model.NoiCap_IDTP.Value != 0)
+                                        {
+                                            @Html.Action("GetThanhPhoName", "AThongTinCaNhans", new { id = Model.NoiCap_IDTP })
+                                        }
+                                        else
+                                        {
+                                            <text>(Chưa có thông tin)</text>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Tình Trạng</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control ">
+                                        @if (Model.TinhTrangHonNhan == null)
+                                        {
+                                            <span>(Chưa có thông tin)</span>
+                                        }
+                                        else if (Model.TinhTrangHonNhan == true)
+                                        {
+                                            <span>Độc Thân</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Đã Kết Hôn</span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Nghề Nghiệp</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control ">
+                                        @if (Model.NgheNghiep.HasValue && Model.NgheNghiep.Value != 0)
+                                        {
+                                            @Html.Action("GetNgheNghiepName", "AThongTinCaNhans", new { id = Model.NgheNghiep })
+                                        }
+                                        else
+                                        {
+                                            <text>(Chưa có thông tin)</text>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Nhóm Máu</label>
+                                <div class="col-sm-10">
+                                    <div class="form-control ">
+                                        @if (Model.IDNhomMau.HasValue && Model.IDNhomMau.Value != 0)
+                                        {
+                                            @Html.Action("GetNhomMauName", "AThongTinCaNhans", new { id = Model.IDNhomMau })
+                                        }
+                                        else
+                                        {
+                                            <text>(Chưa có thông tin)</text>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Hide</label>
+                                <div class="col-sm-2">
+                                    <div class="form-control text-center">
+                                        <strong>
+
+                                            @if (Model.Hide != true)
+                                            {
+                                                <span>Hiện</span>
+                                            }
+                                            else
+                                            {
+                                                <span>ẨN </span>
+                                            }
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-10">
+                                    <a href="/Admin/AThongTinCaNhans" class="btn btn-danger"> Quay Lại</a>
+                                </div>
+                            </div>
+
+                        </form><!-- End General Form Elements -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</main>

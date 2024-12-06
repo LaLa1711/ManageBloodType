@@ -1,0 +1,58 @@
+﻿@model ManageBloodTypes.DBContext.tbNhomMau
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>QUẢN LÝ THÔNG TIN NHÓM MÁU</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index">Home</a></li>
+                <li class="breadcrumb-item">Forms</li>
+                <li class="breadcrumb-item active">Elements</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">DANH SÁCH CÁC THÔNG TIN NHÓM MÁU</h5>
+
+                        <!-- General Form Elements -->
+                        <form action="/admin/ANhomMaus/create" method="post" enctype="multipart/form-data">
+
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Nhóm Máu</label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="@Model.TenNhomMau" name="TenNhomMau" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Thêm Mới</button>
+                                    <a href="/admin/ANhomMaus" class="btn btn-danger"> Quay Lại</a>
+                                </div>
+                            </div>
+
+                        </form><!-- End General Form Elements -->
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+</main>
+

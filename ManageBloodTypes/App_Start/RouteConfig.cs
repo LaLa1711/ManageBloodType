@@ -14,10 +14,19 @@ namespace ManageBloodTypes
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
+                name: "Home",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "ManageBloodTypes.Controllers" } // Chỉ định namespace rõ ràng
             );
+            routes.MapRoute(
+                name: "AdminHome",
+                url: "Admin/{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "ManageBloodTypes.Areas.Admin.Controllers" } // Chỉ định namespace của khu vực Admin
+            );
+
+
         }
     }
 }

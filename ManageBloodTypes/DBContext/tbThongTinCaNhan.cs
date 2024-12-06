@@ -15,6 +15,7 @@ namespace ManageBloodTypes.DBContext
     public partial class tbThongTinCaNhan
     {
         public int IDThongTin { get; set; }
+        public Nullable<int> MaTaiKhoan { get; set; }
         public string HoTen { get; set; }
         public string SDT { get; set; }
         public string Gmail { get; set; }
@@ -29,7 +30,7 @@ namespace ManageBloodTypes.DBContext
         public Nullable<System.DateTime> NgayCap { get; set; }
         public Nullable<int> NoiCap_IDTP { get; set; }
         public string HinhAnh { get; set; }
-        public Nullable<int> TinhTrangHonNhan { get; set; }
+        public Nullable<bool> TinhTrangHonNhan { get; set; }
         public Nullable<int> NgheNghiep { get; set; }
         public Nullable<int> IDNhomMau { get; set; }
         public Nullable<bool> Hide { get; set; }

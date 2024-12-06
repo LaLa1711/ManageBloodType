@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="QLMauModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbBloodInfor">
+    <Key>
+      <PropertyRef Name="IDThTinMau" />
+    </Key>
+    <Property Name="IDThTinMau" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="150" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
+    <Property Name="HinhAnh" Type="varchar(max)" />
+    <Property Name="Hide" Type="bit" />
+  </EntityType>
   <EntityType Name="tbNgheNghiep">
     <Key>
       <PropertyRef Name="IDNgheNghiep" />
@@ -38,6 +48,7 @@
       <PropertyRef Name="IDThongTin" />
     </Key>
     <Property Name="IDThongTin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaTaiKhoan" Type="int" />
     <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
     <Property Name="SDT" Type="varchar" MaxLength="11" />
     <Property Name="Gmail" Type="varchar" MaxLength="150" />
@@ -52,7 +63,7 @@
     <Property Name="NgayCap" Type="date" />
     <Property Name="NoiCap_IDTP" Type="int" />
     <Property Name="HinhAnh" Type="varchar" MaxLength="200" />
-    <Property Name="TinhTrangHonNhan" Type="int" />
+    <Property Name="TinhTrangHonNhan" Type="bit" />
     <Property Name="NgheNghiep" Type="int" />
     <Property Name="IDNhomMau" Type="int" />
     <Property Name="Hide" Type="bit" />
@@ -65,14 +76,6 @@
     <Property Name="TenTP" Type="nvarchar" MaxLength="150" />
     <Property Name="Hide" Type="bit" />
   </EntityType>
-  <EntityType Name="tbTinhTrangHonNhan">
-    <Key>
-      <PropertyRef Name="IDTinhTrangHonNhan" />
-    </Key>
-    <Property Name="IDTinhTrangHonNhan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TenTinhTrang" Type="nvarchar" MaxLength="150" />
-    <Property Name="Hide" Type="bit" />
-  </EntityType>
   <EntityType Name="tbXaPhuong">
     <Key>
       <PropertyRef Name="IDPhuong" />
@@ -83,13 +86,13 @@
     <Property Name="Hide" Type="bit" />
   </EntityType>
   <EntityContainer Name="QLMauModelStoreContainer">
+    <EntitySet Name="tbBloodInfor" EntityType="Self.tbBloodInfor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbNgheNghiep" EntityType="Self.tbNgheNghiep" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbNhomMau" EntityType="Self.tbNhomMau" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbQuanHuyen" EntityType="Self.tbQuanHuyen" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbQuyen" EntityType="Self.tbQuyen" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbThongTinCaNhan" EntityType="Self.tbThongTinCaNhan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbTinhThanhPho" EntityType="Self.tbTinhThanhPho" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="tbTinhTrangHonNhan" EntityType="Self.tbTinhTrangHonNhan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbXaPhuong" EntityType="Self.tbXaPhuong" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

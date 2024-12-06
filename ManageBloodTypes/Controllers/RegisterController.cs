@@ -23,6 +23,10 @@ namespace ManageBloodTypes.Controllers
         {
             try
             {
+                Random random = new Random();
+                int first4 = random.Next(1000, 9999);
+                int last3 = random.Next(100, 999);
+
                 var Register = new tbThongTinCaNhan
                 {
                     HoTen = tbTTin.HoTen,
@@ -32,7 +36,10 @@ namespace ManageBloodTypes.Controllers
                 };
                 db.tbThongTinCaNhans.Add(Register);
                 db.SaveChanges();
-                return Redirect("/Home/Index");
+                string MaTaiKhoan = $"{first4}{Register.IDThongTin}{last3}";
+                Register.MaTaiKhoan = int.Parse(MaTaiKhoan);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home", new { area = "" });
             }
             catch
             {
@@ -48,6 +55,9 @@ namespace ManageBloodTypes.Controllers
             tbThongTinCaNhan user = new tbThongTinCaNhan();
             try
             {
+                Random random = new Random();
+                int first4 = random.Next(1000, 9999);
+                int last3 = random.Next(100, 999);
                 user = new tbThongTinCaNhan
                 {
                     HoTen = obj.HoTen,
@@ -57,6 +67,10 @@ namespace ManageBloodTypes.Controllers
                 };
                 db.tbThongTinCaNhans.Add(user);
                 db.SaveChanges();
+                string MaTaiKhoan = $"{first4}{user.IDThongTin}{last3}";
+                user.MaTaiKhoan = int.Parse(MaTaiKhoan);
+                db.SaveChanges();
+
             }
             catch
             {

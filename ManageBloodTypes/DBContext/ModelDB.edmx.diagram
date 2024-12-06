@@ -9,10 +9,10 @@
         <EntityTypeShape EntityType="QLMauModel.tbNhomMau" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLMauModel.tbQuanHuyen" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLMauModel.tbQuyen" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLMauModel.tbThongTinCaNhan" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLMauModel.tbTinhThanhPho" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLMauModel.tbTinhTrangHonNhan" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLMauModel.tbXaPhuong" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLMauModel.tbBloodInfor" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="QLMauModel.tbThongTinCaNhan" Width="1.5" PointX="5.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

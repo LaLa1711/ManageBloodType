@@ -29,7 +29,7 @@
 
 
             <!--form reg-->
-            <form id="frmReg" name="frmReg" action="/register/index" method="post" enctype="application/x-www-form-urlencoded" onsubmit="return validatePassword()">
+            <form id="frmReg" name="frmReg" action="/Register/Index" method="post" enctype="application/x-www-form-urlencoded" onsubmit="return validatePassword()">
                 <!-- Hidden input -->
                 <div id="hidden_input">
                     <input type="hidden" name="apikey" id="zapikey" value="92140c0e46c54994812403f564787c14" autocomplete="off">
@@ -441,7 +441,7 @@
                     </div>
                     <span id="error_message1" style="color:red; display:none;">Vui lòng sửa lỗi trước khi đăng ký.</span>
                     <!-- Submit button -->
-                    <button class="zid_regbtn" onclick="return handleRegister()" type="submit">Đăng Ký</button>
+                    <button class="zid_regbtn" @*style="float: right; background: #0072c6; color: #fff; padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none;"*@ onclick="return handleRegister()" type="submit">Đăng Ký</button>
 
                     <div class="clr"></div>
                 </div>
@@ -530,7 +530,7 @@
 
         </div>
         <div class="backtologin" style="background-color: #f0f0f0; padding: 10px;">
-            Nếu bạn đã có tài khoản. Trở về <a href="javascript:void(0)" onclick="zid.goLogin();"><strong>Trang chủ</strong></a> để đăng nhập.
+            Nếu bạn đã có tài khoản. Trở về <a href="/Home/Index" onclick="zid.goLogin();"><strong>Trang chủ</strong></a> để đăng nhập.
         </div>
     </div>
     <script type="text/javascript">

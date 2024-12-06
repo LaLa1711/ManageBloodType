@@ -1,0 +1,437 @@
+﻿@model ManageBloodTypes.Models.ThongTinCaNhanModels
+
+
+<div class="zid_infocontent" id="old-content">
+    <h2 class="content_title"><span class="titlebullet zidsprt"></span>Thông tin đăng nhập</h2>
+    @*<div class="inforow">
+            <label>Tên đăng nhập:</label>
+            <div class="infotext"><strong>inohavename</strong></div>
+        </div>*@
+    <div id="email_general" style="position: relative">
+        <div id="emaillogin_loading" style="display: none; position: absolute; width: 100%; background-color: rgb(236, 236, 236); height: 100%; opacity: 0.5; text-align: center;">
+            <img src="/content/img/loader.gif" style="height: 100px;padding-top: 50px;" />
+        </div>
+        @*hiển thị email*@
+        <div id="email" class="inforow" rel="display">
+            <label>Email đăng nhập: </label>
+
+            <p class="lk_update"><a href="https://id.zing.vn/v2/verifyemail?apikey=92140c0e46c54994812403f564787c14&pid=38&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfoemaillogin%2Fcomplete%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38">Cập nhật</a></p>
+
+            <span style="font-size:12px; font-weight: bold"><i>@Html.Raw(Model.Gmail)</i></span>
+
+            <div rel="listemails">
+
+            </div>
+        </div>
+        @*nhập email*@
+        @*<div class="zid_infocontent">
+            <div class="zid_phonenum_security">
+                <h2 class="content_title"><span class="titlebullet zidsprt"></span>Bổ sung email đăng nhập</h2>
+            </div>
+
+            <div class="zid_phonenum_security">
+                <div style="display: block;" id="flat_show_active" class="phonerequest_form">
+                    <div class="phonerq_form">
+                        <form name="frmVerifyEmail" id="frmVerifyEmail" action="" method="post">
+                            <label style="height:50px" class="phonerq_lb">
+                                <strong>Email đăng nhập:</strong>
+                                <p style="font-size: 12px;" class="expl_phone">Vui lòng nhập địa chỉ email để xác thực</p>
+                            </label>
+                            <input type="hidden" value="" id="captcha_token" name="captcha_token" />
+                            <input type="hidden" value="92140c0e46c54994812403f564787c14" id="apikey" name="apikey" />
+                            <input type="hidden" value="https://id.zing.vn/v2/infoemaillogin/complete?apikey=92140c0e46c54994812403f564787c14&amp;pid=38" id="next" name="next" />
+                            <div id="emailp" style="float:left">
+                                <div class="finput phonenum_txt" style="width:450px;">
+                                    <input type="text" name="email" id="email" value="" placeholder="" maxlength="50" class="input_login" />
+                                </div>
+                                <br />
+                            </div>
+
+                            <p style="float:left;padding:10px 0">
+                                <a href="#" class="phonerq_btn" id="btnSubmit">Gửi email xác nhận</a>
+                                <span style="display:none;" id="btnProcess">Đang xử lý...
+                            </p>
+                        </form>
+                        <div id="completeBox" class="zid_phonenum_security"></div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+        <div id="email_edit_fake" class="subcont sub_chgmail" style="display:none">
+            <div class="inforow">
+                <label>Email đăng nhập:</label>
+                <div class="infotext">
+                    <div class="rowcont">
+                        <p class="subcont_lb">Email chính:</p>
+                        <div class="subcont_text">
+                            <ul class="listemail">
+
+                                <div rel="listemails">
+
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                    <div class="rowcont">
+                        <p style="padding:10px 0px;"><i>Để lưu lại thay đổi, vui lòng nhập mật khẩu Zing ID để xác nhận</i></p>
+                        <input type="password" id="email_pwd" placeholder="Nhập mật khẩu" class="subform_input" onkeypress="email_pwdkeypress(event);" maxlength="32" />
+                        <div class="clr"></div>
+                    </div>
+
+                    <div class="warning" id="email_error" style="margin-left:10px;">&nbsp;</div>
+
+                </div>
+            </div>
+            <p class="subform_btn">
+
+                <a href="https://id.zing.vn/v2/verifyemail?apikey=92140c0e46c54994812403f564787c14&pid=38&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfoemaillogin%2Fcomplete%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38" style="float: left;">Bạn muốn thêm Email khác ?</a>
+                <a href="javascript:void(0)" onclick="updateEmail('email')" class="sfbtn_submit">Cập nhật</a>
+                <a href="javascript:void(0)" onclick="hideEmailEdit('email');" class="sfbtn_cancel">Bỏ qua</a>
+            </p>
+        </div>
+        <div id="email_edit" rel="edit" class="subcont sub_chgmail" style="display:none;">
+            &nbsp;
+        </div>
+    </div>
+
+
+    <div id="phone_general" style="position: relative">
+        <div id="phonelogin_loading" style="display: none; position: absolute; width: 100%; background-color: rgb(236, 236, 236); height: 100%; opacity: 0.5; text-align: center;">
+            <img src="/content/img/loader.gif" style="height: 100px;padding-top: 50px;" />
+        </div>
+        @*hiển thị SDT*@
+        <div id="phone" class="inforow" rel="display">
+            <label>SĐT đăng nhập: </label>
+
+            <p class="lk_update"><a href="https://id.zing.vn/v2/smsnotify?apikey=92140c0e46c54994812403f564787c14&pid=38&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38">Cập nhật</a></p>
+
+
+            <p class="infotext" rel="phone_primary" style="font-weight: bold; font-size: 12px;"><i>@Html.Raw(Model.SDT)</i></p>
+
+            <div rel="listPhones">
+
+            </div>
+        </div>
+        @*nhập sdt*@
+        <div id="phone_edit_fake" class="subcont sub_chgmail" style="display:none">
+            <div class="inforow">
+                <label>SĐT cá nhân: </label>
+                <div class="infotext">
+                    <div class="rowcont">
+                        <p class="subcont_lb">SĐT chính:</p>
+                        <div class="subcont_text">
+                            <ul class="listemail">
+
+                                <li>
+                                    <input type="radio" rel="phone_primary" name="primary_phone" checked=checked value="0906613087" />
+                                    <span class="mailtxt" rel="phone_primary">090****087</span>
+                                </li>
+
+                                <div rel="listphones">
+
+                                </div>
+                            </ul>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+
+                    <div class="rowcont">
+                        <p style="padding:10px 0px;"><i>Để lưu lại thay đổi, vui lòng nhập mật khẩu Zing ID để xác nhận</i></p>
+                        <input type="password" id="phonelogin_pwd" placeholder="Nhập mật khẩu" class="subform_input" maxlength="32" />
+                        <div class="clr"></div>
+                    </div>
+
+                    <div class="warning" id="phone_error" style="margin-left:10px;">&nbsp;</div>
+
+                </div>
+            </div>
+            <p class="subform_btn">
+                <a href="https://id.zing.vn/v2/smsnotify?apikey=92140c0e46c54994812403f564787c14&pid=38&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38" style="float: left;">Bạn muốn thêm số điện thoại khác ?</a>
+                <a href="javascript:void(0)" onclick="updatePhone()" class="sfbtn_submit">Cập nhật</a>
+                <a href="javascript:void(0)" onclick="hidePhoneEdit();" class="sfbtn_cancel">Bỏ qua</a>
+            </p>
+        </div>
+        <div id="phone_edit" rel="edit" class="subcont sub_chgmail" style="display:none;">
+            &nbsp;
+        </div>
+    </div>
+    @*hiển thị mật khẩu*@
+    <div id="pwd" class="inforow" rel="display">
+        <label>Mật khẩu:   </label>
+        <p class="lk_update"><a href="javascript:void(0)" onclick="showPwdEdit()">Đổi mật khẩu</a></p>
+        <!--<p class="lk_update"><a href="https://id.zing.vn/changepass/index.38.html" >Đổi mật khẩu</a></p>-->
+        <div class="infotext" style="font-weight: bold">@Html.Raw(Model.MatKhau)</div>
+    </div>
+    @*nhập mật khẩu*@
+    <div id="pwd_edit_form" rel="edit" style="position: relative;display:none">
+        <div id="loading" style="display:none;z-index:1000;position: absolute;width: 100%;background-color: #ECECEC;height: 100%;opacity: 0.5;text-align: center;">
+            <img src="/content/img/loader.gif" style="height: 100px;padding-top:120px;" />
+        </div>
+        <input type="hidden" name="tokenCaptcha" id="tokenCaptcha" value="" />
+        <input type="hidden" name="pwd_tokenExpire" id="pwd_tokenExpire" value="" />
+        <form id="frm_pwd">
+            <div class="subcont sub_chgpass" id="pwd_edit">
+                <div class="inforow">
+                    <label>Mật khẩu:</label>
+                    <div class="infotext">
+                        <div class="rowcont">
+                            <p class="subcont_lb_gc">Mật khẩu hiện tại:</p>
+                            <div class="subcont_text_gc">
+                                <input class="subform_input_gc" tabindex="1" type="password" maxlength="32" name="old_password" id="sOldPassword" />
+                                <span id="sOldPassword_icon" style="display: none">
+                                    <img src="/Content/img/checkbullet.gif" class="check_icon" alt="finish" />
+                                </span>
+                                <div class="clr"></div>
+                                <span class="warning" rel="1" id="sOldPassword_err">&nbsp;</span>
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="rowcont">
+                            <p class="subcont_lb_gc">Mật khẩu mới:</p>
+                            <div class="subcont_text_gc" style="position:relative;">
+                                <input id="new_password" tabindex="2" name="new_password" type="password" maxlength="32" class="subform_input_gc" style="float: left" />
+                                <div class="stronglevel" style="float: left;display: block;font-size:12px">
+                                    <span style="display: inline-block;float: left;">Mức độ bảo mật</span>
+                                    <div style="float: left;margin: 8px 0px 0px 5px;">
+                                        <span class="meter" id="level1"></span>
+                                        <span class="meter" id="level2"></span>
+                                        <span class="meter" id="level3"></span>
+                                        <span class="meter" id="level4"></span>
+                                    </div>
+                                </div>
+                                <div class="clr"></div>
+                                <div id="new_password_note" class="formtipbubble" style="display:none;top:35px;right:-15px">
+                                    <span class="formtip_arrow zidsprt"></span>
+                                    <div class="formtip_inner">
+                                        Mật khẩu phải có từ 6-32 ký tự.
+
+                                    </div>
+                                </div>
+                                <div class="clr"></div>
+                                <span class="warning" rel="2" id="new_password_err">&nbsp;</span>
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="rowcont">
+                            <p class="subcont_lb_gc">Xác nhận mật khẩu:</p>
+                            <div class="subcont_text_gc">
+                                <input type="password" tabindex="3" maxlength="32" name="confirm_password" id="confirm_password" class="subform_input_gc" />
+                                <span id="confirm_password_icon" style=" display:none">
+                                    <img src="https://stc-id.zing.vn/login/forgotinfo/images/checkbullet.gif" class="check_icon" alt="finish" />
+                                </span>
+                                <div class="clr"></div>
+                                <span class="warning" rel="3" id="confirm_password_err">&nbsp;</span>
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                        <div class="rowcont" style="padding-bottom:5px">
+                            <p class="subcont_lb_gc">Mã kiểm tra:</p>
+
+                            <div class="subcont_text_gc">
+                                <div class="zidfg_captchapic" style="width:210px;">
+                                    <div class="captchaborder">
+                                        <p class="catchacode" style="width:170px;"><img src="" id="sVerifyImg" alt="Mã kiểm tra" style="width:170px;" /></p>
+                                        <p class="captcha_refresh"><a onclick="refreshCaptcha2();" href="javascript:void(0);" title="Tạo mã kiểm tra khác"></a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rowcont">
+                            <p class="subcont_lb_gc">Nhập mã kiểm tra:</p>
+                            <div class="subcont_text_gc">
+                                <input id="sVerifyCode" tabindex="4" maxlength="6" name="captcha" class="subform_input_gc" />
+                                <span id="sVerifyCode_icon" style="display:none ">
+                                    <img src="https://stc-id.zing.vn/login/forgotinfo/images/checkbullet.gif" class="check_icon" alt="finish" />
+                                </span>
+                                <div class="clr"></div>
+                                <span id="sVerifyCode_note" style="display: none;">
+                                    <span>Khi nhập vào mã này, sẽ giúp VNG ngăn chặn những đăng ký giả mạo.</span>
+                                </span>
+                                <div class="clr"></div>
+                                <span class="warning" rel="4" id="sVerifyCode_err">&nbsp;</span>
+                            </div>
+                            <div class="clr"></div>
+                        </div>
+                        <span class="warning" rel="5" id="pwd_err">&nbsp;</span>
+                    </div>
+                </div>
+                <p class="subform_btn">
+                    <a href="https://id.zing.vn/v2/forgotinfo?apikey=92140c0e46c54994812403f564787c14&pid=38" style="float: left;">Quên mật khẩu ?</a>
+                    <a href="javascript:void(0)" tabindex="5" onclick="updatePwd();" class="sfbtn_submit">Cập nhật</a>
+                    <a href="javascript:void(0)" onclick="hidePwdEdit();" class="sfbtn_cancel">Bỏ qua</a>
+                </p>
+            </div>
+        </form>
+    </div>
+    <script language="javascript" type="text/javascript" src="~/Content/js/changepass-1.04.js"></script>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+@*<h2>Index</h2>
+
+<div>
+    <h4>tbThongTinCaNhan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MatKhau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MatKhau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDPhuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDPhuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDQuan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDQuan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDThanhPho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDThanhPho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgaySinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GioiTinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CCCD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CCCD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayCap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayCap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoiCap_IDTP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiCap_IDTP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HinhAnh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TinhTrangHonNhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrangHonNhan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgheNghiep)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgheNghiep)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDNhomMau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDNhomMau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hide)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hide)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDThongTin }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

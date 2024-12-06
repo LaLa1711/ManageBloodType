@@ -1,0 +1,102 @@
+﻿@model IEnumerable<ManageBloodTypes.DBContext.tbThongTinCaNhan>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>QUẢN LÝ THÔNG TIN KHÁCH HÀNG</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index">Home</a></li>
+                <li class="breadcrumb-item">Forms</li>
+                <li class="breadcrumb-item active">Elements</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">DANH SÁCH CÁC THÔNG TIN KHÁCH HÀNG</h5>
+                        <a class="btn btn-success" href="/Admin/AThongTinCaNhans/Create">THÊM MỚI</a>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Mã Tài Khoản
+                                </th>
+                                <th>
+                                    Hình Ảnh
+                                </th>
+                                <th>
+                                    Nhóm Máu
+                                </th>
+                                <th>
+                                    Trạng Thái
+                                </th>
+                            </tr>
+                        </thead>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MaTaiKhoan)
+                                </td>
+                                <td>
+                                    @if (string.IsNullOrEmpty(item.HinhAnh))
+                                    {
+                                        item.HinhAnh = "/Content/img/avatarfb.jpg";
+                                        <img src="@item.HinhAnh" width="100" />
+
+                                    }
+                                    else
+                                    {
+                                    <img src="@item.HinhAnh" width="100" />}
+                                </td>
+                                <td>
+                                    @if (item.IDNhomMau.HasValue && item.IDNhomMau.Value != 0)
+                                    {
+                                        @Html.Action("GetNhomMauName", "AThongTinCaNhans", new { id = item.IDNhomMau })
+                                    }
+                                    else
+                                    {
+                                        <text>(Chưa có thông tin)</text>
+                                    }
+                                </td>
+                                <td style="padding-left: 30px;">
+                                    @if (item.Hide != true)
+                                    {
+                                        <p>         Hiện</p>
+                                    }
+                                    else
+                                    {
+                                        <p>   ẨN </p>
+                                    }
+                                </td>
+                                <td>
+                                    <a href="/Admin/AThongTinCaNhans/Edit/@item.IDThongTin"><i class="bi bi-pencil-square"></i></a> |
+                                    <a href="/Admin/AThongTinCaNhans/Details/@item.IDThongTin"><i class="ri-article-line"></i></a> |
+                                    <a href="/Admin/AThongTinCaNhans/Delete/@item.IDThongTin"><i class="ri-delete-bin-6-line"></i></a>
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+</main>

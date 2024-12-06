@@ -1,0 +1,180 @@
+﻿@model ManageBloodTypes.Models.ThongTinCaNhanModels
+
+<div class="zid_infocontent" id="section-to-scroll">
+    <h2 class="content_title">
+        <span class="titlebullet zidsprt"></span>Thông tin cá nhân
+    </h2>
+
+    <div id="personal">
+        @* Hiển thị thông tin cá nhân *@
+        <div class="inforow">
+            <label>Hình ảnh:</label>
+            <p class="lk_update"><a href="javascript:void(0)" onclick="showPersonalEdit()">Cập nhật</a></p>
+            <div class="infotext">
+                @if (string.IsNullOrEmpty(Model.HinhAnh))
+                {
+                    <img src="/Content/img/avatarfb.jpg" width="100" />
+                }
+                else
+                {
+                    <img src="@Html.Raw(Model.HinhAnh)" width="100" />
+                }
+            </div>
+        </div>
+
+        <div class="inforow">
+            <label>Họ tên:</label>
+            <div class="infotext">
+                @Html.Raw(Model.HoTen)
+            </div>
+        </div>
+
+        <div class="inforow">
+            <label>Giới tính:</label>
+            <div class="infotext">@Html.Raw(Model.GioiTinhDisplay)</div>
+        </div>
+
+        <div class="inforow">
+            <label>Ngày sinh:</label>
+            <div class="infotext">@Html.Raw(Model.NgaySinhDisplay)</div>
+        </div>
+
+        <div class="inforow">
+            <label>Địa chỉ:</label>
+            <div class="infotext">
+                @Html.Raw(Model.DiaChi), @Html.Raw(Model.IDPhuong), @Html.Raw(Model.IDQuan)
+            </div>
+        </div>
+
+        <div class="inforow">
+            <label>Tỉnh/Thành phố:</label>
+            <div class="infotext">
+                @if (Model.IDThanhPho.HasValue && Model.IDThanhPho.Value != 0)
+                {
+                    @Html.Raw(Model.IDThanhPho.Value)
+                }
+                else
+                {
+                    <text>(Chưa có thông tin)</text>
+                }
+            </div>
+        </div>
+
+        <div class="inforow">
+            <label>Nghề nghiệp:</label>
+            <div class="infotext">
+                @if (Model.NgheNghiep.HasValue && Model.NgheNghiep.Value != 0)
+                {
+                    @Html.Raw(Model.NgheNghiep.Value)
+                }
+                else
+                {
+                    <text>(Chưa có thông tin)</text>
+                }
+            </div>
+        </div>
+
+        <div class="inforow">
+            <label>Tình trạng hôn nhân:</label>
+            <div class="infotext">
+                @Html.Raw(Model.TinhTrangHonNhanDisplay)
+            </div>
+        </div>
+
+        <div class="inforow">
+            <label>Số CMND:</label>
+            <div class="infotext">
+                @Html.Raw(Model.CCCD)
+            </div>
+        </div>
+
+        <div class="inforow">
+            <label>Ngày cấp:</label>
+            <div class="infotext">
+                @Html.Raw(Model.NgayCapDisplay)
+            </div>
+        </div>
+
+        <div class="inforow">
+            <label>Nơi cấp:</label>
+            <div class="infotext">
+                @if (Model.NoiCap_IDTP.HasValue && Model.NoiCap_IDTP.Value != 0)
+                {
+                    @Html.Raw(Model.NoiCap_IDTP.Value)
+                }
+                else
+                {
+                    <text>(Chưa có thông tin)</text>
+                }
+            </div>
+        </div>
+
+        <div class="inforow">
+            <label>Nhóm máu:</label>
+            <div class="infotext">
+                @if (Model.IDNhomMau.HasValue && Model.IDNhomMau.Value != 0)
+                {
+                    @Html.Raw(Model.IDNhomMau.Value)
+                }
+                else
+                {
+                    <text>(Chưa có thông tin)</text>
+                }
+            </div>
+        </div>
+    </div>
+
+    @* Chỉnh sửa thông tin cá nhân *@
+    <div class="subcont" id="personal_edit_fake" style="display:none">
+        <form id="editForm" method="post" enctype="multipart/form-data">
+            <div class="inforow">
+                <label>Họ tên:</label>
+                <input type="text" value="@Model.HoTen" name="HoTen" maxlength="40" class="subform_input updtinput" />
+            </div>
+
+            <div class="inforow">
+                <label>Giới tính:</label>
+                <label><input type="radio" name="GioiTinh" value="1" @(Model.GioiTinh.HasValue && Model.GioiTinh.Value ? "checked" : "") /> Nam</label>
+                <label><input type="radio" name="GioiTinh" value="0" @(Model.GioiTinh.HasValue && !Model.GioiTinh.Value ? "checked" : "") /> Nữ</label>
+            </div>
+
+            <div class="inforow">
+                <label>Ngày sinh:</label>
+                <input type="date" name="NgaySinh" class="form-control" value="@(Model.NgaySinh?.ToString("yyyy-MM-dd") ?? "")" />
+            </div>
+
+            <div class="inforow">
+                <label>Địa chỉ:</label>
+                <input type="text" name="DiaChi" value="@Model.DiaChi" maxlength="100" class="subform_input updtinput" />
+            </div>
+
+            <div class="inforow">
+                <label>Nhóm máu:</label>
+                <select name="IDNhomMau" class="select_300">
+                    <option value="">-- Chọn nhóm máu --</option>
+                    <option value="1" @(Model.IDNhomMau == 1 ? "selected" : "")>A+</option>
+                    <option value="2" @(Model.IDNhomMau == 2 ? "selected" : "")>A-</option>
+                    <option value="3" @(Model.IDNhomMau == 3 ? "selected" : "")>B+</option>
+                    <option value="4" @(Model.IDNhomMau == 4 ? "selected" : "")>B-</option>
+                </select>
+            </div>
+
+            <div class="inforow">
+                <button type="submit" class="sfbtn_submit">Cập nhật</button>
+                <button type="button" onclick="hidePersonalEdit();" class="sfbtn_cancel">Bỏ qua</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showPersonalEdit() {
+        document.getElementById('personal').style.display = 'none';
+        document.getElementById('personal_edit_fake').style.display = 'block';
+    }
+
+    function hidePersonalEdit() {
+        document.getElementById('personal').style.display = 'block';
+        document.getElementById('personal_edit_fake').style.display = 'none';
+    }
+</script>

@@ -1,0 +1,177 @@
+﻿@model ManageBloodTypes.DBContext.tbThongTinCaNhan
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tbThongTinCaNhan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaTaiKhoan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaTaiKhoan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MatKhau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MatKhau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDPhuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDPhuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDQuan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDQuan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDThanhPho)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDThanhPho)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgaySinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GioiTinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CCCD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CCCD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayCap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayCap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoiCap_IDTP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiCap_IDTP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HinhAnh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TinhTrangHonNhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrangHonNhan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgheNghiep)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgheNghiep)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDNhomMau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDNhomMau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hide)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hide)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

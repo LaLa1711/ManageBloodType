@@ -38,45 +38,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tbThongTinCaNhans">
-      <EntityTypeMapping TypeName="QLMauModel.tbThongTinCaNhan">
-        <MappingFragment StoreEntitySet="tbThongTinCaNhan">
-          <ScalarProperty Name="IDThongTin" ColumnName="IDThongTin" />
-          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
-          <ScalarProperty Name="SDT" ColumnName="SDT" />
-          <ScalarProperty Name="Gmail" ColumnName="Gmail" />
-          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
-          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-          <ScalarProperty Name="IDPhuong" ColumnName="IDPhuong" />
-          <ScalarProperty Name="IDQuan" ColumnName="IDQuan" />
-          <ScalarProperty Name="IDThanhPho" ColumnName="IDThanhPho" />
-          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
-          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
-          <ScalarProperty Name="CCCD" ColumnName="CCCD" />
-          <ScalarProperty Name="NgayCap" ColumnName="NgayCap" />
-          <ScalarProperty Name="NoiCap_IDTP" ColumnName="NoiCap_IDTP" />
-          <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
-          <ScalarProperty Name="TinhTrangHonNhan" ColumnName="TinhTrangHonNhan" />
-          <ScalarProperty Name="NgheNghiep" ColumnName="NgheNghiep" />
-          <ScalarProperty Name="IDNhomMau" ColumnName="IDNhomMau" />
-          <ScalarProperty Name="Hide" ColumnName="Hide" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbTinhThanhPhoes">
       <EntityTypeMapping TypeName="QLMauModel.tbTinhThanhPho">
         <MappingFragment StoreEntitySet="tbTinhThanhPho">
           <ScalarProperty Name="IDTP" ColumnName="IDTP" />
           <ScalarProperty Name="TenTP" ColumnName="TenTP" />
-          <ScalarProperty Name="Hide" ColumnName="Hide" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tbTinhTrangHonNhans">
-      <EntityTypeMapping TypeName="QLMauModel.tbTinhTrangHonNhan">
-        <MappingFragment StoreEntitySet="tbTinhTrangHonNhan">
-          <ScalarProperty Name="IDTinhTrangHonNhan" ColumnName="IDTinhTrangHonNhan" />
-          <ScalarProperty Name="TenTinhTrang" ColumnName="TenTinhTrang" />
           <ScalarProperty Name="Hide" ColumnName="Hide" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -88,6 +54,43 @@
           <ScalarProperty Name="TenPhuong" ColumnName="TenPhuong" />
           <ScalarProperty Name="IDPhuong" ColumnName="IDPhuong" />
           <ScalarProperty Name="Hide" ColumnName="Hide" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbBloodInfors">
+      <EntityTypeMapping TypeName="QLMauModel.tbBloodInfor">
+        <MappingFragment StoreEntitySet="tbBloodInfor">
+          <ScalarProperty Name="Hide" ColumnName="Hide" />
+          <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+          <ScalarProperty Name="IDThTinMau" ColumnName="IDThTinMau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbThongTinCaNhans">
+      <EntityTypeMapping TypeName="QLMauModel.tbThongTinCaNhan">
+        <MappingFragment StoreEntitySet="tbThongTinCaNhan">
+          <ScalarProperty Name="Hide" ColumnName="Hide" />
+          <ScalarProperty Name="IDNhomMau" ColumnName="IDNhomMau" />
+          <ScalarProperty Name="NgheNghiep" ColumnName="NgheNghiep" />
+          <ScalarProperty Name="TinhTrangHonNhan" ColumnName="TinhTrangHonNhan" />
+          <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+          <ScalarProperty Name="NoiCap_IDTP" ColumnName="NoiCap_IDTP" />
+          <ScalarProperty Name="NgayCap" ColumnName="NgayCap" />
+          <ScalarProperty Name="CCCD" ColumnName="CCCD" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="IDThanhPho" ColumnName="IDThanhPho" />
+          <ScalarProperty Name="IDQuan" ColumnName="IDQuan" />
+          <ScalarProperty Name="IDPhuong" ColumnName="IDPhuong" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+          <ScalarProperty Name="Gmail" ColumnName="Gmail" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
+          <ScalarProperty Name="IDThongTin" ColumnName="IDThongTin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

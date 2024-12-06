@@ -53,7 +53,9 @@ namespace ManageBloodTypes.Controllers
                 ViewBag.PasswordError = "Mật khẩu không đúng.";
                 return View();
             }
+            // Kiểm tra điều kiện đặc biệt
 
+            Session["UserEmail"] = user.Gmail;
             // Đăng nhập thành công, chuyển hướng đến Dashboard
             return RedirectToAction("Index", "HomePage");
         }

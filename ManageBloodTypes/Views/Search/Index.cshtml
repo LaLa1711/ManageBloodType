@@ -1,0 +1,145 @@
+﻿@model ManageBloodTypes.Models.ThongTinCaNhanModels
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Home.cshtml";
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Thông Tin Về Các Nhóm Máu</h1>
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+        <div class="row">
+            <div class="d-flex justify-content-center align-items-start" style=" padding-top: 20px;">
+                <div class="col-xl-10">
+                    <div class="card">
+                        <div class="card-body pt-3">
+                            <div class="tab-content pt-2">
+
+                                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                    <div class="row mb-3">
+                                        <label for="Job" class="col-md-4 col-lg-3 col-form-label">Thành Phố</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <select class="form-control" name="IDThanhPho" id="IDThanhPho" onchange="loadQuanHuyen()">
+                                                @Html.Raw(Html.Action("GetThanhPho", "Search", new { id = Model.IDThanhPho }))
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Job" class="col-md-4 col-lg-3 col-form-label">Quận/Huyện</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <select class="form-control" name="IDQuan" id="IDQuan" onchange="loadPhuongXa()">
+                                                @Html.Raw(Html.Action("GetDanhSachQuan", "Search", new { idThanhPho = Model.IDThanhPho, idQuan = Model.IDQuan }))
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="Job" class="col-md-4 col-lg-3 col-form-label">Phường/Xã</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <select class="form-control" name="IDPhuong" id="IDPhuong">
+                                                @Html.Raw(Html.Action("GetDanhSachPhuong", "Search", new { idQuan = Model.IDQuan, idPhuong = Model.IDPhuong }))
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Nút tìm kiếm -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-8 col-lg-9">
+                                            <button type="button" class="btn btn-primary" onclick="searchUsers()">Tìm Kiếm</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Khu vực hiển thị kết quả tìm kiếm -->
+                                    <div id="searchResults" class="search-results mt-4">
+                                        <div class="alert alert-info" role="alert" id="noResults" style="display:none;">
+                                            Không tìm thấy người dùng nào phù hợp.
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div><!-- End Bordered Tabs -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    function loadQuanHuyen() {
+        var idThanhPho = document.getElementById("IDThanhPho").value;
+
+        if (!idThanhPho) {
+            document.getElementById("IDQuan").innerHTML = "<option value=''>----- Chọn Quận/Huyện -----</option>";
+            return;
+        }
+
+        fetch(`/Search/GetDanhSachQuan?idThanhPho=${idThanhPho}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("IDQuan").innerHTML = data;
+            })
+            .catch(error => {
+                console.error("Lỗi khi tải danh sách quận:", error);
+                document.getElementById("IDQuan").innerHTML = "<option value=''>----- Lỗi khi tải -----</option>";
+            });
+    }
+
+    function loadPhuongXa() {
+        var idQuan = document.getElementById("IDQuan").value;
+
+        if (!idQuan) {
+            document.getElementById("IDPhuong").innerHTML = "<option value=''>----- Chọn Phường/Xã -----</option>";
+            return;
+        }
+
+        fetch(`/Search/GetDanhSachPhuong?idQuan=${idQuan}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("IDPhuong").innerHTML = data;
+            })
+            .catch(error => {
+                console.error("Lỗi khi tải danh sách phường:", error);
+                document.getElementById("IDPhuong").innerHTML = "<option value=''>----- Lỗi khi tải -----</option>";
+            });
+    }
+
+    function searchUsers() {
+        var idThanhPho = document.getElementById("IDThanhPho").value;
+        var idQuan = document.getElementById("IDQuan").value;
+        var idPhuong = document.getElementById("IDPhuong").value;
+
+        fetch(`/Search/SearchUsers?idThanhPho=${idThanhPho || ''}&idQuan=${idQuan || ''}&idPhuong=${idPhuong || ''}`)
+            .then(response => response.json())
+            .then(data => {
+                var resultContainer = document.getElementById("searchResults");
+                var noResultsContainer = document.getElementById("noResults");
+
+                resultContainer.innerHTML = ""; // Xóa kết quả cũ
+                noResultsContainer.style.display = data.length ? "none" : "block";
+
+                if (data.length) {
+                    data.forEach(user => {
+                        resultContainer.innerHTML += `
+                            <div class="user-card">
+                                <img src="${user.HinhAnh}" alt="${user.HoTen}" class="user-image">
+                                <h5>${user.HoTen}</h5>
+                                <p>Email: ${user.Gmail}</p>
+                                <p>Địa chỉ: ${user.DiaChi}</p>
+                            </div>
+                        `;
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("Lỗi khi tìm kiếm người dùng:", error);
+                alert("Có lỗi xảy ra khi tìm kiếm.");
+            });
+    }
+</script>

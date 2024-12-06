@@ -7,13 +7,15 @@
 <div class="zidbody">
     <div class="zid_loginform" style="position: relative; ">
 
-        <h2 class=" formheader">Quên thông tin tài khoản</h2>
+        <h2 class=" formheader" style="font-weight: bold; text-align: center; margin-bottom: 25px; ">Quên thông tin tài khoản</h2>
 
         <form id="frmForgotInfo" name="frmForgotInfo" action="" method="post">
             <input type="hidden" name="tokenCaptcha" id="tokenCaptcha" value="">
             <!--<label class="zidfglb">Tên/ Email/ Số điện thoại <b style="color: #42a3d6;">đăng nhập</b>:</label>-->
-            <label class="zidfglb">Tên đăng nhập <span style="font-weight: normal;font-size: 12px;">(hoặc Email đăng nhập, hoặc SĐT đăng nhập)</span></label>
-            <p class="finput zidforgotinput" style="position: relative">
+            <label class="zidfglb" style="font-weight: normal;font-size: 16px;"><strong>Email đăng nhập: </strong>
+            @*<span style="font-weight: normal;font-size: 12px;">(hoặc Email đăng nhập, hoặc SĐT đăng nhập)
+                </span>*@</label>
+            <p class="finput zidforgotinput" style="position: relative; margin-bottom: 5px;">
                 <input class="input_login" type="text" tabindex="1" name="aliasname" id="sAliasName" maxlength="100" value="">
                 <span id="sAliasName_icon" style="display: none;position: absolute;right: 10px;top:15px;">
                     <img src="/Content/img/checkbullet.gif" alt="finish">
@@ -21,10 +23,10 @@
             </p>
             <span id="sAliasName_note" style="display:none;"></span>
             <div id="acnLikePhone" style="float: right;font-weight: normal;font-size: 12px;padding-bottom: 5px;display: none;">
-                <input id="acnLikePhone_check" type="checkbox" value="true" name="acnLikePhone" tabindex="2" style="vertical-align: middle;"> Đây là Tên đăng nhập
+                <input id="acnLikePhone_check" type="checkbox" value="true" name="acnLikePhone" tabindex="2" style="vertical-align: middle;"> Đây là Email đăng nhập
             </div>
-            <span class="Notice" id="sAliasName_err" style="width:330px;height:40px;">&nbsp;</span>
-            <label class="zidfglb">Bạn đã quên thông tin gì?</label>
+            <span class="Notice" id="sAliasName_err" style="width: 330px; height: 20px; margin-bottom: 15px;">&nbsp;</span>
+            @*<label class="zidfglb">Bạn đã quên thông tin gì?</label>
             <ul class="zidfglist">
                 <li>
                     <label>
@@ -38,7 +40,7 @@
 
                     </label>
                 </li>
-            </ul>
+            </ul>*@
             <div class="zidfg_captchapic">
                 <label class="zidfglb">Mã kiểm tra:</label>
                 <div class="captchaborder" style="margin-top: -2px;">

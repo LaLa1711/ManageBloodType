@@ -1,0 +1,230 @@
+﻿@model ManageBloodTypes.DBContext.tbThongTinCaNhan
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>QUẢN LÝ THÔNG TIN KHÁCH HÀNG</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index">Home</a></li>
+                <li class="breadcrumb-item">Forms</li>
+                <li class="breadcrumb-item active">Elements</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">THÊM MỚI THÔNG TIN KHÁCH HÀNG</h5>
+
+                        <!-- General Form Elements -->
+                        <form action="/admin/AThongTinCaNhans/create" method="post" enctype="multipart/form-data">
+                            <div class="row mb-3">
+                                <label for="inputNumber" class="col-sm-2 col-form-label">Hình Ảnh</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="file" name="file" id="formFile">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Họ Tên</label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="@Model.HoTen" name="HoTen" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Số Điện Thoại</label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="@Model.SDT" name="SDT" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="@Model.Gmail" name="Gmail" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Mật Khẩu</label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="@Model.MatKhau" name="MatKhau" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Địa Chỉ</label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="@Model.DiaChi" name="DiaChi" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Thành Phố</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="IDThanhPho" id="IDThanhPho" onchange="loadQuanHuyen()">
+                                        @Html.Raw(Html.Action("GetThanhPho", "AThongTinCaNhans", new { id = @Model.IDThanhPho }))
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Quận/Huyện</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="IDQuan" id="IDQuan" onchange="loadPhuongXa()">
+                                        @Html.Raw(Html.Action("GetDanhSachQuan", "AThongTinCaNhans", new { idThanhPho = @Model.IDThanhPho, idQuan = @Model.IDQuan }))
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Phường/Xã</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="IDPhuong" id="IDPhuong">
+                                        @Html.Raw(Html.Action("GetDanhSachPhuong", "AThongTinCaNhans", new { idQuan = @Model.IDQuan, idPhuong = @Model.IDPhuong }))
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Ngày Sinh</label>
+                                <div class="col-sm-10">
+                                    @if (Model.NgaySinh.HasValue)
+                                    {
+
+                                        <input type="date" id="inputDate" name="NgaySinh" class="form-control"
+                                               value="@(Model.NgaySinh.HasValue ? Model.NgaySinh.Value.ToString("yyyy-MM-dd") : "")" />
+                                    }
+                                    else
+                                    {
+                                        <input type="date" id="inputDate" name="NgaySinh" class="form-control" placeholder="Chọn ngày tháng năm" />
+                                    }
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Giới Tính</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownListFor(m => m.GioiTinh, new SelectList(new[] { new { Text = "Nam", Value = true }, new { Text = "Nữ", Value = false } }, "Value", "Text"), "Chọn giới tính", new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">CCCD</label>
+                                <div class="col-sm-10">
+                                    <input type="text" value="@Model.CCCD" name="CCCD" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Ngày Cấp</label>
+                                <div class="col-sm-10">
+                                    @if (Model.NgayCap.HasValue)
+                                    {
+
+                                        <input type="date" id="inputDate" name="NgayCap" class="form-control"
+                                               value="@(Model.NgayCap.HasValue ? Model.NgayCap.Value.ToString("yyyy-MM-dd") : "")" />
+                                    }
+                                    else
+                                    {
+                                        <input type="date" id="inputDate" name="NgayCap" class="form-control" placeholder="Chọn ngày tháng năm" />
+                                    }
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Nơi Cấp</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="NoiCap_IDTP">
+                                        @Html.Raw(Html.Action("GetThanhPho", "AThongTinCaNhans", new { id = @Model.NoiCap_IDTP }))
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Tình Trạng</label>
+                                <div class="col-sm-10">
+                                    @Html.DropDownListFor(m => m.TinhTrangHonNhan, new SelectList(new[] { new { Text = "Độc thân", Value = true }, new { Text = "Đã kết hôn", Value = false } }, "Value", "Text"), "Chọn tình trạng hôn nhân", new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Nghề Nghiệp</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="NgheNghiep">
+                                        @Html.Raw(Html.Action("GetNgheNghiep", "AThongTinCaNhans", new { id = @Model.NgheNghiep }))
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Nhóm Máu</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="IDNhomMau">
+                                        @Html.Raw(Html.Action("GetNhomMau", "AThongTinCaNhans", new { id = @Model.IDNhomMau }))
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Thêm Mới</button>
+                                    <a href="/admin/AThongTinCaNhans" class="btn btn-danger"> Quay Lại</a>
+                                </div>
+                            </div>
+
+                        </form><!-- End General Form Elements -->
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </section>
+    <script>
+        function loadQuanHuyen() {
+            var idThanhPho = document.getElementById("IDThanhPho").value;
+
+            if (!idThanhPho) {
+                // Nếu không có thành phố được chọn, reset danh sách quận
+                document.getElementById("IDQuan").innerHTML = "<option value=''>----- Chọn Quận/Huyện -----</option>";
+                return;
+            }
+
+            fetch(`/HomePage/GetDanhSachQuan?idThanhPho=${idThanhPho}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("IDQuan").innerHTML = data; // Cập nhật dropdown quận
+                })
+                .catch(error => {
+                    console.error("Lỗi khi tải danh sách quận:", error);
+                    document.getElementById("IDQuan").innerHTML = "<option value=''>----- Lỗi khi tải -----</option>";
+                });
+        }
+        //
+        function loadPhuongXa() {
+            var idQuan = document.getElementById("IDQuan").value;
+
+            if (!idQuan) {
+                // Nếu không có quận được chọn, reset danh sách phường
+                document.getElementById("IDPhuong").innerHTML = "<option value=''>----- Chọn Phường/Xã -----</option>";
+                return;
+            }
+
+            fetch(`/HomePage/GetDanhSachPhuong?idQuan=${idQuan}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("IDPhuong").innerHTML = data; // Cập nhật dropdown quận
+                })
+                .catch(error => {
+                    console.error("Lỗi khi tải danh sách quận:", error);
+                    document.getElementById("IDPhuong").innerHTML = "<option value=''>----- Lỗi khi tải -----</option>";
+                });
+        }
+
+    </script>
+
+
+
+</main>
+

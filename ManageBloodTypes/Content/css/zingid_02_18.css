@@ -218,7 +218,7 @@ h3{font-size:17px;border-bottom:1px solid #eee;padding-bottom:10px;margin-bottom
         top: 90px;
         left: -160px;
         width: 400px;
-        height: 450px;
+        height: 470px;
     }
 }
 
@@ -397,7 +397,7 @@ h3{font-size:17px;border-bottom:1px solid #eee;padding-bottom:10px;margin-bottom
 .zidregbtn{display:block;width:208px;height:43px;background-position:-128px 0;text-indent:-99999em;}
 .zidregbtn:hover{background-position:-128px -48px;}
 .zidlogincont .otheracclogin{border-top:1px solid #eee;margin-top:25px;padding-top:17px;}
-.zid_loginform .formheader{font-size:26px;line-height:26px;color:#666;text-transform:none;font-weight:300;text-transform:uppercase;margin-bottom:10px;}
+.zid_loginform .formheader{font-size:23px;line-height:26px;color:#555;text-transform:none;font-weight:300;text-transform:uppercase;margin-bottom:10px;}
 
 /* =====@@@[REGISTER]@@@====*/
 .zid_regform{width:450px;margin:0 auto;}
@@ -597,12 +597,16 @@ h3{font-size:17px;border-bottom:1px solid #eee;padding-bottom:10px;margin-bottom
 .accuser_code{background-color:#ecf7ff;border-bottom:1px solid #cee1eb;font-size:14px;}
 .accuser_code_inner{width:800px;margin:0 auto;padding:14px 0;color:#888;text-align:right;}
 .accuser_code_inner strong{color:#333;}
+
 .pageheading{line-height:normal;width:100%;display:block;padding:14px 0;border-bottom:1px solid #e2e2e2;font-weight:normal;margin-bottom:-1px;font-size:20px;clear:both;}
 .zid_sidemenu{width:268px;position:absolute;left:0;height:100%;border-right:1px solid #e2e2e2;border-top:1px solid #e2e2e2;box-shadow:-2px 0 4px -4px #888 inset;}
 .zidmitem{background-color:#f8f8f8;border-bottom:1px solid #e2e2e2;}
 .zidmitem a{display:block;font-weight:bold;font-size:14px;color:#555;line-height:normal;text-decoration:none;border-right:1px solid #ddd;border-left:1px solid #ddd;margin-right:-1px;padding-left:3px;transition: background-color 0.3s ease 0s;background-color:#f8f8f8;}
 .zidmitem .zidm_itemwrapper{padding:15px 10px 15px 40px;display:block;transition: all 0.3s ease 0s;-moz-transition: all 0.3s ease 0s;box-shadow:-2px 0 4px -4px #888 inset,0 1px 0 #fff inset;}
 .zidmitem .zidm_itemwrapper span{display:block;font-size:12px;color:#999;padding-top:2px;font-weight:normal;}
+
+
+
 
 
 /* Hot game & hot event */

@@ -12,5 +12,6 @@ namespace ManageBloodTypes.Models
         public string Gmail { get; set; }
         public string MatKhau { get; set; }
         public Nullable<bool> Hide { get; set; }
+        public int? MaTaiKhoan { get; internal set; }
     }
 }

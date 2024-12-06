@@ -171,27 +171,27 @@
 </head>
 <body>
     @*
-        
+
             // Khi người dùng cần đăng nhập
         zid.goLogin();
 
         // Khi người dùng muốn thay đổi địa chỉ email của mình
         zid.chgEmailUrl('newemail@example.com');*@
-    
+
     @*<script type="text/javascript">
-        var zid = {
-            baseUrl: "https://id.zing.vn/v2",
-            apikey: "92140c0e46c54994812403f564787c14",
-            pid: "38",
-            loginUrl: "https://id.zing.vn/v2/login?apikey=92140c0e46c54994812403f564787c14&pid=38",
-            goLogin: function () {
-                location.href = "https://id.zing.vn/v2/login?apikey=92140c0e46c54994812403f564787c14&pid=38&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38";
-            },
-            chgEmailUrl: function (email) {
-                location.href = "https://id.zing.vn/v2/emailactive/change?apikey=92140c0e46c54994812403f564787c14&pid=38&email=" + email;
-            }
-        };
-    </script>*@
+            var zid = {
+                baseUrl: "https://id.zing.vn/v2",
+                apikey: "92140c0e46c54994812403f564787c14",
+                pid: "38",
+                loginUrl: "https://id.zing.vn/v2/login?apikey=92140c0e46c54994812403f564787c14&pid=38",
+                goLogin: function () {
+                    location.href = "https://id.zing.vn/v2/login?apikey=92140c0e46c54994812403f564787c14&pid=38&next=https%3A%2F%2Fid.zing.vn%2Fv2%2Finfosetting%3Fapikey%3D92140c0e46c54994812403f564787c14%26pid%3D38";
+                },
+                chgEmailUrl: function (email) {
+                    location.href = "https://id.zing.vn/v2/emailactive/change?apikey=92140c0e46c54994812403f564787c14&pid=38&email=" + email;
+                }
+            };
+        </script>*@
 
     <script type="text/javascript" src="/Content/js/zm.ui-2.15.min.js"></script>
     <script type="text/javascript" src="/Content/js/zid_27.js"></script>
@@ -203,12 +203,12 @@
                 <img src="~/content/img/logo_home.png" alt="logo" class="additional-logo" />
             </div>
             <h1 class="zidlogo">
-                        @*<a class="zidsprt"
-                href="https://id.zing.vn/v2?apikey=92140c0e46c54994812403f564787c14&pid=38"
-                title="Trang chủ Zing ID">Zing ID</a>*@
+                @*<a class="zidsprt"
+                    href="https://id.zing.vn/v2?apikey=92140c0e46c54994812403f564787c14&pid=38"
+                    title="Trang chủ Zing ID">Zing ID</a>*@
 
 
-                    </h1>
+            </h1>
 
 
             @*<p id="colorful-text">HỆ THỐNG THÔNG TIN CÁC NHÓM MÁU</p>
@@ -256,8 +256,33 @@
 
 
         </div>
+
     </div>
 
+    <div class="accuser_code">
+        @*<h1 class="zidlogo"> </h1>*@
+        <div class="accuser_code_inner">
+            Tài khoản: <strong>@Session["UserEmail"].ToString()</strong>  |
+            Mã số tài khoản: <strong>@Session["MaTaiKhoan"]</strong>
+        </div>
+        <div class="accuser_code_inner_mobile">
+            <div class="zing-id-m">
+                <span> Tài khoản: </span>
+                <span class="text-bold-m">    @Session["UserEmail"].ToString() </span>
+            </div>
+            <div class="zing-number-m">
+                <span>
+                    Mã số tài khoản
+                </span>
+                <span class="text-bold-m">
+                    @Session["MaTaiKhoan"]
+                </span>
+            </div>
+        </div>
+
+
+
+    </div>
     @RenderBody()
 
     <div class="zidfooter">
@@ -280,6 +305,14 @@
             <div class="clr"></div>
         </div>
     </div>
+    <script>
+        debugger;
+        var loadFile = function (event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+
 </body>
 </html>
 
