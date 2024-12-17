@@ -347,7 +347,7 @@
 
                                                 var formData = $(this).serialize(); // Lấy dữ liệu từ form
                                                 $.ajax({
-                                                    url: '@Url.Action("UpdateProfile", "HomePage")', // Đường dẫn Action
+                                                    url: '@Url.Action("Login", "HomePage")', // Đường dẫn Action
                                                     type: 'POST',
                                                     data: formData,
                                                     success: function(response) {

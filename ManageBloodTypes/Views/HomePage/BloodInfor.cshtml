@@ -6,7 +6,6 @@
 }
 
 <main id="main" class="main">
-
     <div class="pagetitle">
         <h1 @*class="d-flex justify-content-center align-items-start" style="padding-top: 1px;"*@>Thông Tin Về Các Nhóm Máu</h1>
         @*<nav>
@@ -45,21 +44,31 @@
                                     </li>*@
 
                             <!--</ul>-->
+                            <!--thêm max-width:320px-->
                             <div class="tab-content pt-2">
 
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
                                     <!--<h5 class="card-title">-->@*Thông Tin Chi Tiết*@<!--</h5>-->
 
-                                    <div class="row" >
+                                    <div class="row">
                                         <div class="col-lg-12 col-md-12">
                                             <div class="ckeditor">
                                                 @Html.Raw(Model.NoiDung)
                                             </div>
                                         </div>
                                     </div>
+                                    <hr style="border: 1px solid #444; margin: 10px 20px 10px 20px;">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12" style="text-align: center;">
+                                            <h2> <strong>Video Quá Trình Nhận Máu Ở Người</strong></h2>
+                                            <video controls="controls" style="width:80%;">
+                                                <source src="~/Content/img/VideoTruyenMau.mp4" type="video/mp4" />
+                                            </video>
+                                        </div>
+                                    </div>
 
-                                    
+
                                 </div>
                             </div><!-- End Bordered Tabs -->
 

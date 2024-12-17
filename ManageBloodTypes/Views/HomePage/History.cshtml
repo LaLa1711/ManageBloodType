@@ -1,0 +1,120 @@
+﻿@model IEnumerable<ManageBloodTypes.Models.LichSuGiaoDichModel>
+
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_Layout_Home.cshtml";
+}
+@{
+    int counter = 1;  // Khai báo biến đếm số thứ tự
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Lịch Sử Yêu Cầu</h1>
+    </div><!-- End Page Title -->
+    <section class="section profile">
+        <div class="row">
+            <div class="d-flex justify-content-center align-items-start" style=" padding-top: 20px;">
+                <div class="col-xl-10">
+
+                    <div class="card">
+                        <div class="card-body pt-3">
+                            <!--thêm max-width:320px-->
+                            <div class="tab-content pt-2">
+
+                                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Số Thứ Tự
+                                                        </th>
+                                                        <th>
+                                                            Ngày Yêu Cầu
+                                                        </th>
+                                                        <th>
+                                                            Yêu Cầu
+                                                        </th>
+                                                        <th>
+                                                            Trạng Thái Xử Lý
+                                                        </th>
+                                                        <th>
+                                                            Ngày Xác Nhận
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @counter
+                                                        </td>
+                                                        <td>
+                                                            @if (item.NgayYeuCau.HasValue)
+                                                            {
+                                                                @item.NgayYeuCau.Value.ToString("dd/MM/yyyy")
+                                                            }
+                                                            else
+                                                            {
+                                                                <p>Không có thời gian</p>
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @if (item.TinhTrangYeuCau != true)
+                                                            {
+                                                                <p> Đang Cần Máu</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p> Hiến Máu</p>
+                                                            }
+
+                                                        </td>
+                                                        <td>
+                                                            @if (item.TrangThai != true)
+                                                            {
+                                                                <p> Chưa Được Xử Lý</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p> Đã Tiếp Nhận</p>
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            @if (item.NgayXacNhan.HasValue)
+                                                            {
+                                                                @item.NgayXacNhan.Value.ToString("dd/MM/yyyy")
+                                                            }
+                                                            else
+                                                            {
+                                                                <p>Chưa Được Xử Lý</p>
+                                                            }
+                                                        </td>
+
+                                                    </tr>
+                                                        counter++; 
+
+                                                }
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div><!-- End Bordered Tabs -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</main>

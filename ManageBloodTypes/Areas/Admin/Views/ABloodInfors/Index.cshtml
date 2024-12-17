@@ -9,13 +9,6 @@
 
     <div class="pagetitle">
         <h1>QUẢN LÝ THÔNG TIN NHÓM MÁU</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index">Home</a></li>
-                <li class="breadcrumb-item">Forms</li>
-                <li class="breadcrumb-item active">Elements</li>
-            </ol>
-        </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
@@ -36,9 +29,6 @@
                                 <th>
                                     Tiêu Đề
                                 </th>
-                                <th>
-                                    Trạng Thái
-                                </th>
                             </tr>
                         </thead>
 
@@ -46,20 +36,18 @@
                         {
                             <tr>
                                 <td>
-                                    <img src="@item.HinhAnh" width="100" />
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TieuDe)
-                                </td>
-                                <td style="padding-left: 30px;">
-                                    @if (item.Hide != true)
+                                    @if (string.IsNullOrEmpty(item.HinhAnh))
                                     {
-                                        <p>         Hiện</p>
+                                        item.HinhAnh = "/Content/img/avatarfb.jpg";
+                                        <img src="@item.HinhAnh" width="180" />
+
                                     }
                                     else
                                     {
-                                        <p>   ẨN </p>
-                                    }
+                                        <img src="@item.HinhAnh" width="180" />}
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TieuDe)
                                 </td>
                                 <td>
                                     <a href="/Admin/ABloodInfors/Edit/@item.IDThTinMau"><i class="bi bi-pencil-square"></i></a> |

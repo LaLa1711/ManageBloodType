@@ -58,6 +58,8 @@
     <EntitySet Name="tbTinhThanhPhoes" EntityType="Self.tbTinhThanhPho" />
     <EntitySet Name="tbXaPhuongs" EntityType="Self.tbXaPhuong" />
     <EntitySet Name="tbBloodInfors" EntityType="QLMauModel.tbBloodInfor" />
+    <EntitySet Name="tbLichSuGiaoDiches" EntityType="QLMauModel.tbLichSuGiaoDich" />
+    <EntitySet Name="tbThongKeMaus" EntityType="QLMauModel.tbThongKeMau" />
     <EntitySet Name="tbThongTinCaNhans" EntityType="QLMauModel.tbThongTinCaNhan" />
   </EntityContainer>
   <EntityType Name="tbBloodInfor">
@@ -70,12 +72,37 @@
     <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Hide" Type="Boolean" />
   </EntityType>
+  <EntityType Name="tbLichSuGiaoDich">
+    <Key>
+      <PropertyRef Name="IDGiaoDich" />
+    </Key>
+    <Property Name="IDGiaoDich" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaTaiKhoan" Type="Int32" />
+    <Property Name="IDNhomMau" Type="Int32" />
+    <Property Name="TinhTrangYeuCau" Type="Boolean" />
+    <Property Name="TrangThai" Type="Boolean" />
+    <Property Name="NgayYeuCau" Type="DateTime" Precision="0" />
+    <Property Name="SoLuongMau" Type="Int32" />
+    <Property Name="NgayXacNhan" Type="DateTime" Precision="0" />
+    <Property Name="Hide" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tbThongKeMau">
+    <Key>
+      <PropertyRef Name="IDThongKeMau" />
+    </Key>
+    <Property Name="IDThongKeMau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaTaiKhoan" Type="Int32" />
+    <Property Name="SoLanHienMau" Type="Int32" />
+    <Property Name="SoLanNhanMau" Type="Int32" />
+    <Property Name="Hide" Type="Boolean" />
+  </EntityType>
   <EntityType Name="tbThongTinCaNhan">
     <Key>
       <PropertyRef Name="IDThongTin" />
     </Key>
     <Property Name="IDThongTin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="MaTaiKhoan" Type="Int32" />
+    <Property Name="Role" Type="Int32" />
     <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="SDT" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
     <Property Name="Gmail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />

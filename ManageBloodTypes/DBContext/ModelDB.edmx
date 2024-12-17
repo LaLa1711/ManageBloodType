@@ -15,6 +15,20 @@
           <Property Name="HinhAnh" Type="varchar(max)" />
           <Property Name="Hide" Type="bit" />
         </EntityType>
+        <EntityType Name="tbLichSuGiaoDich">
+          <Key>
+            <PropertyRef Name="IDGiaoDich" />
+          </Key>
+          <Property Name="IDGiaoDich" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTaiKhoan" Type="int" />
+          <Property Name="IDNhomMau" Type="int" />
+          <Property Name="TinhTrangYeuCau" Type="bit" />
+          <Property Name="TrangThai" Type="bit" />
+          <Property Name="NgayYeuCau" Type="date" />
+          <Property Name="SoLuongMau" Type="int" />
+          <Property Name="NgayXacNhan" Type="date" />
+          <Property Name="Hide" Type="bit" />
+        </EntityType>
         <EntityType Name="tbNgheNghiep">
           <Key>
             <PropertyRef Name="IDNgheNghiep" />
@@ -48,12 +62,23 @@
           <Property Name="TenQuyen" Type="nvarchar" MaxLength="150" />
           <Property Name="Hide" Type="bit" />
         </EntityType>
+        <EntityType Name="tbThongKeMau">
+          <Key>
+            <PropertyRef Name="IDThongKeMau" />
+          </Key>
+          <Property Name="IDThongKeMau" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTaiKhoan" Type="int" />
+          <Property Name="SoLanHienMau" Type="int" />
+          <Property Name="SoLanNhanMau" Type="int" />
+          <Property Name="Hide" Type="bit" />
+        </EntityType>
         <EntityType Name="tbThongTinCaNhan">
           <Key>
             <PropertyRef Name="IDThongTin" />
           </Key>
           <Property Name="IDThongTin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MaTaiKhoan" Type="int" />
+          <Property Name="Role" Type="int" />
           <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
           <Property Name="SDT" Type="varchar" MaxLength="11" />
           <Property Name="Gmail" Type="varchar" MaxLength="150" />
@@ -92,10 +117,12 @@
         </EntityType>
         <EntityContainer Name="QLMauModelStoreContainer">
           <EntitySet Name="tbBloodInfor" EntityType="Self.tbBloodInfor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbLichSuGiaoDich" EntityType="Self.tbLichSuGiaoDich" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbNgheNghiep" EntityType="Self.tbNgheNghiep" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbNhomMau" EntityType="Self.tbNhomMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbQuanHuyen" EntityType="Self.tbQuanHuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbQuyen" EntityType="Self.tbQuyen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbThongKeMau" EntityType="Self.tbThongKeMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbThongTinCaNhan" EntityType="Self.tbThongTinCaNhan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbTinhThanhPho" EntityType="Self.tbTinhThanhPho" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbXaPhuong" EntityType="Self.tbXaPhuong" Schema="dbo" store:Type="Tables" />
@@ -162,6 +189,8 @@
           <EntitySet Name="tbTinhThanhPhoes" EntityType="Self.tbTinhThanhPho" />
           <EntitySet Name="tbXaPhuongs" EntityType="Self.tbXaPhuong" />
           <EntitySet Name="tbBloodInfors" EntityType="QLMauModel.tbBloodInfor" />
+          <EntitySet Name="tbLichSuGiaoDiches" EntityType="QLMauModel.tbLichSuGiaoDich" />
+          <EntitySet Name="tbThongKeMaus" EntityType="QLMauModel.tbThongKeMau" />
           <EntitySet Name="tbThongTinCaNhans" EntityType="QLMauModel.tbThongTinCaNhan" />
         </EntityContainer>
         <EntityType Name="tbBloodInfor">
@@ -174,12 +203,37 @@
           <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Hide" Type="Boolean" />
         </EntityType>
+        <EntityType Name="tbLichSuGiaoDich">
+          <Key>
+            <PropertyRef Name="IDGiaoDich" />
+          </Key>
+          <Property Name="IDGiaoDich" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTaiKhoan" Type="Int32" />
+          <Property Name="IDNhomMau" Type="Int32" />
+          <Property Name="TinhTrangYeuCau" Type="Boolean" />
+          <Property Name="TrangThai" Type="Boolean" />
+          <Property Name="NgayYeuCau" Type="DateTime" Precision="0" />
+          <Property Name="SoLuongMau" Type="Int32" />
+          <Property Name="NgayXacNhan" Type="DateTime" Precision="0" />
+          <Property Name="Hide" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbThongKeMau">
+          <Key>
+            <PropertyRef Name="IDThongKeMau" />
+          </Key>
+          <Property Name="IDThongKeMau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTaiKhoan" Type="Int32" />
+          <Property Name="SoLanHienMau" Type="Int32" />
+          <Property Name="SoLanNhanMau" Type="Int32" />
+          <Property Name="Hide" Type="Boolean" />
+        </EntityType>
         <EntityType Name="tbThongTinCaNhan">
           <Key>
             <PropertyRef Name="IDThongTin" />
           </Key>
           <Property Name="IDThongTin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaTaiKhoan" Type="Int32" />
+          <Property Name="Role" Type="Int32" />
           <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SDT" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="Gmail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -272,6 +326,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbLichSuGiaoDiches">
+            <EntityTypeMapping TypeName="QLMauModel.tbLichSuGiaoDich">
+              <MappingFragment StoreEntitySet="tbLichSuGiaoDich">
+                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="NgayXacNhan" ColumnName="NgayXacNhan" />
+                <ScalarProperty Name="SoLuongMau" ColumnName="SoLuongMau" />
+                <ScalarProperty Name="NgayYeuCau" ColumnName="NgayYeuCau" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="TinhTrangYeuCau" ColumnName="TinhTrangYeuCau" />
+                <ScalarProperty Name="IDNhomMau" ColumnName="IDNhomMau" />
+                <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
+                <ScalarProperty Name="IDGiaoDich" ColumnName="IDGiaoDich" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbThongKeMaus">
+            <EntityTypeMapping TypeName="QLMauModel.tbThongKeMau">
+              <MappingFragment StoreEntitySet="tbThongKeMau">
+                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="SoLanNhanMau" ColumnName="SoLanNhanMau" />
+                <ScalarProperty Name="SoLanHienMau" ColumnName="SoLanHienMau" />
+                <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
+                <ScalarProperty Name="IDThongKeMau" ColumnName="IDThongKeMau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbThongTinCaNhans">
             <EntityTypeMapping TypeName="QLMauModel.tbThongTinCaNhan">
               <MappingFragment StoreEntitySet="tbThongTinCaNhan">
@@ -293,6 +373,7 @@
                 <ScalarProperty Name="Gmail" ColumnName="Gmail" />
                 <ScalarProperty Name="SDT" ColumnName="SDT" />
                 <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
                 <ScalarProperty Name="IDThongTin" ColumnName="IDThongTin" />
               </MappingFragment>

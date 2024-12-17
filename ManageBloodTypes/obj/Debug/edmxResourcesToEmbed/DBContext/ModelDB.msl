@@ -68,6 +68,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbLichSuGiaoDiches">
+      <EntityTypeMapping TypeName="QLMauModel.tbLichSuGiaoDich">
+        <MappingFragment StoreEntitySet="tbLichSuGiaoDich">
+          <ScalarProperty Name="Hide" ColumnName="Hide" />
+          <ScalarProperty Name="NgayXacNhan" ColumnName="NgayXacNhan" />
+          <ScalarProperty Name="SoLuongMau" ColumnName="SoLuongMau" />
+          <ScalarProperty Name="NgayYeuCau" ColumnName="NgayYeuCau" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+          <ScalarProperty Name="TinhTrangYeuCau" ColumnName="TinhTrangYeuCau" />
+          <ScalarProperty Name="IDNhomMau" ColumnName="IDNhomMau" />
+          <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
+          <ScalarProperty Name="IDGiaoDich" ColumnName="IDGiaoDich" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbThongKeMaus">
+      <EntityTypeMapping TypeName="QLMauModel.tbThongKeMau">
+        <MappingFragment StoreEntitySet="tbThongKeMau">
+          <ScalarProperty Name="Hide" ColumnName="Hide" />
+          <ScalarProperty Name="SoLanNhanMau" ColumnName="SoLanNhanMau" />
+          <ScalarProperty Name="SoLanHienMau" ColumnName="SoLanHienMau" />
+          <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
+          <ScalarProperty Name="IDThongKeMau" ColumnName="IDThongKeMau" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbThongTinCaNhans">
       <EntityTypeMapping TypeName="QLMauModel.tbThongTinCaNhan">
         <MappingFragment StoreEntitySet="tbThongTinCaNhan">
@@ -89,6 +115,7 @@
           <ScalarProperty Name="Gmail" ColumnName="Gmail" />
           <ScalarProperty Name="SDT" ColumnName="SDT" />
           <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
           <ScalarProperty Name="IDThongTin" ColumnName="IDThongTin" />
         </MappingFragment>

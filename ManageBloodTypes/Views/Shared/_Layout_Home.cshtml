@@ -49,7 +49,7 @@
                 <span class="d-none d-lg-block">niceadmin</span>
             </a>*@
             <i class="bi bi-list toggle-sidebar-btn"></i>
-            <a href="/HomePage" @*class="logo d-flex align-items-center"*@ class="responsive-title">
+            <a href="/HomePage/Home" @*class="logo d-flex align-items-center"*@ class="responsive-title">
                 @*<img src="/Content/img/logo.png" alt="">*@
                 <span class="d-none d-lg-block""><strong>  TRANG KHAI BÁO THÔNG TIN CÁ NHÂN</strong></span>
             </a>
@@ -216,49 +216,66 @@
     <!-- End Messages Nav -->
 
                 <li class="nav-item dropdown pe-3">
-                    
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="@Session["HinhAnh"]" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">@Session["HoTen"].ToString()</span>
-                    </a><!-- End Profile Iamge Icon -->
+                    @if (Session["HinhAnh"] != null && @Session["HoTen"] != null)
+                    {
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                            <img src="@Session["HinhAnh"]" alt="Profile" class="rounded-circle">
+                            <span class="d-none d-md-block dropdown-toggle ps-2">@Session["HoTen"].ToString()</span>
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                        <li class="dropdown-header">
-                            <h6>@Session["HoTen"].ToString()</h6>
-                            <h8>Mã TK: @Session["MaTaiKhoan"].ToString()</h8>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="/HomePage">
-                                <i class="bi bi-person"></i>
-                                <span>Thông Tin Cá Nhân</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                        </a><!-- End Profile Iamge Icon -->
+                        @*@if (Session["user"] != null)
+            {
+                ManageBloodTypes.DBContext.tbThongTinCaNhan caNhan = Session["user"] as ManageBloodTypes.DBContext.tbThongTinCaNhan;
+                <h6>@caNhan.HoTen</h6>
+                <h8>Mã TK: @Session["MaTaiKhoan"].ToString()</h8>
+            }
+            else
+            {
+                <a>ĐĂNG NHẬP</a>
+            }*@
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                            <li class="dropdown-header">
+                                <h6>@Session["HoTen"].ToString()</h6>
+                                <h8>Mã TK: @Session["MaTaiKhoan"].ToString()</h8>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="/HomePage/Login">
-                                <i class="bi bi-gear"></i>
-                                <span>Tài Khoản Đăng Nhập</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="/HomePage">
+                                    <i class="bi bi-person"></i>
+                                    <span>Thông Tin Cá Nhân</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="/Home/Logout">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Thoát</span>
-                            </a>
-                        </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="/HomePage/UpdateUserProfile">
+                                    <i class="bi bi-gear"></i>
+                                    <span>Tài Khoản Đăng Nhập</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
 
-                    </ul><!-- End Profile Dropdown Items -->
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="/Home/Logout">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Thoát</span>
+                                </a>
+                            </li>
+
+                        </ul><!-- End Profile Dropdown Items -->
+                    }
+                    else
+                    {
+                        <a class="d-none d-md-block ps-2" style=" font-weight: bold; font-size: 25px; " href="/Home/Index">ĐĂNG NHẬP</a>
+                    }
                 </li><!-- End Profile Nav -->
 
             </ul>
@@ -285,7 +302,7 @@
             </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/HomePage/Login">
+                <a class="nav-link collapsed" href="/HomePage/UpdateUserProfile">
                     <i class="bi bi-key"></i>
                     <span>Thông Tin Đăng Nhập</span>
                 </a>
@@ -298,6 +315,18 @@
                 </a>
             </li><!-- End Contact Page Nav -->
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/HomePage/ResBlood">
+                    <i class="bx bx-donate-blood" style="font-size: 1.2rem;"></i>
+                    <span>Gửi Yêu Cầu Hiến Máu & Nhận Máu</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/HomePage/History">
+                    <i class="bi bi-clock-history" style="font-size: 1rem;"></i>
+                    <span>Lịch Sử Yêu Cầu Hiến Máu & Nhận Máu</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/Home/Logout">
                     <i class="ri-logout-box-r-line"></i>

@@ -16,7 +16,6 @@ namespace ManageBloodTypes.Controllers
 {
     public class GeneralInformationController : Controller
     {
-        // GET: GeneralInformation
         private QLMauEntities db = new QLMauEntities();
         #region -- Xử Lý File Upload
         #region -- Upload
@@ -68,7 +67,7 @@ namespace ManageBloodTypes.Controllers
 
                 if (user == null)
                 {
-                    return Redirect("/not-found"); // Trường hợp không tìm thấy người dùng
+                    return Redirect("/not-found"); 
                 }
                 if (string.IsNullOrEmpty(user.HoTen))
                 {

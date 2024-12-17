@@ -1,0 +1,237 @@
+﻿@model ManageBloodTypes.Models.ThongTinCaNhanModels
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout_Doctor.cshtml";
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Tìm Kiếm Thông Tin</h1>
+    </div><!-- End Page Title -->
+
+    <section class="section profile">
+        <div class="row">
+            <div class="d-flex justify-content-center align-items-start" style="padding-top: 20px;">
+                <div class="col-xl-10">
+                    <div class="card">
+                        <div class="card-body pt-3">
+                            <div class="tab-content pt-2">
+
+                                <!-- Thành Phố Dropdown -->
+                                <div class="row mb-3">
+                                    <label for="IDThanhPho" class="col-md-4 col-lg-3 col-form-label">Thành Phố</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <select class="form-control" name="IDThanhPho" id="IDThanhPho" onchange="loadQuanHuyen()">
+                                            @Html.Raw(ViewBag.ThanhPhoList)
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Quận/Huyện Dropdown -->
+                                <div class="row mb-3">
+                                    <label for="IDQuan" class="col-md-4 col-lg-3 col-form-label">Quận/Huyện</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <select class="form-control" name="IDQuan" id="IDQuan" onchange="loadPhuongXa()" disabled>
+                                            <option value="">----- Chọn Quận/Huyện -----</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Phường/Xã Dropdown -->
+                                <div class="row mb-3">
+                                    <label for="IDPhuong" class="col-md-4 col-lg-3 col-form-label">Phường/Xã</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <select class="form-control" name="IDPhuong" id="IDPhuong" disabled>
+                                            <option value="">----- Chọn Phường/Xã -----</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Dropdown chọn nhóm máu cho -->
+                                <div class="row mb-3">
+                                    <label for="BloodGroupFor" class="col-md-4 col-lg-3 col-form-label">Nhóm Máu Cho</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <select class="form-control" name="BloodGroupFor" id="BloodGroupFor" onchange="toggleBloodGroupReceive()">
+                                            <option value="">----- Chọn Nhóm Máu Cho -----</option>
+                                            @foreach (var bloodGroup in ViewBag.BloodGroups)
+                                            {
+                                                <option value="@bloodGroup.IDNhomMau">@bloodGroup.TenNhomMau</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Dropdown chọn nhóm máu nhận -->
+                                <div class="row mb-3">
+                                    <label for="BloodGroupReceive" class="col-md-4 col-lg-3 col-form-label">Nhóm Máu Nhận</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <select class="form-control" name="BloodGroupReceive" id="BloodGroupReceive">
+                                            <option value="">----- Chọn Nhóm Máu Nhận -----</option>
+                                            @foreach (var bloodGroup in ViewBag.BloodGroups)
+                                            {
+                                                <option value="@bloodGroup.IDNhomMau">@bloodGroup.TenNhomMau</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Nút tìm kiếm -->
+                                <div class="row mb-3">
+                                    <div class="col-md-8 col-lg-9">
+                                        <button type="button" class="btn btn-primary" onclick="SearchUser()">Tìm Kiếm</button>
+                                    </div>
+                                </div>
+
+                                <!-- Hiển thị kết quả tìm kiếm -->
+                                <div id="searchResults" class="search-results mt-4">
+                                    <div class="alert alert-info" role="alert" id="noResults" style="display:none;">
+                                        Không tìm thấy người dùng nào phù hợp.
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- End Bordered Tabs -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- JavaScript tìm kiếm -->
+<script>
+    // Hàm load Quận/Huyện khi Thành Phố thay đổi
+    function loadQuanHuyen() {
+        var idThanhPho = document.getElementById("IDThanhPho").value;
+
+        fetch(`/Doctor/LoadQuanHuyen?idThanhPho=${idThanhPho}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Lỗi khi lấy dữ liệu Quận/Huyện");
+                }
+                return response.json();
+            })
+            .then(data => {
+                var quanSelect = document.getElementById("IDQuan");
+                var phuongSelect = document.getElementById("IDPhuong");
+
+                // Reset Quận/Huyện và Phường/Xã
+                quanSelect.innerHTML = "<option value=''>----- Chọn Quận/Huyện -----</option>";
+                phuongSelect.innerHTML = "<option value=''>----- Chọn Phường/Xã -----</option>";
+                phuongSelect.disabled = true;
+
+                if (data.length > 0) {
+                    quanSelect.disabled = false;
+                    data.forEach(quan => {
+                        var option = document.createElement("option");
+                        option.value = quan.IDQuan;
+                        option.textContent = quan.TenQuan;
+                        quanSelect.appendChild(option);
+                    });
+                } else {
+                    quanSelect.disabled = true;
+                }
+            })
+            .catch(error => {
+                console.error("Lỗi khi tải Quận/Huyện:", error);
+                alert("Có lỗi xảy ra khi tải Quận/Huyện. Vui lòng thử lại sau.");
+            });
+    }
+
+    // Hàm load Phường/Xã khi Quận/Huyện thay đổi
+    function loadPhuongXa() {
+        var idQuan = document.getElementById("IDQuan").value;
+
+        fetch(`/Doctor/LoadXaPhuong?idQuan=${idQuan}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Lỗi khi lấy dữ liệu Phường/Xã");
+                }
+                return response.json();
+            })
+            .then(data => {
+                var phuongSelect = document.getElementById("IDPhuong");
+                phuongSelect.innerHTML = "<option value=''>----- Chọn Phường/Xã -----</option>";
+
+                if (data.length > 0) {
+                    phuongSelect.disabled = false;
+                    data.forEach(phuong => {
+                        var option = document.createElement("option");
+                        option.value = phuong.IDPhuong;
+                        option.textContent = phuong.TenPhuong;
+                        phuongSelect.appendChild(option);
+                    });
+                } else {
+                    phuongSelect.disabled = true;
+                }
+            })
+            .catch(error => {
+                console.error("Lỗi khi tải Phường/Xã:", error);
+                alert("Có lỗi xảy ra khi tải Phường/Xã. Vui lòng thử lại sau.");
+            });
+    }
+
+    // Hàm ẩn/hiện nhóm máu nhận và vô hiệu hóa phần tử tương ứng
+    function toggleBloodGroupReceive() {
+        var bloodGroupFor = document.getElementById("BloodGroupFor").value;
+        var bloodGroupReceive = document.getElementById("BloodGroupReceive");
+
+        // Kiểm tra nếu người dùng đã chọn nhóm máu cho
+        if (bloodGroupFor) {
+            // Vô hiệu hóa nhóm máu nhận khi đã chọn nhóm máu cho
+            bloodGroupReceive.disabled = true;
+        } else {
+            // Kích hoạt lại nhóm máu nhận khi không chọn nhóm máu cho
+            bloodGroupReceive.disabled = false;
+        }
+    }
+
+    // Đảm bảo phần tử hiển thị đúng khi trang tải lại (nếu có sự thay đổi trên dropdown)
+    window.onload = function () {
+        toggleBloodGroupReceive(); // Kiểm tra trạng thái khi tải lại trang
+    };
+
+
+
+    // Hàm tìm kiếm người dùng
+    function Search() {
+        var idThanhPho = document.getElementById("IDThanhPho").value || '';
+        var idQuan = document.getElementById("IDQuan").value || '';
+        var idPhuong = document.getElementById("IDPhuong").value || '';
+        var bloodGroupFor = document.getElementById("BloodGroupFor").value || '';
+        var bloodGroupReceive = document.getElementById("BloodGroupReceive").value || '';
+
+        fetch(`/Doctor/Search?idThanhPho=${idThanhPho}&idQuan=${idQuan}&idPhuong=${idPhuong}&bloodGroupFor=${bloodGroupFor}&bloodGroupReceive=${bloodGroupReceive}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Lỗi khi lấy dữ liệu từ server");
+                }
+                return response.json();
+            })
+            .then(data => {
+                var resultsDiv = document.getElementById("searchResults");
+                resultsDiv.innerHTML = "";
+
+                if (data.length === 0) {
+                    document.getElementById("noResults").style.display = "block";
+                } else {
+                    document.getElementById("noResults").style.display = "none";
+                    data.forEach(user => {
+                        resultsDiv.innerHTML += `
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <p><strong>Họ Tên:</strong> ${user.HoTen}</p>
+                            <p><strong>Email:</strong> ${user.Gmail}</p>
+                            <p><strong>Địa Chỉ:</strong> ${user.DiaChi}</p>
+                        </div>
+                    </div>
+                `;
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("Lỗi khi tìm kiếm người dùng:", error);
+                alert("Có lỗi xảy ra khi tìm kiếm. Vui lòng thử lại sau.");
+            });
+    }
+</script>

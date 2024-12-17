@@ -12,6 +12,40 @@
 :root {
   scroll-behavior: smooth;
 }
+#error_message1 {
+    display: block; /* Đảm bảo phần tử hiển thị */
+    white-space: nowrap; /* Không xuống dòng trên màn hình lớn */
+}
+
+@media screen and (max-width: 768px) {
+    #error_message1 {
+        white-space: normal; /* Cho phép xuống dòng trên màn hình nhỏ */
+        word-wrap: break-word; /* Chia từ nếu cần thiết */
+    }
+}
+
+
+.alert {
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: red;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
 .center-screen {
     display: flex;
     flex-direction: column; /* Sắp xếp nội dung theo cột (logo trên chữ) */
@@ -39,6 +73,14 @@
         font-size: 1.8rem; /* Chữ nhỏ hơn trên màn hình điện thoại */
     }
 }
+
+@media (max-width: 768px) {
+    .tab-content {
+        max-width: 320px; /* Logo nhỏ hơn trên màn hình điện thoại */
+    }
+
+}
+
 
 body {
   font-family: "Open Sans", sans-serif;

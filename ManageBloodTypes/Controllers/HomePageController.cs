@@ -1,6 +1,7 @@
 ﻿using ManageBloodTypes.App_Start;
 using ManageBloodTypes.DBContext;
 using ManageBloodTypes.Models;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -476,55 +477,55 @@ namespace ManageBloodTypes.Controllers
             }
             if (user.GioiTinh == null)
             {
-                user.GioiTinhDisplay = "(Chưa có thông tin)"; // Trường hợp chưa nhập
+                user.GioiTinhDisplay = "(Chưa có thông tin)"; 
             }
             else if (user.GioiTinh == true)
             {
-                user.GioiTinhDisplay = "Nam"; // True tương ứng với Nam
+                user.GioiTinhDisplay = "Nam"; 
             }
             else
             {
-                user.GioiTinhDisplay = "Nữ"; // False tương ứng với Nữ
+                user.GioiTinhDisplay = "Nữ"; 
             }
             if (user.NgaySinh == null)
             {
-                user.NgaySinhDisplay = "--/--/----"; // Nếu không có ngày sinh
+                user.NgaySinhDisplay = "--/--/----"; 
             }
             else
             {
-                user.NgaySinhDisplay = user.NgaySinh.Value.ToString("dd/MM/yyyy"); // Nếu có ngày sinh, định dạng theo DD/MM/YYYY
+                user.NgaySinhDisplay = user.NgaySinh.Value.ToString("dd/MM/yyyy"); 
             }
             if (string.IsNullOrEmpty(user.DiaChi))
             {
-                user.DiaChi = "(Chưa có thông tin)"; // Nếu không có số điện thoại
+                user.DiaChi = "(Chưa có thông tin)"; 
             }
             if (!user.IDPhuong.HasValue || user.IDPhuong.Value == 0)
             {
-                user.IDPhuong = null; // Nếu không có nghề nghiệp, gán là null
+                user.IDPhuong = null; 
             }
             if (!user.IDQuan.HasValue || user.IDQuan.Value == 0)
             {
-                user.IDQuan = null; // Nếu không có nghề nghiệp, gán là null
+                user.IDQuan = null; 
             }
             if (!user.IDThanhPho.HasValue || user.IDThanhPho.Value == 0)
             {
-                user.IDThanhPho = null; // Nếu không có nghề nghiệp, gán là null
+                user.IDThanhPho = null; 
             }
             if (!user.NgheNghiep.HasValue || user.NgheNghiep.Value == 0)
             {
-                user.NgheNghiep = null; // Nếu không có nghề nghiệp, gán là null
+                user.NgheNghiep = null;
             }
             if (user.TinhTrangHonNhan == null)
             {
-                user.TinhTrangHonNhanDisplay = "(Chưa có thông tin)"; // Trường hợp chưa nhập
+                user.TinhTrangHonNhanDisplay = "(Chưa có thông tin)"; 
             }
             else if (user.TinhTrangHonNhan == true)
             {
-                user.TinhTrangHonNhanDisplay = "Độc Thân"; // True tương ứng với Nam
+                user.TinhTrangHonNhanDisplay = "Độc Thân"; 
             }
             else
             {
-                user.TinhTrangHonNhanDisplay = "Đã Kết Hôn"; // False tương ứng với Nữ
+                user.TinhTrangHonNhanDisplay = "Đã Kết Hôn"; 
             }
 
             //if (!string.IsNullOrEmpty(user.CCCD))
@@ -549,19 +550,19 @@ namespace ManageBloodTypes.Controllers
             }
             if (user.NgayCap == null)
             {
-                user.NgayCapDisplay = "--/--/----"; // Nếu không có ngày sinh
+                user.NgayCapDisplay = "--/--/----"; 
             }
             else
             {
-                user.NgayCapDisplay = user.NgayCap.Value.ToString("dd/MM/yyyy"); // Nếu có ngày sinh, định dạng theo DD/MM/YYYY
+                user.NgayCapDisplay = user.NgayCap.Value.ToString("dd/MM/yyyy"); 
             }
             if (!user.NoiCap_IDTP.HasValue || user.NoiCap_IDTP.Value == 0)
             {
-                user.NoiCap_IDTP = null; // Nếu không có nghề nghiệp, gán là null
+                user.NoiCap_IDTP = null; 
             }
             if (!user.IDNhomMau.HasValue || user.IDNhomMau.Value == 0)
             {
-                user.IDNhomMau = null; // Nếu không có nghề nghiệp, gán là null
+                user.IDNhomMau = null;
             }
             Session["MaTaiKhoan"] = user.MaTaiKhoan;
             Session["HinhAnh"] = user.HinhAnh;
@@ -574,17 +575,14 @@ namespace ManageBloodTypes.Controllers
             if (ModelState.IsValid)
             {
                 string Gmail = Session["UserEmail"] as string;
-                // Tìm người dùng trong cơ sở dữ liệu bằng MaTaiKhoan (hoặc Gmail)
                 if (string.IsNullOrEmpty(Gmail))
                 {
-                    return RedirectToAction("Index", "Home");  // Nếu không có Gmail trong session, chuyển hướng đến trang đăng nhập
+                    return RedirectToAction("Index", "Home");  
                 }
 
-                // Tìm người dùng dựa trên Gmail
                 var user = db.tbThongTinCaNhans.FirstOrDefault(u => u.Gmail == Gmail);
                 if (user != null)
                 {
-                    // Cập nhật thông tin người dùng
                     if (Editfile != null )
                     {
                         user.HinhAnh = UploadImage(Editfile);
@@ -605,13 +603,10 @@ namespace ManageBloodTypes.Controllers
                     user.SDT = model.SDT;
                     db.Entry(user).State = EntityState.Modified;
 
-                    // Lưu thay đổi vào cơ sở dữ liệu
                     db.SaveChanges();
 
-                    // Cập nhật thông tin mới vào session (nếu cần)
                     Session["UserEmail"] = model.Gmail;
 
-                    // Sau khi cập nhật thành công, trả về trang profile
                     return RedirectToAction("Index", "HomePage");
                 }
                 else
@@ -620,7 +615,6 @@ namespace ManageBloodTypes.Controllers
                 }
             }
 
-            // Nếu có lỗi, quay lại trang chỉnh sửa với thông tin đã nhập
             return View(model);
         }
         [HttpPost]
@@ -655,9 +649,8 @@ namespace ManageBloodTypes.Controllers
         [HttpPost]
         public JsonResult GetQuanHuyen(int idThanhPho)
         {
-            // Lấy danh sách quận dựa trên id thành phố
             List<QuanHuyenModel> lstQuanHuyen = db.tbQuanHuyens
-                .Where(qh => qh.IDTP == idThanhPho)  // Tìm quận theo ID thành phố
+                .Where(qh => qh.IDTP == idThanhPho)  
                 .Select(qh => new QuanHuyenModel
                 {
                     IDQuan = qh.IDQuan,
@@ -665,7 +658,6 @@ namespace ManageBloodTypes.Controllers
                 })
                 .ToList();
 
-            // Trả về dữ liệu dưới dạng JSON
             return Json(lstQuanHuyen, JsonRequestBehavior.AllowGet);
         }
 
@@ -716,6 +708,50 @@ namespace ManageBloodTypes.Controllers
             Session["MaTaiKhoan"] = user.MaTaiKhoan;
             Session["MatKhau"] = user.MatKhau;
             return View(user);
+        }
+        [HttpPost]
+        public JsonResult Login(ThongTinCaNhanModels model, string OldMatKhau, string NewMatKhau, string ConfirmNewMatKhau)
+        {
+            if (ModelState.IsValid)
+            {
+                string Gmail = Session["UserEmail"] as string;
+                if (string.IsNullOrEmpty(Gmail))
+                {
+                    return Json(new { success = false, message = "Email không hợp lệ." });
+                }
+
+                var user = db.tbThongTinCaNhans.FirstOrDefault(u => u.Gmail == Gmail);
+                if (user != null)
+                {
+                    user.Gmail = model.Gmail;
+                    user.SDT = model.SDT;
+
+                    if (user.MatKhau != OldMatKhau)
+                    {
+                        return Json(new { success = false, message = "Mật khẩu cũ không chính xác." });
+                    }
+                    if (NewMatKhau != ConfirmNewMatKhau)
+                    {
+                        return Json(new { success = false, message = "Mật khẩu mới và mật khẩu xác nhận không khớp." });
+                    }
+                    if (!string.IsNullOrEmpty(NewMatKhau))
+                    {
+                        user.MatKhau = NewMatKhau;
+                    }
+
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                    Session["UserEmail"] = model.Gmail;
+
+
+                    return Json(new { success = true, message = "Cập nhật thành công." });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Không tìm thấy thông tin người dùng." });
+                }
+            }
+            return Json(new { success = false, message = "Dữ liệu không hợp lệ." });
         }
 
         //[HttpPost]
@@ -775,58 +811,105 @@ namespace ManageBloodTypes.Controllers
         //}
 
 
-        [HttpPost]
-        public JsonResult Login(ThongTinCaNhanModels model, string OldMatKhau, string NewMatKhau, string ConfirmNewMatKhau)
+        public ActionResult UpdateUserProfile()
         {
-            if (ModelState.IsValid)
+            string Gmail = Session["UserEmail"] as string;
+            if (string.IsNullOrEmpty(Gmail))
             {
+                return RedirectToAction("Index", "Home");  // Trường hợp email không được truyền vào
+            }
+            var user = db.tbThongTinCaNhans
+                             .Where(u => u.Gmail == Gmail)
+                             .Select(ab => new ThongTinCaNhanModels
+                             {
+                                 MaTaiKhoan = ab.MaTaiKhoan,
+                                 Gmail = ab.Gmail,
+                                 SDT = ab.SDT,
+                                 MatKhau = ab.MatKhau,
+                             })
+                             .FirstOrDefault();
+            if (user == null)
+            {
+                return Redirect("/not-found"); // Trường hợp không tìm thấy người dùng
+            }
+            Session["MaTaiKhoan"] = user.MaTaiKhoan;
+            Session["MatKhau"] = user.MatKhau;
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUserProfile(ThongTinCaNhanModels model, string OldMatKhau, string NewMatKhau, string ConfirmNewMatKhau)
+        {
+            try
+            {
+                // Kiểm tra tính hợp lệ của dữ liệu
+                if (!ModelState.IsValid)
+                {
+                    TempData["Message"] = "Dữ liệu không hợp lệ, vui lòng kiểm tra lại!";
+                    TempData["IsSuccess"] = false;
+                    return View(model); // Không chuyển trang
+                }
+
                 string Gmail = Session["UserEmail"] as string;
                 if (string.IsNullOrEmpty(Gmail))
                 {
-                    return Json(new { success = false, message = "Email không hợp lệ." });
+                    TempData["Message"] = "Bạn chưa đăng nhập, vui lòng đăng nhập để tiếp tục.";
+                    TempData["IsSuccess"] = false;
+                    return RedirectToAction("Index", "Home"); // Chuyển hướng về trang chủ nếu không đăng nhập
                 }
 
                 var user = db.tbThongTinCaNhans.FirstOrDefault(u => u.Gmail == Gmail);
-                if (user != null)
+                if (user == null)
                 {
-                    // Cập nhật thông tin người dùng
-                    user.Gmail = model.Gmail;
-                    user.SDT = model.SDT;
-
-                    // Kiểm tra mật khẩu cũ
-                    if (user.MatKhau != OldMatKhau)
-                    {
-                        return Json(new { success = false, message = "Mật khẩu cũ không chính xác." });
-                    }
-
-                    // Kiểm tra mật khẩu mới và xác nhận mật khẩu
-                    if (NewMatKhau != ConfirmNewMatKhau)
-                    {
-                        return Json(new { success = false, message = "Mật khẩu mới và mật khẩu xác nhận không khớp." });
-                    }
-
-                    // Cập nhật mật khẩu mới nếu có
-                    if (!string.IsNullOrEmpty(NewMatKhau))
-                    {
-                        user.MatKhau = NewMatKhau;
-                    }
-
-                    db.Entry(user).State = EntityState.Modified;
-                    db.SaveChanges();
-
-                    // Cập nhật thông tin mới vào session
-                    Session["UserEmail"] = model.Gmail;
-
-
-                    return Json(new { success = true, message = "Cập nhật thành công." });
+                    TempData["Message"] = "Không tìm thấy thông tin tài khoản.";
+                    TempData["IsSuccess"] = false;
+                    return View(model); // Không chuyển trang
                 }
-                else
+
+                // Kiểm tra mật khẩu cũ
+                if (!string.IsNullOrEmpty(OldMatKhau) && user.MatKhau != OldMatKhau)
                 {
-                    return Json(new { success = false, message = "Không tìm thấy thông tin người dùng." });
+                    TempData["Message"] = "Mật khẩu cũ không chính xác.";
+                    TempData["IsSuccess"] = false;
+                    return View(model); // Không chuyển trang
                 }
+
+                // Kiểm tra mật khẩu mới và xác nhận mật khẩu
+                if (!string.IsNullOrEmpty(NewMatKhau) && NewMatKhau != ConfirmNewMatKhau)
+                {
+                    TempData["Message"] = "Mật khẩu mới và mật khẩu xác nhận " + Environment.NewLine + "không khớp.";
+                    TempData["IsSuccess"] = false;
+                    return View(model); // Không chuyển trang
+                }
+
+                // Cập nhật thông tin nếu không có lỗi
+                user.Gmail = model.Gmail;
+                user.SDT = model.SDT;
+                if (!string.IsNullOrEmpty(NewMatKhau))
+                {
+                    user.MatKhau = NewMatKhau;
+                }
+
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+
+                // Lưu thông tin vào Session
+                Session["UserEmail"] = model.Gmail;
+
+                TempData["Message"] = "Cập nhật thông tin thành công!";
+                TempData["IsSuccess"] = true;
+
+                return RedirectToAction("UpdateUserProfile"); // Load lại trang khi thành công
             }
-            return Json(new { success = false, message = "Dữ liệu không hợp lệ." });
+            catch (Exception ex)
+            {
+                TempData["Message"] = $"Đã xảy ra lỗi: {ex.Message}";
+                TempData["IsSuccess"] = false;
+                return View(model); // Không chuyển trang
+            }
         }
+
+
 
 
         public ActionResult BloodInfor()
@@ -851,6 +934,148 @@ namespace ManageBloodTypes.Controllers
             return View(user);
         }
 
+        public ActionResult ResBlood()
+        {
+            // Lấy Gmail từ Session
+            string Gmail = Session["UserEmail"] as string;
+            if (string.IsNullOrEmpty(Gmail))
+            {
+                return RedirectToAction("Index", "Home"); // Chuyển hướng nếu không có thông tin đăng nhập
+            }
+
+            // Lấy thông tin từ bảng tbThongTinCaNhan dựa trên Gmail
+            var user = db.tbThongTinCaNhans.FirstOrDefault(u => u.Gmail == Gmail);
+            if (user == null)
+            {
+                return Redirect("/not-found"); // Không tìm thấy người dùng
+            }
+
+            // Tạo model để gửi đến view
+            var model = new LichSuGiaoDichModel
+            {
+                MaTaiKhoan = user.MaTaiKhoan,
+                IDNhomMau = user.IDNhomMau,
+                Gmail = user.Gmail,
+                HoTen = user.HoTen,
+                SDT = user.SDT,
+                DiaChi = user.DiaChi,
+                IDPhuong = user.IDPhuong,
+                IDQuan = user.IDQuan,
+                IDThanhPho = user.IDThanhPho // Chỉ dùng để hiển thị kiểm tra
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ResBlood(LichSuGiaoDichModel model)
+        {
+            try
+            { 
+                if (!ModelState.IsValid )
+                {
+                    TempData["Message"] = "Dữ liệu không hợp lệ, vui lòng kiểm tra lại!";
+                    TempData["IsSuccess"] = false;
+                    return View(model);
+                }
+                if (model.TinhTrangYeuCau == null)
+                {
+                    TempData["Message"] = "Vui lòng điền đủ thông tin trước khi gửi!";
+                    TempData["IsSuccess"] = false;
+                    return View(model);
+                }
+
+                string Gmail = Session["UserEmail"] as string;
+                if (string.IsNullOrEmpty(Gmail))
+                {
+                    TempData["Message"] = "Bạn chưa đăng nhập, vui lòng đăng nhập để tiếp tục.";
+                    TempData["IsSuccess"] = false;
+                    return RedirectToAction("Index", "Home");
+                }
+
+                var user = db.tbThongTinCaNhans.FirstOrDefault(u => u.Gmail == Gmail);
+                if (user == null)
+                {
+                    TempData["Message"] = "Không tìm thấy thông tin tài khoản.";
+                    TempData["IsSuccess"] = false;
+                    return View(model);
+                }
+
+                var giaoDich = new tbLichSuGiaoDich
+                {
+                    MaTaiKhoan = user.MaTaiKhoan,
+                    IDNhomMau = user.IDNhomMau,
+                    TinhTrangYeuCau = model.TinhTrangYeuCau,
+                    NgayYeuCau = DateTime.Now,
+                    Hide = false,
+                    TrangThai = false
+                };
+                db.tbLichSuGiaoDiches.Add(giaoDich);
+                db.SaveChanges();
+                TempData["Message"] = "Gửi yêu cầu thành công!";
+                TempData["IsSuccess"] = true;
+                var thongKe = db.tbThongKeMaus
+                                .FirstOrDefault(tk => tk.MaTaiKhoan == giaoDich.MaTaiKhoan);
+                if (thongKe != null)
+                {
+                    if (giaoDich.TinhTrangYeuCau == true)
+                        thongKe.SoLanHienMau += 1;
+                    else
+                        thongKe.SoLanNhanMau += 1;
+                }
+                else
+                {
+                    db.tbThongKeMaus.Add(new tbThongKeMau
+                    {
+                        MaTaiKhoan = giaoDich.MaTaiKhoan,
+                        Hide = false,
+                        SoLanHienMau = giaoDich.TinhTrangYeuCau == true ? 1 : 0,
+                        SoLanNhanMau = giaoDich.TinhTrangYeuCau == false ? 1 : 0
+                    });
+                }
+                db.SaveChanges ();
+                return RedirectToAction("ResBlood");
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = $"Đã xảy ra lỗi: {ex.Message}";
+                TempData["IsSuccess"] = false;
+                return View(model);
+            }
+        }
+
+
+
+        public ActionResult History()
+        {
+            // Lấy Gmail từ Session
+            string Gmail = Session["UserEmail"] as string;
+            if (string.IsNullOrEmpty(Gmail))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if (Session["MaTaiKhoan"] == null)
+            {
+                return Redirect("/not-found");
+            }
+
+            int MaTaiKhoan;
+            if (!int.TryParse(Session["MaTaiKhoan"].ToString(), out MaTaiKhoan))
+            {
+                return Redirect("/not-found");
+            }
+            var model = db.tbLichSuGiaoDiches
+                        .Where(x => x.MaTaiKhoan == MaTaiKhoan && x.Hide == false)
+                        .Select(x => new LichSuGiaoDichModel
+                        {
+                            NgayYeuCau = x.NgayYeuCau,
+                            TinhTrangYeuCau = x.TinhTrangYeuCau,
+                            TrangThai = x.TrangThai,
+                            NgayXacNhan = x.NgayXacNhan
+                        }).ToList();
+
+            return View(model);
+        }
 
 
 

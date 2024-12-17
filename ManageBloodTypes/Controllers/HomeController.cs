@@ -24,7 +24,6 @@ namespace ManageBloodTypes.Controllers
         [HttpPost]
         public ActionResult Index(string Gmail, string MatKhau)
         {
-            // Kiểm tra nếu người dùng bỏ trống thông tin
             if (string.IsNullOrWhiteSpace(Gmail) || string.IsNullOrWhiteSpace(MatKhau))
             {
                 if (string.IsNullOrWhiteSpace(Gmail))
@@ -40,17 +39,14 @@ namespace ManageBloodTypes.Controllers
                 return View();
             }
 
-            // Kiểm tra email trong cơ sở dữ liệu
             var user = db.tbThongTinCaNhans.FirstOrDefault(u => u.Gmail == Gmail);
 
             if (user == null)
             {
-                // Email không tồn tại
                 ViewBag.EmailError = "Email không tồn tại.";
                 return View();
             }
 
-            // Kiểm tra mật khẩu và id
             if (user.MatKhau != MatKhau)
             {
                 ViewBag.PasswordError = "Mật khẩu không đúng.";
@@ -58,10 +54,11 @@ namespace ManageBloodTypes.Controllers
             }
             if (Gmail.Trim().ToLower() == "bacsi123@gmail.com" && MatKhau.Trim() == "Bacsi123")
             {
+                Session["HinhAnh"] = user.HinhAnh;
                 Session["UserEmail"] = user.Gmail;
                 Session["MaTaiKhoan"] = user.MaTaiKhoan;
                 Session["HoTen"] = user.HoTen;
-                return RedirectToAction("Index", "Search");
+                return RedirectToAction("Index", "Doctor");
             }
             if (Gmail.Trim().ToLower() == "admin123@gmail.com" && MatKhau.Trim() == "Admin123")
             {
@@ -73,14 +70,13 @@ namespace ManageBloodTypes.Controllers
             }
             Session["UserEmail"] = user.Gmail;
             Session["HoTen"] = user.HoTen;
-            // Đăng nhập thành công, chuyển hướng đến Dashboard
             return RedirectToAction("Home", "HomePage");
         }
 
         public ActionResult Logout()
         {
-            Session.Clear(); // Xóa session
-            return RedirectToAction("Index", "Home"); // Chuyển hướng
+            Session.Clear();
+            return RedirectToAction("Index", "Home"); 
         }
 
         public ActionResult About()

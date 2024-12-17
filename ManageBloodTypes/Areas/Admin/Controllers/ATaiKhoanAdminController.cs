@@ -558,5 +558,104 @@ namespace ManageBloodTypes.Areas.Admin.Controllers
         }
 
 
+        public ActionResult UpdateUserProfile()
+        {
+            string Gmail = Session["UserEmail"] as string;
+            if (string.IsNullOrEmpty(Gmail))
+            {
+                return RedirectToAction("Index", "Home", new { area = "" }); // Trường hợp email không được truyền vào
+            }
+            var user = db.tbThongTinCaNhans
+                             .Where(u => u.Gmail == Gmail)
+                             .Select(ab => new ThongTinCaNhanModels
+                             {
+                                 MaTaiKhoan = ab.MaTaiKhoan,
+                                 Gmail = ab.Gmail,
+                                 SDT = ab.SDT,
+                                 MatKhau = ab.MatKhau,
+                             })
+                             .FirstOrDefault();
+            if (user == null)
+            {
+                return Redirect("/not-found"); // Trường hợp không tìm thấy người dùng
+            }
+            Session["MaTaiKhoan"] = user.MaTaiKhoan;
+            Session["MatKhau"] = user.MatKhau;
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUserProfile(ThongTinCaNhanModels model, string OldMatKhau, string NewMatKhau, string ConfirmNewMatKhau)
+        {
+            try
+            {
+                // Kiểm tra tính hợp lệ của dữ liệu
+                if (!ModelState.IsValid)
+                {
+                    TempData["Message"] = "Dữ liệu không hợp lệ, vui lòng kiểm tra lại!";
+                    TempData["IsSuccess"] = false;
+                    return View(model); // Không chuyển trang
+                }
+
+                string Gmail = Session["UserEmail"] as string;
+                if (string.IsNullOrEmpty(Gmail))
+                {
+                    TempData["Message"] = "Bạn chưa đăng nhập, vui lòng đăng nhập để tiếp tục.";
+                    TempData["IsSuccess"] = false;
+                    return RedirectToAction("Index", "Home", new { area = "" }); // Chuyển hướng về trang chủ nếu không đăng nhập
+                }
+
+                var user = db.tbThongTinCaNhans.FirstOrDefault(u => u.Gmail == Gmail);
+                if (user == null)
+                {
+                    TempData["Message"] = "Không tìm thấy thông tin tài khoản.";
+                    TempData["IsSuccess"] = false;
+                    return View(model); // Không chuyển trang
+                }
+
+                // Kiểm tra mật khẩu cũ
+                if (!string.IsNullOrEmpty(OldMatKhau) && user.MatKhau != OldMatKhau)
+                {
+                    TempData["Message"] = "Mật khẩu cũ không chính xác.";
+                    TempData["IsSuccess"] = false;
+                    return View(model); // Không chuyển trang
+                }
+
+                // Kiểm tra mật khẩu mới và xác nhận mật khẩu
+                if (!string.IsNullOrEmpty(NewMatKhau) && NewMatKhau != ConfirmNewMatKhau)
+                {
+                    TempData["Message"] = "Mật khẩu mới và mật khẩu xác nhận " + Environment.NewLine + "không khớp.";
+                    TempData["IsSuccess"] = false;
+                    return View(model); // Không chuyển trang
+                }
+
+                // Cập nhật thông tin nếu không có lỗi
+                user.Gmail = model.Gmail;
+                user.SDT = model.SDT;
+                if (!string.IsNullOrEmpty(NewMatKhau))
+                {
+                    user.MatKhau = NewMatKhau;
+                }
+
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+
+                // Lưu thông tin vào Session
+                Session["UserEmail"] = model.Gmail;
+
+                TempData["Message"] = "Cập nhật thông tin thành công!";
+                TempData["IsSuccess"] = true;
+
+                return RedirectToAction("UpdateUserProfile", "ATaiKhoanAdmin", new { area = "Admin" });// Load lại trang khi thành công
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = $"Đã xảy ra lỗi: {ex.Message}";
+                TempData["IsSuccess"] = false;
+                return View(model); // Không chuyển trang
+            }
+        }
+
+
     }
 }

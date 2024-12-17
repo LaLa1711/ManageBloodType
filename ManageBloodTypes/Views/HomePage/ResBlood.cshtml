@@ -1,0 +1,138 @@
+﻿@model ManageBloodTypes.Models.LichSuGiaoDichModel
+
+@{
+    ViewBag.Title = "ResBlood";
+    Layout = "~/Views/Shared/_Layout_Home.cshtml";
+}
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Form Gửi Yêu Cầu</h1>
+    </div>
+
+    <section class="section profile">
+        <div class="row">
+            <div class="d-flex justify-content-center align-items-start" style=" padding-top: 20px;">
+                <div class="col-xl-10">
+
+                    <div class="card">
+                        <div class="card-body pt-3">
+
+                            <!---->
+                            <div class="tab-pane fade show active profile-overview" id="profile-edit">
+
+                                <form method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="Gmail" value="@Session["UserEmail"]" />
+                                    <div class="row mb-3" style="padding-top: 20px;">
+                                        <label for="Gmail" class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="Gmail" type="text" class="form-control" id="Gmail" value="@Model.Gmail" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="HoTen" class="col-md-4 col-lg-3 col-form-label">Họ Tên</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="HoTen" type="text" class="form-control" id="HoTen" value="@Model.HoTen" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="SDT" class="col-md-4 col-lg-3 col-form-label">Số Điện Thoại</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input name="SDT" type="text" class="form-control" id="SDT" value="@Model.SDT" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 col-form-label">Địa chỉ:</div>
+                                        <div class="col-lg-9 col-md-8">
+                                            <div class="form-control">
+                                                <input type="hidden" id="DiaChi" name="DiaChi" value="@Model.DiaChi">
+                                                <input type="hidden" id="IDPhuong" name="IDPhuong" value="@Model.IDPhuong">
+                                                <input type="hidden" id="IDQuan" name="IDQuan" value="@Model.IDQuan">
+                                                <input type="hidden" id="IDThanhPho" name="IDThanhPho" value="@Model.IDThanhPho">
+
+                                                @Html.Raw(Model.DiaChi),
+                                                @if (Model.IDPhuong.HasValue && Model.IDPhuong.Value != 0)
+                                                {
+                                                    @Html.Action("GetPhuongXaName", "HomePage", new { id = Model.IDPhuong })
+                                                }
+                                                else
+                                                {
+                                                    <text>(Chưa có thông tin)</text>
+                                                },
+                                                @if (Model.IDQuan.HasValue && Model.IDQuan.Value != 0)
+                                                {
+                                                    @Html.Action("GetQuanHuyenName", "HomePage", new { id = Model.IDQuan })
+                                                }
+                                                else
+                                                {
+                                                    <text>(Chưa có thông tin)</text>
+                                                },
+                                                @if (Model.IDThanhPho.HasValue && Model.IDThanhPho.Value != 0)
+                                                {
+                                                    @Html.Action("GetThanhPhoName", "HomePage", new { id = Model.IDThanhPho })
+                                                }
+                                                else
+                                                {
+                                                    <text>(Chưa có thông tin)</text>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 col-form-label">Nhóm máu:</div>
+                                        <div class="col-md-8 col-lg-9">
+                                            <div class="form-control">
+                                                <input type="hidden" id="IDNhomMau" name="IDNhomMau" value="@Model.IDNhomMau"> 
+
+                                                @if (@Model.IDNhomMau.HasValue && @Model.IDNhomMau.Value != 0)
+                                                {
+                                                    <div>
+                                                        @Html.Action("GetNhomMauName", "HomePage", new { id = @Model.IDNhomMau })
+
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <text>(Chưa có thông tin)</text>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-md-4 col-lg-3 col-form-label">Yêu Cầu</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <select name="TinhTrangYeuCau" class="form-control">
+                                                <option value="" selected>Chọn</option>
+                                                <option value="true">Hiến Máu</option>
+                                                <option value="false">Đang Cần Máu</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        @if (TempData["Message"] != null)
+                                        {
+                                            var isSuccess = (bool)TempData["IsSuccess"];
+                                            <div class="alert @(isSuccess ? "alert-success" : "alert-danger")">
+                                                @TempData["Message"]
+                                            </div>
+                                        }
+                                    </div>
+
+
+                                    <div class="text-center">
+                                        <button type="submit" id="updateButton" class="btn btn-primary">Gửi</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </section>
+
+</main>
