@@ -218,12 +218,59 @@ h3{font-size:17px;border-bottom:1px solid #eee;padding-bottom:10px;margin-bottom
         top: 90px;
         left: -160px;
         width: 400px;
-        height: 470px;
+        height: 420px;
     }
 }
 
 @media (max-width: 767px) {
     .zid_loginform {
+        top: 0;
+        left: 0;
+    }
+}
+.zid_loginform1 {
+    background-color: #F3F3F3;
+    padding: 15px 20px 15px;
+    border: 1px solid #e2e2e2;
+}
+
+.zid_loginform1 {
+    float: right;
+    width: 338px;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .zid_loginform1 {
+        top: 90px;
+        left: -160px;
+        width: 440px;
+        height: 220px;
+    }
+}
+.zid_loginform2 {
+    background-color: #F3F3F3;
+    padding: 15px 20px 15px;
+    border: 1px solid #e2e2e2;
+}
+
+.zid_loginform2 {
+    float: right;
+    width: 338px;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .zid_loginform2 {
+        top: 90px;
+        left: -160px;
+        width: 400px;
+        height: 380px;
+    }
+}
+
+@media (max-width: 767px) {
+    .zid_loginform2 {
         top: 0;
         left: 0;
     }
@@ -397,7 +444,7 @@ h3{font-size:17px;border-bottom:1px solid #eee;padding-bottom:10px;margin-bottom
 .zidregbtn{display:block;width:208px;height:43px;background-position:-128px 0;text-indent:-99999em;}
 .zidregbtn:hover{background-position:-128px -48px;}
 .zidlogincont .otheracclogin{border-top:1px solid #eee;margin-top:25px;padding-top:17px;}
-.zid_loginform .formheader{font-size:23px;line-height:26px;color:#555;text-transform:none;font-weight:300;text-transform:uppercase;margin-bottom:10px;}
+.zid_loginform .formheader{font-size:20px;line-height:26px;color:#555;text-transform:none;font-weight:300;text-transform:uppercase;margin-bottom:10px;}
 
 /* =====@@@[REGISTER]@@@====*/
 .zid_regform{width:450px;margin:0 auto;}

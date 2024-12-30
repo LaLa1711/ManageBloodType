@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using ManageBloodTypes.DBContext;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.Logical;
 using System.Threading;
+using System.Configuration;
 
 namespace ManageBloodTypes.Controllers
 {
@@ -111,25 +112,44 @@ namespace ManageBloodTypes.Controllers
             //{
             //    Console.WriteLine("Lỗi khi gửi email: " + ex.Message);
             //}
-            SmtpClient smtp = new SmtpClient
-            {
-                Host = "localhost",
-                Port = 587,
-                EnableSsl = true,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential("cqt17112003@gmail.com", "17112003")
-            };
-
-            MailMessage message = new MailMessage("cqt17112003@gmail.com", toEmail)
-            {
-                Subject = "Test Subject",
-                Body = "Test Body"
-            };
-
-            smtp.Send(message);
+            SendMail("SucKhoeSmart", "Mật khẩu mới của bạn", newPassword, toEmail, "cqt17112003@gmail.com");
 
         }
-
-
+        public bool SendMail(string name, string subject, string content,
+            string toMail, string formmail)
+        {
+            bool rs = false;
+            try
+            {
+                MailMessage message = new MailMessage();
+                var smtp = new SmtpClient();
+                {
+                    smtp.Host = "smtp.gmail.com"; //host name
+                    smtp.Port = 587; //port number
+                    smtp.EnableSsl = true; //whether your smtp server requires SSL
+                    smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential()
+                    {
+                        UserName = formmail,
+                        Password = "svzb wljh lnfe pzja"
+                    };
+                }
+                MailAddress fromAddress = new MailAddress(formmail, name);
+                message.From = fromAddress;
+                message.To.Add(toMail);
+                message.Subject = subject;
+                message.IsBodyHtml = true;
+                message.Body = content;
+                smtp.Send(message);
+                rs = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                rs = false;
+            }
+            return rs;
+        }
     }
 }

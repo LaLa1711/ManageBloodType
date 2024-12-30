@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -104,11 +105,23 @@
             </li><!-- End Contact Page Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/Doctor/BloodInfor">
-                    <i class="bi bi-chat-left-text"></i>
-                    <span>Đăng Bài</span>
+                <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="/Doctor/News">
+                    <i class="bi bi-chat-left-text"></i><span>Đăng bài</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
+                <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="/Doctor/INews">
+                            <i class="bi bi-circle"></i><span>Xem/Chỉnh Sửa</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Doctor/News">
+                            <i class="bi bi-circle"></i><span>Thêm mới</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
+
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/Doctor/Information">

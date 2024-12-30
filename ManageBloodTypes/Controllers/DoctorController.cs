@@ -1,13 +1,17 @@
 ﻿using ManageBloodTypes.App_Start;
 using ManageBloodTypes.DBContext;
 using ManageBloodTypes.Models;
+using Microsoft.VisualBasic.ApplicationServices;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace ManageBloodTypes.Controllers
 {
@@ -420,7 +424,7 @@ namespace ManageBloodTypes.Controllers
                         })
                         .ToList();
 
-            if (!lst.Any()) 
+            if (!lst.Any())
             {
                 Console.WriteLine("Không có phường/xã nào.");
             }
@@ -432,7 +436,7 @@ namespace ManageBloodTypes.Controllers
             string Gmail = Session["UserEmail"] as string;
             if (string.IsNullOrEmpty(Gmail))
             {
-                return RedirectToAction("Index", "Doctor"); 
+                return RedirectToAction("Index", "Doctor");
             }
             var user = db.tbThongTinCaNhans
                              .Where(u => u.Gmail == Gmail)
@@ -446,7 +450,7 @@ namespace ManageBloodTypes.Controllers
                              .FirstOrDefault();
             if (user == null)
             {
-                return Redirect("/not-found"); 
+                return Redirect("/not-found");
             }
             Session["MaTaiKhoan"] = user.MaTaiKhoan;
             Session["MatKhau"] = user.MatKhau;
@@ -462,7 +466,7 @@ namespace ManageBloodTypes.Controllers
                 {
                     TempData["Message"] = "Dữ liệu không hợp lệ, vui lòng kiểm tra lại!";
                     TempData["IsSuccess"] = false;
-                    return View(model); 
+                    return View(model);
                 }
 
                 string Gmail = Session["UserEmail"] as string;
@@ -470,7 +474,7 @@ namespace ManageBloodTypes.Controllers
                 {
                     TempData["Message"] = "Bạn chưa đăng nhập, vui lòng đăng nhập để tiếp tục.";
                     TempData["IsSuccess"] = false;
-                    return RedirectToAction("Index", "Home"); 
+                    return RedirectToAction("Index", "Home");
                 }
 
                 var user = db.tbThongTinCaNhans.FirstOrDefault(u => u.Gmail == Gmail);
@@ -478,21 +482,21 @@ namespace ManageBloodTypes.Controllers
                 {
                     TempData["Message"] = "Không tìm thấy thông tin tài khoản.";
                     TempData["IsSuccess"] = false;
-                    return View(model); 
+                    return View(model);
                 }
 
                 if (!string.IsNullOrEmpty(OldMatKhau) && user.MatKhau != OldMatKhau)
                 {
                     TempData["Message"] = "Mật khẩu cũ không chính xác.";
                     TempData["IsSuccess"] = false;
-                    return View(model); 
+                    return View(model);
                 }
 
                 if (!string.IsNullOrEmpty(NewMatKhau) && NewMatKhau != ConfirmNewMatKhau)
                 {
                     TempData["Message"] = "Mật khẩu mới và mật khẩu xác nhận " + Environment.NewLine + "không khớp.";
                     TempData["IsSuccess"] = false;
-                    return View(model); 
+                    return View(model);
                 }
 
                 user.Gmail = model.Gmail;
@@ -510,13 +514,13 @@ namespace ManageBloodTypes.Controllers
                 TempData["Message"] = "Cập nhật thông tin thành công!";
                 TempData["IsSuccess"] = true;
 
-                return RedirectToAction("UpdateUserProfile"); 
+                return RedirectToAction("UpdateUserProfile");
             }
             catch (Exception ex)
             {
                 TempData["Message"] = $"Đã xảy ra lỗi: {ex.Message}";
                 TempData["IsSuccess"] = false;
-                return View(model); 
+                return View(model);
             }
         }
         public ActionResult Information()
@@ -551,7 +555,7 @@ namespace ManageBloodTypes.Controllers
                              .FirstOrDefault();
             if (user == null)
             {
-                return Redirect("/not-found"); 
+                return Redirect("/not-found");
             }
             user.DanhSachThanhPho = db.tbTinhThanhPhoes.ToList();
             if (string.IsNullOrEmpty(user.HoTen))
@@ -560,55 +564,55 @@ namespace ManageBloodTypes.Controllers
             }
             if (user.GioiTinh == null)
             {
-                user.GioiTinhDisplay = "(Chưa có thông tin)"; 
+                user.GioiTinhDisplay = "(Chưa có thông tin)";
             }
             else if (user.GioiTinh == true)
             {
-                user.GioiTinhDisplay = "Nam"; 
+                user.GioiTinhDisplay = "Nam";
             }
             else
             {
-                user.GioiTinhDisplay = "Nữ"; 
+                user.GioiTinhDisplay = "Nữ";
             }
             if (user.NgaySinh == null)
             {
-                user.NgaySinhDisplay = "--/--/----"; 
+                user.NgaySinhDisplay = "--/--/----";
             }
             else
             {
-                user.NgaySinhDisplay = user.NgaySinh.Value.ToString("dd/MM/yyyy"); 
+                user.NgaySinhDisplay = user.NgaySinh.Value.ToString("dd/MM/yyyy");
             }
             if (string.IsNullOrEmpty(user.DiaChi))
             {
-                user.DiaChi = "(Chưa có thông tin)"; 
+                user.DiaChi = "(Chưa có thông tin)";
             }
             if (!user.IDPhuong.HasValue || user.IDPhuong.Value == 0)
             {
-                user.IDPhuong = null; 
+                user.IDPhuong = null;
             }
             if (!user.IDQuan.HasValue || user.IDQuan.Value == 0)
             {
-                user.IDQuan = null; 
+                user.IDQuan = null;
             }
             if (!user.IDThanhPho.HasValue || user.IDThanhPho.Value == 0)
             {
-                user.IDThanhPho = null; 
+                user.IDThanhPho = null;
             }
             if (!user.NgheNghiep.HasValue || user.NgheNghiep.Value == 0)
             {
-                user.NgheNghiep = null; 
+                user.NgheNghiep = null;
             }
             if (user.TinhTrangHonNhan == null)
             {
-                user.TinhTrangHonNhanDisplay = "(Chưa có thông tin)"; 
+                user.TinhTrangHonNhanDisplay = "(Chưa có thông tin)";
             }
             else if (user.TinhTrangHonNhan == true)
             {
-                user.TinhTrangHonNhanDisplay = "Độc Thân"; 
+                user.TinhTrangHonNhanDisplay = "Độc Thân";
             }
             else
             {
-                user.TinhTrangHonNhanDisplay = "Đã Kết Hôn"; 
+                user.TinhTrangHonNhanDisplay = "Đã Kết Hôn";
             }
             if (string.IsNullOrEmpty(user.CCCD))
             {
@@ -624,19 +628,19 @@ namespace ManageBloodTypes.Controllers
             }
             if (user.NgayCap == null)
             {
-                user.NgayCapDisplay = "--/--/----"; 
+                user.NgayCapDisplay = "--/--/----";
             }
             else
             {
-                user.NgayCapDisplay = user.NgayCap.Value.ToString("dd/MM/yyyy"); 
+                user.NgayCapDisplay = user.NgayCap.Value.ToString("dd/MM/yyyy");
             }
             if (!user.NoiCap_IDTP.HasValue || user.NoiCap_IDTP.Value == 0)
             {
-                user.NoiCap_IDTP = null; 
+                user.NoiCap_IDTP = null;
             }
             if (!user.IDNhomMau.HasValue || user.IDNhomMau.Value == 0)
             {
-                user.IDNhomMau = null; 
+                user.IDNhomMau = null;
             }
             Session["MaTaiKhoan"] = user.MaTaiKhoan;
             Session["HinhAnh"] = user.HinhAnh;
@@ -651,7 +655,7 @@ namespace ManageBloodTypes.Controllers
                 string Gmail = Session["UserEmail"] as string;
                 if (string.IsNullOrEmpty(Gmail))
                 {
-                    return RedirectToAction("Index", "Home");  
+                    return RedirectToAction("Index", "Home");
                 }
 
                 var user = db.tbThongTinCaNhans.FirstOrDefault(u => u.Gmail == Gmail);
@@ -682,7 +686,7 @@ namespace ManageBloodTypes.Controllers
                     Session["UserEmail"] = model.Gmail;
 
 
-                    return RedirectToAction("Index", "Doctor");
+                    return RedirectToAction("Information", "Doctor");
                 }
                 else
                 {
@@ -690,6 +694,268 @@ namespace ManageBloodTypes.Controllers
                 }
             }
 
+            return View(model);
+
+        }
+
+        public ActionResult SearchUsers(string idThanhPho, string idQuan, string idPhuong, string bloodGroupFor, string bloodGroupReceive)
+        {
+            try
+            {
+                string Gmail = Session["UserEmail"] as string;
+                if (string.IsNullOrEmpty(Gmail))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                // Dữ liệu nhóm máu và khả năng cho, nhận
+                var bloodGroups = new List<NhomMauModel>
+                {
+                    new NhomMauModel { Id = 1, Name = "O-", CanGiveTo = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 }, CanReceiveFrom = new List<int> { 1 } },
+                    new NhomMauModel { Id = 2, Name = "O+", CanGiveTo = new List<int> { 2, 4, 6 , 8 }, CanReceiveFrom = new List<int> { 1, 2 } },
+                    new NhomMauModel { Id = 3, Name = "A-", CanGiveTo = new List<int> { 3, 4, 7, 8 }, CanReceiveFrom = new List<int> { 1, 3 } },
+                    new NhomMauModel { Id = 4, Name = "A+", CanGiveTo = new List<int> { 4, 8 }, CanReceiveFrom = new List<int> { 1, 2, 3, 4 } },
+                    new NhomMauModel { Id = 5, Name = "B-", CanGiveTo = new List<int> { 5, 6, 7, 8 }, CanReceiveFrom = new List<int> { 1, 5 } },
+                    new NhomMauModel { Id = 6, Name = "B+", CanGiveTo = new List<int> { 6, 8 }, CanReceiveFrom = new List<int> { 1, 2, 5, 6 } },
+                    new NhomMauModel { Id = 7, Name = "AB-", CanGiveTo = new List<int> { 7, 8 }, CanReceiveFrom = new List<int> { 1, 3, 5, 7 } },
+                    new NhomMauModel { Id = 8, Name = "AB+", CanGiveTo = new List<int> { 8 }, CanReceiveFrom = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 } },
+                };
+
+                var usersQuery = db.tbThongTinCaNhans.AsQueryable();
+                // Lọc theo thành phố, quận, phường
+                if (!string.IsNullOrEmpty(idThanhPho) && int.TryParse(idThanhPho, out int idThanhPhoValue))
+                {
+                    usersQuery = usersQuery.Where(u => u.IDThanhPho == idThanhPhoValue);
+                }
+                if (!string.IsNullOrEmpty(idQuan) && int.TryParse(idQuan, out int idQuanValue))
+                {
+                    usersQuery = usersQuery.Where(u => u.IDQuan == idQuanValue);
+                }
+                if (!string.IsNullOrEmpty(idPhuong) && int.TryParse(idPhuong, out int idPhuongValue))
+                {
+                    usersQuery = usersQuery.Where(u => u.IDPhuong == idPhuongValue);
+                }
+                // Lọc theo khả năng cho máu
+                if (!string.IsNullOrEmpty(bloodGroupFor) && int.TryParse(bloodGroupFor, out int bloodGroupForValue))
+                {
+                    var bloodGroup = bloodGroups.FirstOrDefault(bg => bg.Id == bloodGroupForValue);
+                    if (bloodGroup != null)
+                    {
+                        usersQuery = usersQuery.Where(u => u.IDNhomMau.HasValue && bloodGroup.CanGiveTo.Contains(u.IDNhomMau.Value));
+                    }
+                }
+                // Lọc theo khả năng nhận máu
+                if (!string.IsNullOrEmpty(bloodGroupReceive) && int.TryParse(bloodGroupReceive, out int bloodGroupReceiveValue))
+                {
+                    var bloodGroup = bloodGroups.FirstOrDefault(bg => bg.Id == bloodGroupReceiveValue);
+                    if (bloodGroup != null)
+                    {
+                        usersQuery = usersQuery.Where(u => u.IDNhomMau.HasValue && bloodGroup.CanReceiveFrom.Contains(u.IDNhomMau.Value));
+                    }
+                }
+                // Lấy kết quả và map dữ liệu
+                var filteredUsers = usersQuery.Select(u => new
+                {
+                    u.MaTaiKhoan,
+                    u.HoTen,
+                    u.DiaChi,
+                    ThanhPho = db.tbTinhThanhPhoes.FirstOrDefault(t => t.IDTP == u.IDThanhPho) != null
+                        ? db.tbTinhThanhPhoes.FirstOrDefault(t => t.IDTP == u.IDThanhPho).TenTP
+                        : "Không xác định",
+                    Quan = db.tbQuanHuyens.FirstOrDefault(q => q.IDQuan == u.IDQuan) != null
+                        ? db.tbQuanHuyens.FirstOrDefault(q => q.IDQuan == u.IDQuan).TenQuan
+                        : "Không xác định",
+                    Phuong = db.tbXaPhuongs.FirstOrDefault(p => p.IDPhuong == u.IDPhuong) != null
+                        ? db.tbXaPhuongs.FirstOrDefault(p => p.IDPhuong == u.IDPhuong).TenPhuong
+                        : "Không xác định",
+                    NhomMau = db.tbNhomMaus.FirstOrDefault(n => n.IDNhomMau == u.IDNhomMau) != null
+                        ? db.tbNhomMaus.FirstOrDefault(n => n.IDNhomMau == u.IDNhomMau).TenNhomMau
+                        : "Không xác định",
+                    u.GioiTinh,
+                    u.CCCD,
+                    u.SDT,
+                    u.HinhAnh
+                }).ToList();
+
+                if (!filteredUsers.Any())
+                {
+                    return Json(new { message = "Không tìm thấy người dùng nào phù hợp." }, JsonRequestBehavior.AllowGet);
+                }
+
+                return Json(filteredUsers, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return Json(new { error = "Đã xảy ra lỗi khi xử lý yêu cầu." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult UserDetail(int id)
+        {
+            var user = db.tbThongTinCaNhans
+                        .Where(u => u.MaTaiKhoan == id)
+                        .Select(ab => new ThongTinCaNhanModels
+                        {
+                            MaTaiKhoan = ab.MaTaiKhoan,
+                            Gmail = ab.Gmail,
+                            HinhAnh = ab.HinhAnh,
+                            HoTen = ab.HoTen,
+                            GioiTinh = ab.GioiTinh,
+                            NgaySinh = ab.NgaySinh,
+                            DiaChi = ab.DiaChi,
+                            IDThanhPho = ab.IDThanhPho,
+                            IDQuan = ab.IDQuan,
+                            IDPhuong = ab.IDPhuong,
+                            NgheNghiep = ab.NgheNghiep,
+                            TinhTrangHonNhan = ab.TinhTrangHonNhan,
+                            CCCD = ab.CCCD,
+                            NgayCap = ab.NgayCap,
+                            NoiCap_IDTP = ab.NoiCap_IDTP,
+                            IDNhomMau = ab.IDNhomMau,
+                            SDT = ab.SDT
+                        })
+                        .FirstOrDefault();
+
+            if (user == null)
+            {
+                return Redirect("/not-found");
+            }
+
+            return View(user);
+        }
+        public ActionResult News()
+        {
+            tbBloodInfor item = new tbBloodInfor();
+
+            // Map sang ViewModel
+            var model = new ThongTinMauModel
+            {
+                IDThTinMau = item.IDThTinMau,
+                TieuDe = item.TieuDe,
+                NoiDung = item.NoiDung,
+                HinhAnh = item.HinhAnh
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult News(tbBloodInfor tbBlo, HttpPostedFileBase file)
+        {
+            try
+            {
+                tbBloodInfor item = new tbBloodInfor();
+
+                if (file != null)
+                {
+                    item.HinhAnh = UploadImage(file);
+                }
+                else
+                {
+                    item.HinhAnh = tbBlo.HinhAnh;
+                }
+
+                item.TieuDe = tbBlo.TieuDe;
+                item.NoiDung = tbBlo.NoiDung;
+                item.Hide = false;
+                db.tbBloodInfors.Add(item);
+                db.SaveChanges();
+                return Redirect("/Doctor/INews");
+            }
+            catch
+            {
+                // Map sang ViewModel
+                var model = new ThongTinMauModel
+                {
+                    IDThTinMau = tbBlo.IDThTinMau,
+                    TieuDe = tbBlo.TieuDe,
+                    NoiDung = tbBlo.NoiDung,
+                    HinhAnh = tbBlo.HinhAnh
+                };
+
+                return View(model);
+            }
+        }
+        public ActionResult Enews(int? id)
+        {
+            var item = db.tbBloodInfors.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new ThongTinMauModel
+            {
+                IDThTinMau = item.IDThTinMau,
+                TieuDe = item.TieuDe,
+                NoiDung = item.NoiDung,
+                HinhAnh = item.HinhAnh,
+                Hide = item.Hide
+                // Thêm các thuộc tính cần thiết
+            };
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Enews(tbBloodInfor tbBlo, HttpPostedFileBase Editfile)
+        {
+            try
+            {
+                tbBloodInfor item = new tbBloodInfor();
+
+                item = db.tbBloodInfors.Find(tbBlo.IDThTinMau);
+                if (Editfile != null)
+                {
+                    item.HinhAnh = UploadImage(Editfile);
+                }
+                item.TieuDe = tbBlo.TieuDe;
+                item.NoiDung = tbBlo.NoiDung;
+                item.Hide = tbBlo.Hide;
+                db.Entry(item).State = EntityState.Modified;
+                db.SaveChanges();
+                return Redirect("/Doctor/INews");
+            }
+            catch (Exception ex)
+            {
+                return View(tbBlo);
+            }
+        }
+        public ActionResult INews()
+        {
+            var items = db.tbBloodInfors
+                .Select(b => new ThongTinMauModel
+                {
+                    IDThTinMau = b.IDThTinMau,
+                    TieuDe = b.TieuDe,
+                    NoiDung = b.NoiDung,
+                    HinhAnh = b.HinhAnh,
+                    Hide = b.Hide
+                })
+                .ToList();
+
+            return View(items);
+        }
+        public ActionResult DetailsNews(int? id)
+        {
+            var item = db.tbBloodInfors.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new ThongTinMauModel
+            {
+                IDThTinMau = item.IDThTinMau,
+                TieuDe = item.TieuDe,
+                NoiDung = item.NoiDung,
+                HinhAnh = item.HinhAnh,
+                Hide = item.Hide
+            };
             return View(model);
         }
     }

@@ -180,6 +180,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DBContext\sysdiagram.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBContext\tbBloodInfor.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -3571,6 +3574,11 @@
     <Content Include="Views\Doctor\Information.cshtml" />
     <Content Include="Views\ForgotPassword\ForgotPassword.cshtml" />
     <Content Include="Views\ForgotPassword\PasswordSent.cshtml" />
+    <Content Include="Views\Doctor\Enews.cshtml" />
+    <Content Include="Views\Doctor\DetailsNews.cshtml" />
+    <Content Include="Views\Doctor\INews.cshtml" />
+    <Content Include="Views\Doctor\News.cshtml" />
+    <Content Include="Views\Doctor\UserDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -33,6 +33,7 @@ namespace ManageBloodTypes.Controllers
                     Gmail = tbTTin.Gmail,
                     MatKhau = tbTTin.MatKhau,
                     Hide = false,
+                    Role = 3,
                 };
                 db.tbThongTinCaNhans.Add(Register);
                 db.SaveChanges();
@@ -63,7 +64,8 @@ namespace ManageBloodTypes.Controllers
                     HoTen = obj.HoTen,
                     Gmail = obj.Gmail,
                     MatKhau = obj.MatKhau,
-                    Hide = obj.Hide
+                    Hide = obj.Hide,
+                    Role = obj.Role,
                 };
                 db.tbThongTinCaNhans.Add(user);
                 db.SaveChanges();

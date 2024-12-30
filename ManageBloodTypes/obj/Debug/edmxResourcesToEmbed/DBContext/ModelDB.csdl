@@ -60,6 +60,7 @@
     <EntitySet Name="tbBloodInfors" EntityType="QLMauModel.tbBloodInfor" />
     <EntitySet Name="tbLichSuGiaoDiches" EntityType="QLMauModel.tbLichSuGiaoDich" />
     <EntitySet Name="tbThongKeMaus" EntityType="QLMauModel.tbThongKeMau" />
+    <EntitySet Name="sysdiagrams" EntityType="QLMauModel.sysdiagram" />
     <EntitySet Name="tbThongTinCaNhans" EntityType="QLMauModel.tbThongTinCaNhan" />
   </EntityContainer>
   <EntityType Name="tbBloodInfor">
@@ -95,6 +96,16 @@
     <Property Name="SoLanHienMau" Type="Int32" />
     <Property Name="SoLanNhanMau" Type="Int32" />
     <Property Name="Hide" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="tbThongTinCaNhan">
     <Key>

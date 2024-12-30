@@ -52,7 +52,7 @@ namespace ManageBloodTypes.Controllers
                 ViewBag.PasswordError = "Mật khẩu không đúng.";
                 return View();
             }
-            if (Gmail.Trim().ToLower() == "bacsi123@gmail.com" && MatKhau.Trim() == "Bacsi123")
+            if (/*Gmail.Trim().ToLower() == "bacsi123@gmail.com" && MatKhau.Trim() == "Bacsi123"*/ user.Role == 2)
             {
                 Session["HinhAnh"] = user.HinhAnh;
                 Session["UserEmail"] = user.Gmail;
@@ -60,7 +60,7 @@ namespace ManageBloodTypes.Controllers
                 Session["HoTen"] = user.HoTen;
                 return RedirectToAction("Index", "Doctor");
             }
-            if (Gmail.Trim().ToLower() == "admin123@gmail.com" && MatKhau.Trim() == "Admin123")
+            if (/*Gmail.Trim().ToLower() == "admin123@gmail.com" && MatKhau.Trim() == "Admin123"*/ user.Role == 1)
             {
                 Session["HinhAnh"] = user.HinhAnh;
                 Session["UserEmail"] = user.Gmail;
