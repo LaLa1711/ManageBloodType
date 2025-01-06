@@ -5,15 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="QLMauModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="sysdiagrams">
+        <EntityType Name="tbBanner">
           <Key>
-            <PropertyRef Name="diagram_id" />
+            <PropertyRef Name="IDBanner" />
           </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
+          <Property Name="IDBanner" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="150" />
+          <Property Name="NoiDung" Type="nvarchar" MaxLength="250" />
+          <Property Name="HinhAnh" Type="varchar" MaxLength="200" />
+          <Property Name="Hide" Type="bit" />
         </EntityType>
         <EntityType Name="tbBloodInfor">
           <Key>
@@ -23,6 +23,15 @@
           <Property Name="TieuDe" Type="nvarchar" MaxLength="150" />
           <Property Name="NoiDung" Type="nvarchar(max)" />
           <Property Name="HinhAnh" Type="varchar(max)" />
+          <Property Name="Hide" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbHinhAnh">
+          <Key>
+            <PropertyRef Name="IDHinh" />
+          </Key>
+          <Property Name="IDHinh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HinhAnh" Type="varchar" MaxLength="250" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="250" />
           <Property Name="Hide" Type="bit" />
         </EntityType>
         <EntityType Name="tbLichSuGiaoDich">
@@ -108,6 +117,16 @@
           <Property Name="IDNhomMau" Type="int" />
           <Property Name="Hide" Type="bit" />
         </EntityType>
+        <EntityType Name="tbTieuChuan">
+          <Key>
+            <PropertyRef Name="IDTieuChuan" />
+          </Key>
+          <Property Name="IDTieuChuan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Icon" Type="varchar" MaxLength="250" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="150" />
+          <Property Name="NoiDung" Type="nvarchar" MaxLength="250" />
+          <Property Name="Hide" Type="bit" />
+        </EntityType>
         <EntityType Name="tbTinhThanhPho">
           <Key>
             <PropertyRef Name="IDTP" />
@@ -126,8 +145,9 @@
           <Property Name="Hide" Type="bit" />
         </EntityType>
         <EntityContainer Name="QLMauModelStoreContainer">
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbBanner" EntityType="Self.tbBanner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbBloodInfor" EntityType="Self.tbBloodInfor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbHinhAnh" EntityType="Self.tbHinhAnh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbLichSuGiaoDich" EntityType="Self.tbLichSuGiaoDich" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbNgheNghiep" EntityType="Self.tbNgheNghiep" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbNhomMau" EntityType="Self.tbNhomMau" Schema="dbo" store:Type="Tables" />
@@ -135,6 +155,7 @@
           <EntitySet Name="tbQuyen" EntityType="Self.tbQuyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbThongKeMau" EntityType="Self.tbThongKeMau" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbThongTinCaNhan" EntityType="Self.tbThongTinCaNhan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbTieuChuan" EntityType="Self.tbTieuChuan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbTinhThanhPho" EntityType="Self.tbTinhThanhPho" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbXaPhuong" EntityType="Self.tbXaPhuong" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -142,6 +163,64 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLMauModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QLMauEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbBanners" EntityType="QLMauModel.tbBanner" />
+          <EntitySet Name="tbBloodInfors" EntityType="QLMauModel.tbBloodInfor" />
+          <EntitySet Name="tbHinhAnhs" EntityType="QLMauModel.tbHinhAnh" />
+          <EntitySet Name="tbLichSuGiaoDiches" EntityType="QLMauModel.tbLichSuGiaoDich" />
+          <EntitySet Name="tbNgheNghieps" EntityType="QLMauModel.tbNgheNghiep" />
+          <EntitySet Name="tbNhomMaus" EntityType="QLMauModel.tbNhomMau" />
+          <EntitySet Name="tbQuanHuyens" EntityType="QLMauModel.tbQuanHuyen" />
+          <EntitySet Name="tbQuyens" EntityType="QLMauModel.tbQuyen" />
+          <EntitySet Name="tbThongKeMaus" EntityType="QLMauModel.tbThongKeMau" />
+          <EntitySet Name="tbThongTinCaNhans" EntityType="QLMauModel.tbThongTinCaNhan" />
+          <EntitySet Name="tbTieuChuans" EntityType="QLMauModel.tbTieuChuan" />
+          <EntitySet Name="tbTinhThanhPhoes" EntityType="QLMauModel.tbTinhThanhPho" />
+          <EntitySet Name="tbXaPhuongs" EntityType="QLMauModel.tbXaPhuong" />
+        </EntityContainer>
+        <EntityType Name="tbBanner">
+          <Key>
+            <PropertyRef Name="IDBanner" />
+          </Key>
+          <Property Name="IDBanner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="HinhAnh" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Hide" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbBloodInfor">
+          <Key>
+            <PropertyRef Name="IDThTinMau" />
+          </Key>
+          <Property Name="IDThTinMau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Hide" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbHinhAnh">
+          <Key>
+            <PropertyRef Name="IDHinh" />
+          </Key>
+          <Property Name="IDHinh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HinhAnh" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TieuDe" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Hide" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbLichSuGiaoDich">
+          <Key>
+            <PropertyRef Name="IDGiaoDich" />
+          </Key>
+          <Property Name="IDGiaoDich" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTaiKhoan" Type="Int32" />
+          <Property Name="IDNhomMau" Type="Int32" />
+          <Property Name="TinhTrangYeuCau" Type="Boolean" />
+          <Property Name="TrangThai" Type="Boolean" />
+          <Property Name="NgayYeuCau" Type="DateTime" Precision="0" />
+          <Property Name="SoLuongMau" Type="Int32" />
+          <Property Name="NgayXacNhan" Type="DateTime" Precision="0" />
+          <Property Name="Hide" Type="Boolean" />
+        </EntityType>
         <EntityType Name="tbNgheNghiep">
           <Key>
             <PropertyRef Name="IDNgheNghiep" />
@@ -175,60 +254,6 @@
           <Property Name="TenQuyen" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Hide" Type="Boolean" />
         </EntityType>
-        <EntityType Name="tbTinhThanhPho">
-          <Key>
-            <PropertyRef Name="IDTP" />
-          </Key>
-          <Property Name="IDTP" Type="Int32" Nullable="false" />
-          <Property Name="TenTP" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Hide" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="tbXaPhuong">
-          <Key>
-            <PropertyRef Name="IDPhuong" />
-          </Key>
-          <Property Name="IDQuan" Type="Int32" />
-          <Property Name="TenPhuong" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="IDPhuong" Type="Int32" Nullable="false" />
-          <Property Name="Hide" Type="Boolean" />
-        </EntityType>
-        <EntityContainer Name="QLMauEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tbNgheNghieps" EntityType="Self.tbNgheNghiep" />
-          <EntitySet Name="tbNhomMaus" EntityType="Self.tbNhomMau" />
-          <EntitySet Name="tbQuanHuyens" EntityType="Self.tbQuanHuyen" />
-          <EntitySet Name="tbQuyens" EntityType="Self.tbQuyen" />
-          <EntitySet Name="tbTinhThanhPhoes" EntityType="Self.tbTinhThanhPho" />
-          <EntitySet Name="tbXaPhuongs" EntityType="Self.tbXaPhuong" />
-          <EntitySet Name="tbBloodInfors" EntityType="QLMauModel.tbBloodInfor" />
-          <EntitySet Name="tbLichSuGiaoDiches" EntityType="QLMauModel.tbLichSuGiaoDich" />
-          <EntitySet Name="tbThongKeMaus" EntityType="QLMauModel.tbThongKeMau" />
-          <EntitySet Name="sysdiagrams" EntityType="QLMauModel.sysdiagram" />
-          <EntitySet Name="tbThongTinCaNhans" EntityType="QLMauModel.tbThongTinCaNhan" />
-        </EntityContainer>
-        <EntityType Name="tbBloodInfor">
-          <Key>
-            <PropertyRef Name="IDThTinMau" />
-          </Key>
-          <Property Name="IDThTinMau" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TieuDe" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="HinhAnh" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Hide" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="tbLichSuGiaoDich">
-          <Key>
-            <PropertyRef Name="IDGiaoDich" />
-          </Key>
-          <Property Name="IDGiaoDich" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaTaiKhoan" Type="Int32" />
-          <Property Name="IDNhomMau" Type="Int32" />
-          <Property Name="TinhTrangYeuCau" Type="Boolean" />
-          <Property Name="TrangThai" Type="Boolean" />
-          <Property Name="NgayYeuCau" Type="DateTime" Precision="0" />
-          <Property Name="SoLuongMau" Type="Int32" />
-          <Property Name="NgayXacNhan" Type="DateTime" Precision="0" />
-          <Property Name="Hide" Type="Boolean" />
-        </EntityType>
         <EntityType Name="tbThongKeMau">
           <Key>
             <PropertyRef Name="IDThongKeMau" />
@@ -238,16 +263,6 @@
           <Property Name="SoLanHienMau" Type="Int32" />
           <Property Name="SoLanNhanMau" Type="Int32" />
           <Property Name="Hide" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="tbThongTinCaNhan">
           <Key>
@@ -275,65 +290,47 @@
           <Property Name="IDNhomMau" Type="Int32" />
           <Property Name="Hide" Type="Boolean" />
         </EntityType>
-      </Schema>
+        <EntityType Name="tbTieuChuan">
+          <Key>
+            <PropertyRef Name="IDTieuChuan" />
+          </Key>
+          <Property Name="IDTieuChuan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Icon" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TieuDe" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NoiDung" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Hide" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbTinhThanhPho">
+          <Key>
+            <PropertyRef Name="IDTP" />
+          </Key>
+          <Property Name="IDTP" Type="Int32" Nullable="false" />
+          <Property Name="TenTP" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Hide" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbXaPhuong">
+          <Key>
+            <PropertyRef Name="IDPhuong" />
+          </Key>
+          <Property Name="IDQuan" Type="Int32" />
+          <Property Name="TenPhuong" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IDPhuong" Type="Int32" Nullable="false" />
+          <Property Name="Hide" Type="Boolean" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="QLMauModelStoreContainer" CdmEntityContainer="QLMauEntities">
-          <EntitySetMapping Name="tbNgheNghieps">
-            <EntityTypeMapping TypeName="QLMauModel.tbNgheNghiep">
-              <MappingFragment StoreEntitySet="tbNgheNghiep">
-                <ScalarProperty Name="IDNgheNghiep" ColumnName="IDNgheNghiep" />
-                <ScalarProperty Name="TenNgheNghiep" ColumnName="TenNgheNghiep" />
+          <EntitySetMapping Name="tbBanners">
+            <EntityTypeMapping TypeName="QLMauModel.tbBanner">
+              <MappingFragment StoreEntitySet="tbBanner">
                 <ScalarProperty Name="Hide" ColumnName="Hide" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbNhomMaus">
-            <EntityTypeMapping TypeName="QLMauModel.tbNhomMau">
-              <MappingFragment StoreEntitySet="tbNhomMau">
-                <ScalarProperty Name="IDNhomMau" ColumnName="IDNhomMau" />
-                <ScalarProperty Name="TenNhomMau" ColumnName="TenNhomMau" />
-                <ScalarProperty Name="Hide" ColumnName="Hide" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbQuanHuyens">
-            <EntityTypeMapping TypeName="QLMauModel.tbQuanHuyen">
-              <MappingFragment StoreEntitySet="tbQuanHuyen">
-                <ScalarProperty Name="IDTP" ColumnName="IDTP" />
-                <ScalarProperty Name="TenQuan" ColumnName="TenQuan" />
-                <ScalarProperty Name="IDQuan" ColumnName="IDQuan" />
-                <ScalarProperty Name="Hide" ColumnName="Hide" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbQuyens">
-            <EntityTypeMapping TypeName="QLMauModel.tbQuyen">
-              <MappingFragment StoreEntitySet="tbQuyen">
-                <ScalarProperty Name="IDQuyen" ColumnName="IDQuyen" />
-                <ScalarProperty Name="TenQuyen" ColumnName="TenQuyen" />
-                <ScalarProperty Name="Hide" ColumnName="Hide" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbTinhThanhPhoes">
-            <EntityTypeMapping TypeName="QLMauModel.tbTinhThanhPho">
-              <MappingFragment StoreEntitySet="tbTinhThanhPho">
-                <ScalarProperty Name="IDTP" ColumnName="IDTP" />
-                <ScalarProperty Name="TenTP" ColumnName="TenTP" />
-                <ScalarProperty Name="Hide" ColumnName="Hide" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tbXaPhuongs">
-            <EntityTypeMapping TypeName="QLMauModel.tbXaPhuong">
-              <MappingFragment StoreEntitySet="tbXaPhuong">
-                <ScalarProperty Name="IDQuan" ColumnName="IDQuan" />
-                <ScalarProperty Name="TenPhuong" ColumnName="TenPhuong" />
-                <ScalarProperty Name="IDPhuong" ColumnName="IDPhuong" />
-                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="IDBanner" ColumnName="IDBanner" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -345,6 +342,16 @@
                 <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
                 <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
                 <ScalarProperty Name="IDThTinMau" ColumnName="IDThTinMau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbHinhAnhs">
+            <EntityTypeMapping TypeName="QLMauModel.tbHinhAnh">
+              <MappingFragment StoreEntitySet="tbHinhAnh">
+                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="HinhAnh" ColumnName="HinhAnh" />
+                <ScalarProperty Name="IDHinh" ColumnName="IDHinh" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -363,6 +370,43 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tbNgheNghieps">
+            <EntityTypeMapping TypeName="QLMauModel.tbNgheNghiep">
+              <MappingFragment StoreEntitySet="tbNgheNghiep">
+                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="TenNgheNghiep" ColumnName="TenNgheNghiep" />
+                <ScalarProperty Name="IDNgheNghiep" ColumnName="IDNgheNghiep" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbNhomMaus">
+            <EntityTypeMapping TypeName="QLMauModel.tbNhomMau">
+              <MappingFragment StoreEntitySet="tbNhomMau">
+                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="TenNhomMau" ColumnName="TenNhomMau" />
+                <ScalarProperty Name="IDNhomMau" ColumnName="IDNhomMau" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbQuanHuyens">
+            <EntityTypeMapping TypeName="QLMauModel.tbQuanHuyen">
+              <MappingFragment StoreEntitySet="tbQuanHuyen">
+                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="IDQuan" ColumnName="IDQuan" />
+                <ScalarProperty Name="TenQuan" ColumnName="TenQuan" />
+                <ScalarProperty Name="IDTP" ColumnName="IDTP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbQuyens">
+            <EntityTypeMapping TypeName="QLMauModel.tbQuyen">
+              <MappingFragment StoreEntitySet="tbQuyen">
+                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="TenQuyen" ColumnName="TenQuyen" />
+                <ScalarProperty Name="IDQuyen" ColumnName="IDQuyen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tbThongKeMaus">
             <EntityTypeMapping TypeName="QLMauModel.tbThongKeMau">
               <MappingFragment StoreEntitySet="tbThongKeMau">
@@ -371,17 +415,6 @@
                 <ScalarProperty Name="SoLanHienMau" ColumnName="SoLanHienMau" />
                 <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
                 <ScalarProperty Name="IDThongKeMau" ColumnName="IDThongKeMau" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="QLMauModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -409,6 +442,36 @@
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="MaTaiKhoan" ColumnName="MaTaiKhoan" />
                 <ScalarProperty Name="IDThongTin" ColumnName="IDThongTin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbTieuChuans">
+            <EntityTypeMapping TypeName="QLMauModel.tbTieuChuan">
+              <MappingFragment StoreEntitySet="tbTieuChuan">
+                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="IDTieuChuan" ColumnName="IDTieuChuan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbTinhThanhPhoes">
+            <EntityTypeMapping TypeName="QLMauModel.tbTinhThanhPho">
+              <MappingFragment StoreEntitySet="tbTinhThanhPho">
+                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="TenTP" ColumnName="TenTP" />
+                <ScalarProperty Name="IDTP" ColumnName="IDTP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbXaPhuongs">
+            <EntityTypeMapping TypeName="QLMauModel.tbXaPhuong">
+              <MappingFragment StoreEntitySet="tbXaPhuong">
+                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="IDPhuong" ColumnName="IDPhuong" />
+                <ScalarProperty Name="TenPhuong" ColumnName="TenPhuong" />
+                <ScalarProperty Name="IDQuan" ColumnName="IDQuan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

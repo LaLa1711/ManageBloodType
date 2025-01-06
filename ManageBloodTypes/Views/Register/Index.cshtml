@@ -293,7 +293,8 @@
 
                         // Kiểm tra định dạng email (phải chứa @@gmail.com)
                         function validateEmailFormat(email) {
-                            var emailPattern =  /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}$/;  // Định dạng: phải có @@gmail.com
+                     //       var emailPattern = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/;
+                            var emailPattern = /^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;// Định dạng: phải có @@gmail.com
                             return emailPattern.test(email);
                         }
 

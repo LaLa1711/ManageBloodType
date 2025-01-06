@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_LandingPage.cshtml";
+}
+<!-- Banner -->
+@Html.Action("Banner", "LandingPage")
+<!-- Thống Kê -->
+@Html.Action("ThongKe_HomePgae", "LandingPage")
+<!-- Tuyên Dương -->
+@Html.Action("TuyenDuong", "LandingPage")
+<!-- Yêu Cầu -->
+@Html.Action("YeuCau", "LandingPage")
+<!-- Tiêu Chuẩn -->
+@Html.Action("TieuChuan", "LandingPage")
+<!-- Form Đăng Ký -->
+<section class="ftco-hireme" style="background: #007bb4">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-md-8 col-lg-8 d-flex align-items-center">
+                <div class="w-100 py-4">
+                    <h2>Bạn muốn Đăng Ký?</h2>
+                    <p>Mỗi giọt máu cho đi, bạn không chỉ cứu sống một người, mà còn trao đi sự hi vọng và tình yêu thương.</p>
+                    <p class="mb-0"><a href="/Register/Index" class="btn btn-white py-3 px-4 btn-blink" style="font-size:16px">ĐĂNG KÝ NGAY</a></p>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 d-flex align-items-end">
+                <img src="/Content/LandingPage/images/author.png" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hình Ảnh -->
+@Html.Action("HinhAnh", "LandingPage")
+<!-- Bình Luận -->
+<section class="ftco-section testimony-section bg-primary">
+  @*  <div class="container">
+        <div class="row justify-content-center pb-5">
+                <div class="col-md-12 heading-section heading-section-white text-center ftco-animate">
+                    <span class="subheading">Testimonies</span>
+                    <h2 class="mb-4">What client says about?</h2>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                </div>
+            </div>
+            <div class="row ftco-animate">
+                <div class="col-md-12">
+                    <div class="carousel-testimony owl-carousel">
+                        <div class="item">
+                            <div class="testimony-wrap py-4">
+                                <div class="text">
+                                    <span class="fa fa-quote-left"></span>
+                                    <p class="mb-4 pl-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-img" style="background-image: url(/Content/LandingPage/images/person_1.jpg)"></div>
+                                        <div class="pl-3">
+                                            <p class="name">Roger Scott</p>
+                                            <span class="position">Marketing Manager</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimony-wrap py-4">
+                                <div class="text">
+                                    <span class="fa fa-quote-left"></span>
+                                    <p class="mb-4 pl-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-img" style="background-image: url(/Content/LandingPage/images/person_2.jpg)"></div>
+                                        <div class="pl-3">
+                                            <p class="name">Roger Scott</p>
+                                            <span class="position">Marketing Manager</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimony-wrap py-4">
+                                <div class="text">
+                                    <span class="fa fa-quote-left"></span>
+                                    <p class="mb-4 pl-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-img" style="background-image: url(/Content/LandingPage/images/person_3.jpg)"></div>
+                                        <div class="pl-3">
+                                            <p class="name">Roger Scott</p>
+                                            <span class="position">Marketing Manager</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimony-wrap py-4">
+                                <div class="text">
+                                    <span class="fa fa-quote-left"></span>
+                                    <p class="mb-4 pl-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-img" style="background-image: url(/Content/LandingPage/images/person_1.jpg)"></div>
+                                        <div class="pl-3">
+                                            <p class="name">Roger Scott</p>
+                                            <span class="position">Marketing Manager</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimony-wrap py-4">
+                                <div class="text">
+                                    <span class="fa fa-quote-left"></span>
+                                    <p class="mb-4 pl-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="user-img" style="background-image: url(/Content/LandingPage/images/person_2.jpg)"></div>
+                                        <div class="pl-3">
+                                            <p class="name">Roger Scott</p>
+                                            <span class="position">Marketing Manager</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>*@
+</section>
+<!-- Tin Tức -->
+@Html.Action("TinTuc", "LandingPage")
+
+

@@ -121,7 +121,7 @@ a {
 }
 
 a:hover {
-  color: #717ff5;
+  color: #004085 ;
   text-decoration: none;
 }
 
@@ -782,7 +782,7 @@ h6 {
   font-size: 15px;
   font-weight: 600;
   color: #4154f1;
-  transition: 0.3;
+  transition: 0.3s;
   background: #f6f9ff;
   padding: 10px 15px;
   border-radius: 4px;
@@ -804,12 +804,12 @@ h6 {
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #4154f1;
-  background: #f6f9ff;
+  color: #000;
+  background: #bfd4fe ;
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: #4154f1;
+  color: #000;
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
@@ -832,8 +832,8 @@ h6 {
   align-items: center;
   font-size: 14px;
   font-weight: 600;
-  color: #012970;
-  transition: 0.3;
+  color: #000;
+  transition: 0.3s;
   padding: 10px 0 10px 40px;
   transition: 0.3s;
 }
@@ -847,7 +847,7 @@ h6 {
 
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  color: #4154f1;
+  color: #fff;
 }
 
 .sidebar-nav .nav-content a.active i {

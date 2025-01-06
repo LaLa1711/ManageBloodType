@@ -14,9 +14,9 @@ namespace ManageBloodTypes
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Home",
+                name: "LandingPage",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "LandingPage", action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "ManageBloodTypes.Controllers" } // Chỉ định namespace rõ ràng
             );
             routes.MapRoute(

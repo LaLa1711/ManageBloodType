@@ -16,8 +16,16 @@
             <div class="col-xl-4">
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                        <img src="@Model.HinhAnh" alt="Profile" class="rounded-circle">
+                        @*<img src="@Model.HinhAnh" alt="Profile" class="rounded-circle">*@
+                          @if (string.IsNullOrEmpty(Model.HinhAnh))
+                          {
+                              Model.HinhAnh = "/Content/img/avatarfb.jpg";
+                              <img src="@Model.HinhAnh" alt="Profile" class="rounded-circle"/>
 
+                          }
+                          else
+                          {
+                              <img src="@Model.HinhAnh" alt="Profile" class="rounded-circle" />}
                         @*<h3>
                                 @if (Model.NgheNghiep.HasValue && Model.NgheNghiep.Value != 0)
                                 {

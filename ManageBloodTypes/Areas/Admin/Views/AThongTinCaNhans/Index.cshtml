@@ -27,6 +27,9 @@
                                     Mã Tài Khoản
                                 </th>
                                 <th>
+                                    Họ Tên
+                                </th>
+                                <th>
                                     Hình Ảnh
                                 </th>
                                 <th>
@@ -42,6 +45,9 @@
                                     @Html.DisplayFor(modelItem => item.MaTaiKhoan)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.HoTen)
+                                </td>
+                                <td>
                                     @if (string.IsNullOrEmpty(item.HinhAnh))
                                     {
                                         item.HinhAnh = "/Content/img/avatarfb.jpg";
@@ -50,7 +56,7 @@
                                     }
                                     else
                                     {
-                                    <img src="@item.HinhAnh" width="100" />}
+                                        <img src="@item.HinhAnh" width="100" />}
                                 </td>
                                 <td>
                                     @if (item.IDNhomMau.HasValue && item.IDNhomMau.Value != 0)
@@ -64,8 +70,7 @@
                                 </td>
                                 <td>
                                     <a href="/Admin/AThongTinCaNhans/Edit/@item.IDThongTin"><i class="bi bi-pencil-square"></i></a> |
-                                    <a href="/Admin/AThongTinCaNhans/Details/@item.IDThongTin"><i class="ri-article-line"></i></a> |
-                                    <a href="/Admin/AThongTinCaNhans/Delete/@item.IDThongTin"><i class="ri-delete-bin-6-line"></i></a>
+                                    <a href="/Admin/AThongTinCaNhans/Details/@item.IDThongTin"><i class="ri-article-line"></i></a> 
                                 </td>
                             </tr>
                         }

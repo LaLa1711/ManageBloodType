@@ -1,4 +1,5 @@
 ﻿using ManageBloodTypes.App_Start;
+using ManageBloodTypes.Areas.Admin.Model;
 using ManageBloodTypes.DBContext;
 using ManageBloodTypes.Models;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -287,6 +288,42 @@ namespace ManageBloodTypes.Controllers
                 return "";
             }
         }
+        //public String GetHoTenName(int id)
+
+        //{
+        //    try
+        //    {
+        //        return db.tbThongTinCaNhans.Find(id).HoTen;
+        //    }
+        //    catch
+        //    {
+        //        return "";
+        //    }
+        //}
+        //public string GetHoTenName(int idB)
+        //{
+        //    var result = (from b in db.tbLichSuGiaoDiches
+        //                  join a in db.tbThongTinCaNhans on b.MaTaiKhoan equals a.MaTaiKhoan
+        //                  where b.MaTaiKhoan == idB
+        //                  select a.HoTen).FirstOrDefault();
+
+        //    return result ?? ""; // Trả về chuỗi rỗng nếu không tìm thấy
+        //}
+        public string GetHoTenName(int? id)
+        {
+            if (id == null || id == 0)
+                return "(Chưa có thông tin)";
+
+            var result = (from b in db.tbLichSuGiaoDiches
+                          join a in db.tbThongTinCaNhans on b.MaTaiKhoan equals a.MaTaiKhoan
+                          where b.MaTaiKhoan == id
+                          select a.HoTen).FirstOrDefault();
+
+            return result ?? "(Chưa có thông tin)";
+        }
+
+
+
         // GET: Doctor
         public ActionResult Index()
         {
@@ -958,5 +995,238 @@ namespace ManageBloodTypes.Controllers
             };
             return View(model);
         }
+
+
+
+        //
+        public string GetMaTaiKhoan1(int? id)
+        {
+            string html = "";
+
+            List<TinhTrangGiaoDichModel> lst = new List<TinhTrangGiaoDichModel>();
+            lst = (from grpo in db.tbThongTinCaNhans
+                   where grpo.Hide != true
+                   select (new TinhTrangGiaoDichModel
+                   {
+                       Id = grpo.MaTaiKhoan,
+                       Name = grpo.MaTaiKhoan,
+                   })).ToList();
+            int tong = lst.Count;
+
+            if (id != null)
+            {
+                html = "<option value= ''> ----- Chọn -----</option>";
+                for (int i = 0; i < tong; i++)
+                {
+                    if (id == lst[i].Id)
+                    {
+                        html += "<option selected value='" + lst[i].Id + "'>" + lst[i].Name + "</option>";
+                    }
+                    else
+                    {
+                        html += "<option value='" + lst[i].Id + "'>" + lst[i].Name + "</option>";
+
+                    }
+                }
+            }
+            else
+            {
+                html = "<option selected value= ''> ----- Chọn -----</option>";
+                for (int i = 0; i < tong; i++)
+                {
+                    html += "<option value='" + lst[i].Id + "'>" + lst[i].Name + "</option>";
+                }
+            }
+            return html;
+
+        }
+
+
+        public string GetMaTaiKhoan(int? id)
+        {
+            string html = "<option value= ''> ----- Chọn -----</option>";
+
+            var lst = db.tbThongTinCaNhans
+                         .Where(grpo => grpo.Hide != true)
+                         .Select(grpo => new { grpo.IDThongTin, grpo.MaTaiKhoan })
+                         .ToList();
+
+            foreach (var item in lst)
+            {
+                html += id == item.IDThongTin
+                    ? $"<option selected value='{item.MaTaiKhoan}'>{item.MaTaiKhoan}</option>"
+                    : $"<option value='{item.MaTaiKhoan}'>{item.MaTaiKhoan}</option>";
+            }
+
+            return html;
+        }
+      
+        public ActionResult IView()
+        {
+            return View(db.tbLichSuGiaoDiches.ToList());
+        }
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbLichSuGiaoDich tbLichSuGiaoDich = db.tbLichSuGiaoDiches.Find(id);
+            if (tbLichSuGiaoDich == null)
+            {
+                return HttpNotFound();
+            }
+            return View(tbLichSuGiaoDich);
+        }
+        public JsonResult GetNhomMauByMaTaiKhoan(int? maTaiKhoan)
+        {
+            if (!maTaiKhoan.HasValue)
+            {
+                return Json(new { success = false, message = "Mã tài khoản không hợp lệ" }, JsonRequestBehavior.AllowGet);
+            }
+
+            try
+            {
+                var thongTin = db.tbThongTinCaNhans
+                                 .Where(x => x.MaTaiKhoan == maTaiKhoan && x.Hide != true)
+                                 .Select(x => new { x.IDNhomMau })
+                                 .FirstOrDefault();
+
+                if (thongTin != null && thongTin.IDNhomMau.HasValue)
+                {
+                    return Json(new { success = true, idNhomMau = thongTin.IDNhomMau.Value }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = true, idNhomMau = "Không có thông tin" }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Lỗi: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public JsonResult GetNhomMauNameById(int? idNhomMau)
+        {
+            if (!idNhomMau.HasValue)
+            {
+                return Json(new { success = false, message = "ID Nhóm Máu không hợp lệ" }, JsonRequestBehavior.AllowGet);
+            }
+
+            try
+            {
+                var nhomMau = db.tbNhomMaus
+                                .Where(x => x.IDNhomMau == idNhomMau)
+                                .Select(x => x.TenNhomMau)
+                                .FirstOrDefault();
+
+                if (!string.IsNullOrEmpty(nhomMau))
+                {
+                    return Json(new { success = true, tenNhomMau = nhomMau }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = true, tenNhomMau = "Không có thông tin" }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Lỗi: " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult Create()
+        {
+            tbLichSuGiaoDich item = new tbLichSuGiaoDich();
+            string maTaiKhoanHtml = GetMaTaiKhoan(null);
+
+ 
+            ViewBag.MaTaiKhoanHtml = maTaiKhoanHtml;
+            return View(item);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Create(tbLichSuGiaoDich tbLic)
+        {
+            tbLichSuGiaoDich item = new tbLichSuGiaoDich();
+            try
+            {
+                var thongTinTaiKhoan = db.tbThongTinCaNhans
+                        .FirstOrDefault(x => x.MaTaiKhoan == tbLic.MaTaiKhoan);
+                item.MaTaiKhoan = tbLic.MaTaiKhoan;
+                item.IDNhomMau = thongTinTaiKhoan.IDNhomMau;
+                item.TinhTrangYeuCau = tbLic.TinhTrangYeuCau;
+                item.TrangThai = tbLic.TrangThai;
+                item.NgayYeuCau = tbLic.NgayYeuCau;
+                item.SoLuongMau = tbLic.SoLuongMau;
+                item.NgayXacNhan = tbLic.NgayXacNhan;
+
+                item.Hide = false;
+                db.tbLichSuGiaoDiches.Add(item);
+                db.SaveChanges();
+                return Redirect("/Doctor/IView");
+            }
+            catch
+            {
+                ViewBag.DanhSachTaiKhoan = db.tbThongTinCaNhans
+            .Select(x => new
+            {
+                x.MaTaiKhoan,
+                x.IDNhomMau
+            })
+            .ToList();
+
+                return View(tbLic);
+            }
+        }
+
+        // GET: Doctor/IView/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            tbLichSuGiaoDich tbLichSuGiaoDich = db.tbLichSuGiaoDiches.Find(id);
+            if (tbLichSuGiaoDich == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.DanhSachTaiKhoan = db.tbThongTinCaNhans.Where(x => x.Hide != true).ToList();
+            return View(tbLichSuGiaoDich);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit(tbLichSuGiaoDich tbLic)
+        {
+            try
+            {
+                tbLichSuGiaoDich item = new tbLichSuGiaoDich();
+
+                item = db.tbLichSuGiaoDiches.Find(tbLic.IDGiaoDich);
+
+                item.MaTaiKhoan = tbLic.MaTaiKhoan;
+                item.IDNhomMau = tbLic.IDNhomMau;
+                item.TinhTrangYeuCau = tbLic.TinhTrangYeuCau;
+                item.TrangThai = tbLic.TrangThai;
+                item.NgayYeuCau = tbLic.NgayYeuCau;
+                item.SoLuongMau = tbLic.SoLuongMau;
+                item.NgayXacNhan = tbLic.NgayXacNhan;
+                item.Hide = tbLic.Hide;
+                db.Entry(item).State = EntityState.Modified;
+                db.SaveChanges();
+                return Redirect("/Doctor/IView");
+            }
+            catch
+            {
+                return View(tbLic);
+            }
+        }
+
+
+
+
     }
 }

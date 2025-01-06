@@ -1,0 +1,103 @@
+﻿@model ManageBloodTypes.Models.ThongTinMauModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_News.cshtml";
+}
+@using PagedList.Mvc;
+@using PagedList;
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/Content/LandingPage/images/bg_4.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 ftco-animate">
+                <h2 class="mb-3">@Model.TieuDe</h2>
+                @Html.Raw(Model.NoiDung)
+
+            </div> <!-- .col-md-8 -->
+            <div class="col-lg-4 sidebar ftco-animate">
+                @*<div class="sidebar-box ftco-animate">
+            <h3 class="heading-sidebar">Tin Tức Khác</h3>
+
+            @foreach (var otherArticle in Model.OtherArticles)
+            {
+                <div class="block-21 mb-4 d-flex">
+                    <a class="blog-img mr-6" style="background-image: url('@otherArticle.HinhAnh');"></a>
+                    <div class="text">
+                        <h3 class="heading"><a href="@Url.Action("Details", "LandingPage", new { id = otherArticle.IDThTinMau })">@otherArticle.TieuDe</a></h3>
+                    </div>
+                </div>
+            }
+
+        </div>*@
+
+                <div class="sidebar-box ftco-animate">
+                    <h3 class="heading-sidebar">Tin Tức Khác</h3>
+
+                    @foreach (var otherArticle in Model.OtherArticlesPaged)
+                    {
+                        <div class="block-21 mb-4 d-flex">
+                            <a class="blog-img mr-6" style="background-image: url('@otherArticle.HinhAnh');"></a>
+                            <div class="text">
+                                <h3 class="heading"><a href="@Url.Action("Details", "LandingPage", new { id = otherArticle.IDThTinMau })">@otherArticle.TieuDe</a></h3>
+                            </div>
+                        </div>
+                    }
+                </div>
+                @*<div class="pagination">
+                    @Html.PagedListPager(
+                            Model.OtherArticlesPaged,
+                            page => Url.Action("Details", "LandingPage", new { id = Model.IDThTinMau, page }),
+                            new PagedListRenderOptions
+                            {
+                                DisplayLinkToFirstPage = PagedListDisplayMode.Always,  // Thay thế true bằng PagedListDisplayMode.Always
+                                DisplayLinkToLastPage = PagedListDisplayMode.Always,   // Thay thế true bằng PagedListDisplayMode.Always
+                                DisplayLinkToPreviousPage = PagedListDisplayMode.Always, // Thay thế true bằng PagedListDisplayMode.Always
+                                DisplayLinkToNextPage = PagedListDisplayMode.Always,    // Thay thế true bằng PagedListDisplayMode.Always
+                                DisplayEllipsesWhenNotShowingAllPageNumbers = true
+                            })
+                </div>*@
+
+                <div class="pagination justify-content-center">
+                    @if (Model.OtherArticlesPaged.HasPreviousPage)
+                    {
+                        <a href="@Url.Action("Details", "LandingPage", new { id = Model.IDThTinMau, page = Model.OtherArticlesPaged.PageNumber - 1 })" class="page-link">
+                            <span class="previous-page"> &lt;</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="page-link disabled"> &lt;</span>
+                    }
+
+                    @for (int i = 1; i <= Model.OtherArticlesPaged.PageCount; i++)
+                    {
+                        <a href="@Url.Action("Details", "LandingPage", new { id = Model.IDThTinMau, page = i })" class="page-link @((i == Model.OtherArticlesPaged.PageNumber) ? "active" : "")">
+                            @i
+                        </a>
+                    }
+
+                    @if (Model.OtherArticlesPaged.HasNextPage)
+                    {
+                        <a href="@Url.Action("Details", "LandingPage", new { id = Model.IDThTinMau, page = Model.OtherArticlesPaged.PageNumber + 1 })" class="page-link">
+                            <span class="next-page">&gt;</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="page-link disabled">&gt;</span>
+                    }
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section> <!-- .section -->

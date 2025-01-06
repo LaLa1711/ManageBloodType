@@ -59,13 +59,77 @@
     <Reference Include="EPPlus">
       <HintPath>..\..\..\..\EPPlus.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=6.30.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.6.30.1\lib\net472\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.30.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.30.1\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.30.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.30.1\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.30.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.30.1\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Common, Version=19.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.Services.Client.19.225.1\lib\net472\Microsoft.TeamFoundation.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualStudio.Services.Common, Version=19.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.Services.Client.19.225.1\lib\net472\Microsoft.VisualStudio.Services.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Services.WebApi, Version=19.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.VisualStudio.Services.Client.19.225.1\lib\net472\Microsoft.VisualStudio.Services.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.30.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.30.1\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encodings.Web, Version=4.0.5.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.4.7.2\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.4.7.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -116,9 +180,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -139,7 +200,9 @@
     <Compile Include="App_Start\Processing.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ABannersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ABloodInforsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AHinhAnhController.cs" />
     <Compile Include="Areas\Admin\Controllers\ALichSuGiaoDichesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ANgheNghiepsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ANhomMausController.cs" />
@@ -148,6 +211,7 @@
     <Compile Include="Areas\Admin\Controllers\ATaiKhoanAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\AThongKeMausController.cs" />
     <Compile Include="Areas\Admin\Controllers\AThongTinCaNhansController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ATieuChuansController.cs" />
     <Compile Include="Areas\Admin\Controllers\ATinhThanhPhoesController.cs" />
     <Compile Include="Areas\Admin\Controllers\AXaPhuongsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
@@ -161,6 +225,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Controllers\InformationController.cs" />
+    <Compile Include="Controllers\LandingPageController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LoginInformationController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -180,10 +245,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DBContext\sysdiagram.cs">
+    <Compile Include="DBContext\tbBanner.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\tbBloodInfor.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBContext\tbHinhAnh.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
     <Compile Include="DBContext\tbLichSuGiaoDich.cs">
@@ -207,6 +275,9 @@
     <Compile Include="DBContext\tbThongTinCaNhan.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DBContext\tbTieuChuan.cs">
+      <DependentUpon>ModelDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="DBContext\tbTinhThanhPho.cs">
       <DependentUpon>ModelDB.tt</DependentUpon>
     </Compile>
@@ -216,7 +287,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BannerModel.cs" />
+    <Compile Include="Models\HinhAnhModel.cs" />
     <Compile Include="Models\LichSuGiaoDichModel.cs" />
+    <Compile Include="Models\NghiepVuModel.cs" />
     <Compile Include="Models\NhomMauModel.cs" />
     <Compile Include="Models\PhuongXaModel.cs" />
     <Compile Include="Models\QuanHuyenModel.cs" />
@@ -225,6 +299,9 @@
     <Compile Include="Models\ThongTinCaNhanModels.cs" />
     <Compile Include="Models\NgheNghiepModel.cs" />
     <Compile Include="Models\ThongTinMauModel.cs" />
+    <Compile Include="Models\TieuChuanModel.cs" />
+    <Compile Include="Models\TuyenDuongModel.cs" />
+    <Compile Include="Models\YeuCauModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2940,6 +3017,62 @@
     <Content Include="Content\js\zm.ui-2.15.min.js" />
     <Content Include="Content\js\zmCore-1.46.min.js" />
     <Content Include="Content\js\zmxcall.js" />
+    <Content Include="Content\LandingPage\css\ajax-loader.gif" />
+    <Content Include="Content\LandingPage\css\animate.css" />
+    <Content Include="Content\LandingPage\css\aos.css" />
+    <Content Include="Content\LandingPage\css\bootstrap.min.css" />
+    <Content Include="Content\LandingPage\css\css2.css" />
+    <Content Include="Content\LandingPage\css\flaticon.css" />
+    <Content Include="Content\LandingPage\css\magnific-popup.css" />
+    <Content Include="Content\LandingPage\css\owl.carousel.min.css" />
+    <Content Include="Content\LandingPage\css\owl.theme.default.min.css" />
+    <Content Include="Content\LandingPage\css\style.css" />
+    <Content Include="Content\LandingPage\fonts\flaticon\backup.txt" />
+    <Content Include="Content\LandingPage\fonts\flaticon\font\flaticon.css" />
+    <Content Include="Content\LandingPage\fonts\flaticon\font\flaticon.html" />
+    <Content Include="Content\LandingPage\fonts\flaticon\font\Flaticon.svg" />
+    <Content Include="Content\LandingPage\fonts\flaticon\license\license.html" />
+    <Content Include="Content\LandingPage\images\about-1.jpg" />
+    <Content Include="Content\LandingPage\images\about.jpg" />
+    <Content Include="Content\LandingPage\images\author.png" />
+    <Content Include="Content\LandingPage\images\bg_1.jpg" />
+    <Content Include="Content\LandingPage\images\bg_2.jpg" />
+    <Content Include="Content\LandingPage\images\bg_3.jpg" />
+    <Content Include="Content\LandingPage\images\bg_4.jpg" />
+    <Content Include="Content\LandingPage\images\image_1.jpg" />
+    <Content Include="Content\LandingPage\images\image_2.jpg" />
+    <Content Include="Content\LandingPage\images\image_3.jpg" />
+    <Content Include="Content\LandingPage\images\loc.png" />
+    <Content Include="Content\LandingPage\images\person_1.jpg" />
+    <Content Include="Content\LandingPage\images\person_2.jpg" />
+    <Content Include="Content\LandingPage\images\person_3.jpg" />
+    <Content Include="Content\LandingPage\images\person_4.jpg" />
+    <Content Include="Content\LandingPage\images\pic1.jpg" />
+    <Content Include="Content\LandingPage\images\work-1.jpg" />
+    <Content Include="Content\LandingPage\images\work-2.jpg" />
+    <Content Include="Content\LandingPage\images\work-3.jpg" />
+    <Content Include="Content\LandingPage\images\work-4.jpg" />
+    <Content Include="Content\LandingPage\images\work-5.jpg" />
+    <Content Include="Content\LandingPage\images\work-6.jpg" />
+    <Content Include="Content\LandingPage\images\work-7.jpg" />
+    <Content Include="Content\LandingPage\images\work-8.jpg" />
+    <Content Include="Content\LandingPage\js\aos.js" />
+    <Content Include="Content\LandingPage\js\bootstrap.min.js" />
+    <Content Include="Content\LandingPage\js\google-map.js" />
+    <Content Include="Content\LandingPage\js\jquery-3.2.1.min.js" />
+    <Content Include="Content\LandingPage\js\jquery-migrate-3.0.1.min.js" />
+    <Content Include="Content\LandingPage\js\jquery.animateNumber.min.js" />
+    <Content Include="Content\LandingPage\js\jquery.easing.1.3.js" />
+    <Content Include="Content\LandingPage\js\jquery.magnific-popup.min.js" />
+    <Content Include="Content\LandingPage\js\jquery.min.js" />
+    <Content Include="Content\LandingPage\js\jquery.stellar.min.js" />
+    <Content Include="Content\LandingPage\js\jquery.waypoints.min.js" />
+    <Content Include="Content\LandingPage\js\ladipagev3.min.js" />
+    <Content Include="Content\LandingPage\js\main.js" />
+    <Content Include="Content\LandingPage\js\owl.carousel.min.js" />
+    <Content Include="Content\LandingPage\js\popper.min.js" />
+    <Content Include="Content\LandingPage\js\scrollax.min.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\scss\Readme.txt" />
     <Content Include="Content\vendor\apexcharts\apexcharts.amd.js" />
     <Content Include="Content\vendor\apexcharts\apexcharts.common.js" />
@@ -3360,7 +3493,6 @@
     <Content Include="Areas\Admin\Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Areas\Admin\Content\ckfinder\userfiles\.htaccess" />
     <Content Include="Areas\Admin\Views\ABloodInfors\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ABloodInfors\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ABloodInfors\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ABloodInfors\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ABloodInfors\Index.cshtml" />
@@ -3475,32 +3607,26 @@
     <Content Include="Content\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Content\ckfinder\userfiles\.htaccess" />
     <Content Include="Areas\Admin\Views\AThongTinCaNhans\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\AThongTinCaNhans\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\AThongTinCaNhans\Details.cshtml" />
     <Content Include="Areas\Admin\Views\AThongTinCaNhans\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AThongTinCaNhans\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ANgheNghieps\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ANgheNghieps\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ANgheNghieps\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ANgheNghieps\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ANgheNghieps\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ANhomMaus\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ANhomMaus\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ANhomMaus\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ANhomMaus\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ANhomMaus\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ATinhThanhPhoes\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ATinhThanhPhoes\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ATinhThanhPhoes\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ATinhThanhPhoes\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ATinhThanhPhoes\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AQuanHuyens\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\AQuanHuyens\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\AQuanHuyens\Details.cshtml" />
     <Content Include="Areas\Admin\Views\AQuanHuyens\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AQuanHuyens\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AXaPhuongs\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\AXaPhuongs\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\AXaPhuongs\Details.cshtml" />
     <Content Include="Areas\Admin\Views\AXaPhuongs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AXaPhuongs\Index.cshtml" />
@@ -3509,17 +3635,135 @@
     <Content Include="Areas\Admin\Views\ATaiKhoanAdmin\Login.cshtml" />
     <Content Include="Areas\Admin\Views\ATaiKhoanAdmin\UpdateUserProfile.cshtml" />
     <Content Include="Areas\Admin\Views\AQuyens\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\AQuyens\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\AQuyens\Details.cshtml" />
     <Content Include="Areas\Admin\Views\AQuyens\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\AQuyens\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ALichSuGiaoDiches\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\ALichSuGiaoDiches\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ALichSuGiaoDiches\Details.cshtml" />
     <Content Include="Areas\Admin\Views\ALichSuGiaoDiches\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ALichSuGiaoDiches\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AThongKeMaus\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AThongKeMaus\ThongKeNhomMau.cshtml" />
+    <Content Include="Areas\Admin\Views\AHinhAnh\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AHinhAnh\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\AHinhAnh\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AHinhAnh\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ABanners\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ABanners\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ABanners\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ABanners\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ATieuChuans\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ATieuChuans\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ATieuChuans\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ATieuChuans\Edit.cshtml" />
+    <Content Include="Content\LandingPage\css\.DS_Store" />
+    <Content Include="Content\LandingPage\fonts\.DS_Store" />
+    <Content Include="Content\LandingPage\fonts\bungee-regular-20220619064519.ttf" />
+    <Content Include="Content\LandingPage\fonts\flaticon\.DS_Store" />
+    <Content Include="Content\LandingPage\fonts\flaticon\font\Flaticon.eot" />
+    <Content Include="Content\LandingPage\fonts\flaticon\font\Flaticon.ttf" />
+    <Content Include="Content\LandingPage\fonts\flaticon\font\Flaticon.woff" />
+    <Content Include="Content\LandingPage\fonts\flaticon\font\Flaticon.woff2" />
+    <Content Include="Content\LandingPage\fonts\flaticon\font\_flaticon.scss" />
+    <Content Include="Content\LandingPage\fonts\JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-.ttf" />
+    <Content Include="Content\LandingPage\fonts\JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM70w-.ttf" />
+    <Content Include="Content\LandingPage\icielpanton-black_0-20220619070513.otf" />
+    <Content Include="Content\LandingPage\images\.DS_Store" />
+    <Content Include="Content\LandingPage\js\.DS_Store" />
+    <Content Include="Content\LandingPage\scss\.DS_Store" />
+    <Content Include="Content\LandingPage\scss\bootstrap\.DS_Store" />
+    <Content Include="Content\LandingPage\scss\bootstrap\bootstrap-grid.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\bootstrap-reboot.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\bootstrap.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_alert.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_background-variant.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_badge.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_box-shadow.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_breakpoints.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_buttons.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_caret.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_deprecate.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_float.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_forms.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_gradients.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_grid-framework.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_grid.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_hover.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_image.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_list-group.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_lists.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_nav-divider.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_pagination.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_resize.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_screen-reader.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_size.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_table-row.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_text-emphasis.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_text-hide.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_text-truncate.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_transition.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\mixins\_visibility.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_align.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_background.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_borders.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_clearfix.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_display.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_embed.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_flex.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_float.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_overflow.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_position.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_screenreaders.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_shadows.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_sizing.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_spacing.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_stretched-link.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_text.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\utilities\_visibility.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\vendor\_rfs.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_alert.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_badge.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_breadcrumb.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_button-group.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_buttons.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_card.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_carousel.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_close.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_code.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_custom-forms.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_dropdown.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_forms.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_functions.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_grid.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_images.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_input-group.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_jumbotron.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_list-group.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_media.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_mixins.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_modal.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_nav.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_navbar.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_pagination.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_popover.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_print.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_progress.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_reboot.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_root.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_spinners.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_tables.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_toasts.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_tooltip.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_transitions.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_type.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_utilities.scss" />
+    <Content Include="Content\LandingPage\scss\bootstrap\_variables.scss" />
+    <Content Include="Content\LandingPage\scss\style.scss" />
+    <Content Include="Areas\Admin\Content\Open Sans_Regular.json" />
+    <Content Include="Areas\Admin\Content\Fonts\NotoSans-VariableFont_wdth_wght.ttf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3579,6 +3823,21 @@
     <Content Include="Views\Doctor\INews.cshtml" />
     <Content Include="Views\Doctor\News.cshtml" />
     <Content Include="Views\Doctor\UserDetail.cshtml" />
+    <Content Include="Views\LandingPage\Banner.cshtml" />
+    <Content Include="Views\LandingPage\Details.cshtml" />
+    <Content Include="Views\LandingPage\HinhAnh.cshtml" />
+    <Content Include="Views\LandingPage\Index.cshtml" />
+    <Content Include="Views\LandingPage\ThongKe_HomePgae.cshtml" />
+    <Content Include="Views\LandingPage\TieuChuan.cshtml" />
+    <Content Include="Views\LandingPage\TinTuc.cshtml" />
+    <Content Include="Views\LandingPage\TuyenDuong.cshtml" />
+    <Content Include="Views\LandingPage\YeuCau.cshtml" />
+    <Content Include="Views\Shared\_Layout_LandingPage.cshtml" />
+    <Content Include="Views\Shared\_Layout_News.cshtml" />
+    <Content Include="Views\Doctor\IView.cshtml" />
+    <Content Include="Views\Doctor\Details.cshtml" />
+    <Content Include="Views\Doctor\Create.cshtml" />
+    <Content Include="Views\Doctor\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
