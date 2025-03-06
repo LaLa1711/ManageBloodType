@@ -5607,6 +5607,18 @@ button.bg-dark:focus {
 .rounded-right {
   border-top-right-radius: 0.25rem !important;
   border-bottom-right-radius: 0.25rem !important; }
+.login-button {
+    position: absolute;
+    right: 0; /* Căn nút sát lề phải */
+    top: 50%; /* Căn chỉnh theo chiều dọc */
+    transform: translateY(-50%); /* Để căn giữa theo chiều dọc */
+    font-weight: bold;
+    font-size: 25px;
+    text-decoration: none;
+    color: black;
+    padding: 5px 15px;
+}
+
 
 .rounded-bottom {
   border-bottom-right-radius: 0.25rem !important;

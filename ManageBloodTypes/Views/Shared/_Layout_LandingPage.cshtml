@@ -37,9 +37,38 @@
                     <li class="nav-item"><a href="#projects-section" class="nav-link"><span>HÌNH ẢNH</span></a></li>
                     <li class="nav-item"><a href="#blog-section" class="nav-link"><span>TIN TỨC</span></a></li>
                     <li class="nav-item"><a href="#footer-section" class="nav-link"><span>LIÊN HỆ</span></a></li>
+                    @if (Session["UserEmail"] != null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" style=" font-weight: bold; font-size: 16px; background-color: #ffff; /* Màu nền cho khung */
+    padding: 5px 10px; /* Khoảng cách giữa văn bản và khung */
+    border-radius: 40%; /* Bo tròn góc khung */
+     /* Bỏ gạch chân mặc định */
+    color: #333; /* Màu chữ */
+    display: inline-block; /* Đảm bảo áp dụng hiệu ứng padding */
+    border: 1px solid #ccc; /* Đường viền khung */
+    transition: background-color 0.3s ease; " href="https://localhost:44381/HomePage/Home">@Session["HoTen"].ToString()</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" style=" font-weight: bold; font-size: 16px; background-color: #f0f0f0; /* Màu nền cho khung */
+    padding: 5px 10px; /* Khoảng cách giữa văn bản và khung */
+    border-radius: 8px; /* Bo tròn góc khung */
+     /* Bỏ gạch chân mặc định */
+    color: #333; /* Màu chữ */
+    display: inline-block; /* Đảm bảo áp dụng hiệu ứng padding */
+    border: 1px solid #ccc; /* Đường viền khung */
+    transition: background-color 0.3s ease; " href="https://localhost:44381/Home">ĐĂNG NHẬP</a>
+                        </li>
+                    }
+
                 </ul>
             </div>
-        </div>
+      
+
+</div>
     </nav>
     @RenderBody()
 
